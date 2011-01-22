@@ -16,6 +16,11 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		ECD595B812EB49B800234240 /* PLBlocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD595B712EB49B800234240 /* PLBlocks.framework */; };
+		ECD595F112EB4EAE00234240 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595EC12EB4EAE00234240 /* Item.m */; };
+		ECD595F212EB4EAE00234240 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595EE12EB4EAE00234240 /* User.m */; };
+		ECD595F312EB4EAE00234240 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F012EB4EAE00234240 /* Location.m */; };
+		ECD595F812EB4F8700234240 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F512EB4F8700234240 /* NSDate+Helpers.m */; };
+		ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,16 @@
 		32CA4F630368D1EE00C91783 /* OKBuyMe_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBuyMe_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* OKBuyMe-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OKBuyMe-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		ECD595B712EB49B800234240 /* PLBlocks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PLBlocks.framework; path = "/Users/taylan/Development/Libraries/plblocks-runtime-1.0.2/iPhone Runtime/PLBlocks.framework"; sourceTree = "<absolute>"; };
+		ECD595EB12EB4EAE00234240 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		ECD595EC12EB4EAE00234240 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		ECD595ED12EB4EAE00234240 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		ECD595EE12EB4EAE00234240 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		ECD595EF12EB4EAE00234240 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		ECD595F012EB4EAE00234240 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		ECD595F412EB4F8700234240 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = SOURCE_ROOT; };
+		ECD595F512EB4F8700234240 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = SOURCE_ROOT; };
+		ECD595F612EB4F8700234240 /* NSObject+KVCAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVCAdditions.h"; sourceTree = SOURCE_ROOT; };
+		ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCAdditions.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +142,10 @@
 		ECD595BC12EB49D500234240 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				ECD595F412EB4F8700234240 /* NSDate+Helpers.h */,
+				ECD595F512EB4F8700234240 /* NSDate+Helpers.m */,
+				ECD595F612EB4F8700234240 /* NSObject+KVCAdditions.h */,
+				ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -134,6 +153,12 @@
 		ECD595BD12EB49E700234240 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ECD595EB12EB4EAE00234240 /* Item.h */,
+				ECD595EC12EB4EAE00234240 /* Item.m */,
+				ECD595ED12EB4EAE00234240 /* User.h */,
+				ECD595EE12EB4EAE00234240 /* User.m */,
+				ECD595EF12EB4EAE00234240 /* Location.h */,
+				ECD595F012EB4EAE00234240 /* Location.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -225,6 +250,11 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* OKBuyMeAppDelegate.m in Sources */,
 				28193060112F816700ECF9B4 /* OKBuyMe.xcdatamodeld in Sources */,
+				ECD595F112EB4EAE00234240 /* Item.m in Sources */,
+				ECD595F212EB4EAE00234240 /* User.m in Sources */,
+				ECD595F312EB4EAE00234240 /* Location.m in Sources */,
+				ECD595F812EB4F8700234240 /* NSDate+Helpers.m in Sources */,
+				ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
