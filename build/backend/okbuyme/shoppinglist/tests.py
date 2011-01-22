@@ -29,3 +29,4 @@ class APITests(TestCase):
         item_list = simplejson.loads(response.content)
         self.assertEqual(item_list[0]['name'], self.item.name)
         self.assertEqual(item_list[0]['id'], self.item.pk)
+        self.assertEqual(item_list[0]['resource_uri'], self.item.get_api_url())

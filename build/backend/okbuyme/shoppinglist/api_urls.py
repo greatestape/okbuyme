@@ -11,4 +11,6 @@ item_handler = Resource(ItemHandler)
 urlpatterns = patterns('',
     url(r'^$', item_handler, {'emitter_format': 'json'},
             name='api-shoppinglist-item-list'),
+    url(r'^(?P<item_id>\d+)/$', item_handler, {'emitter_format': 'json'},
+            name='api-shoppinglist-item'),
 )

@@ -13,3 +13,7 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_api_url(self):
+        return ('api-shoppinglist-item', (), {'item_id': self.pk})
