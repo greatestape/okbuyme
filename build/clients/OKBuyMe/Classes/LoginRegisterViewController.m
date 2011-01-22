@@ -17,6 +17,7 @@ static NSString * const kEmailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za
 
 @interface LoginRegisterViewController (PrivateMethods)
 - (void)segmentedControlValueDidChange:(id)sender;
+- (void)didTapCancelButton:(id)sender;
 - (void)didTapGoButton:(id)sender;
 - (BOOL)isFormValid;
 - (void)submitForm;
@@ -72,6 +73,15 @@ static NSString * const kEmailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za
 	
 	[goButton release];
 	
+	UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+																	 style:UIBarButtonItemStylePlain 
+																	target:self 
+																	action:@selector(didTapCancelButton:)];
+	
+	[self.navigationItem setLeftBarButtonItem:cancelButton];
+	
+	[cancelButton release];
+	
 	_postData = [[NSMutableDictionary alloc] init];
 	_currentMode = LoginRegisterViewControllerModeLogin;
 }
@@ -86,6 +96,10 @@ static NSString * const kEmailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za
 
 #pragma mark -
 #pragma mark Action Callbacks
+
+- (void)didTapCancelButton:(id)sender {
+	[self.parentViewController dismissModalViewControllerAnimated:YES];
+}
 
 - (void)didTapGoButton:(id)sender {
 	[self submitForm];
