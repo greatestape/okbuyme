@@ -42,6 +42,8 @@
 																				target:self 
 																				action:@selector(didTapEdit:)];
 	
+	[self.navigationItem setRightBarButtonItem:editButton];
+	
 	[editButton release];
 }
 
@@ -99,6 +101,8 @@
 
 - (void)scratchObjectContextDidSave:(NSNotification *)saveNotification {
 	[[_item managedObjectContext] mergeChangesFromContextDidSaveNotification:saveNotification];
+	
+	[self.tableView reloadData];
 }
 
 #pragma mark -

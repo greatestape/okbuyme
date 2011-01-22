@@ -166,6 +166,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
 									   reuseIdentifier:CellIdentifier] autorelease];
+		
+		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
 	
 	[self configureCell:cell atIndexPath:indexPath forSearchResult:(tableView != self.tableView)];
