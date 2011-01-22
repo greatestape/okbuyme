@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
 
     'django_extensions',
+    'piston',
     'south',
 
     'shoppinglist',
