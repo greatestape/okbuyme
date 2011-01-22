@@ -29,11 +29,11 @@ API
                             'name': 'Home Depot'
                         },
                         {
-                            'slug': 'rona'
+                            'slug': 'rona',
                             'name': 'Rona'
                         }
                     ],
-                    'note': "Don't spend more than $10"
+                    'note': "Don't spend more than $10",
                     'creation_time': '2011-01-01T12:45:00+00:00',
                     'modification_time': '2011-01-02T17:55+00:00',
                     'owner': {
