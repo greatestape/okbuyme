@@ -50,6 +50,40 @@ API
             ]
         }]
 
+### Get Item
+
+- URL: `/list/item/<id>/`
+- Method: `GET`
+
+- Response:
+
+
+        [{
+            'item': {
+                'id': 1234,
+                'URL': '/list/item/1234/',
+                'name': 'Hammer',
+                'locations': [
+                    {
+                        'slug': 'home-depot',
+                        'name': 'Home Depot'
+                    },
+                    {
+                        'slug': 'rona'
+                        'name': 'Rona'
+                    }
+                ],
+                'note': "Don't spend more than $10"
+                'creation_time': '2011-01-01T12:45:00+00:00',
+                'modification_time': '2011-01-02T17:55+00:00',
+                'owner': {
+                    'id': 4321,
+                    'email': 'sam@pocketuniverse.ca',
+                    'name': 'Sam Bull'
+                }
+            }
+        }]
+
 ### Add List Item
 
 - URL: `/list/add/`
@@ -64,6 +98,24 @@ API
             }
         }]
 
+### Edit List Item
+
+- URL: `/list/item/<item-id>`
+- Method: `PUT`
+- POST Data
+
+        [{
+            'item': {
+                'name': 'Cheerios',
+                'locations': ['Loblaws', 'Metro', ...],
+                'note': 'Please buy four boxes'
+            }
+        }]
+
+### Remove List Item
+
+- URL: `/list/item/<item-id>`
+- Method: `DELETE`
 
 ### Get Locations
 
