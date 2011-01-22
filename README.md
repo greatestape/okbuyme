@@ -6,90 +6,100 @@ API
 
 ### Get List Items
 
-#### Optional Params:
+- Optional Params:
 
-- whose : mine|ours|<user-id>
-- where : <location-slug>
-- changed-since : <YYYY-MM-DD_HH:MM:SS>
+    - `whose` : `mine`|`ours`|`<user-id>`
+    - `where` : `<location-slug>`
+    - `changed-since` : `<YYYY-MM-DDTHH:MM:SS+00:00>`
 
-#### Response:
+- Response:
 
 
-    [{
-        'items': [
-            {
-                'id': 1234,
-                'name': 'Hammer',
-                'locations': [
-                    {
-                        'slug': 'home-depot',
-                        'name': 'Home Depot'
-                    },
-                    {
-                        'slug': 'rona'
-                        'name': 'Rona'
+        [{
+            'items': [
+                {
+                    'id': 1234,
+                    'URL': '/list/item/1234/',
+                    'name': 'Hammer',
+                    'locations': [
+                        {
+                            'slug': 'home-depot',
+                            'name': 'Home Depot'
+                        },
+                        {
+                            'slug': 'rona'
+                            'name': 'Rona'
+                        }
+                    ],
+                    'note': "Don't spend more than $10"
+                    'creation_time': '2011-01-01T12:45:00+00:00',
+                    'modification_time': '2011-01-02T17:55+00:00',
+                    'owner': {
+                        'id': 4321,
+                        'email': 'sam@pocketuniverse.ca',
+                        'name': 'Sam Bull'
                     }
-                ],
-                'note': "Don't spend more than $10"
-                'creation_time': '2011-01-01 12:45:00',
-                'modification_time': '2011-01-02 17:55',
-                'owner': {
-                    'id': 4321,
-                    'email': 'sam@pocketuniverse.ca',
-                    'name': 'Sam Bull'
-                }
-            },
-            {
-                'id': 5678,
+                },
+                {
+                    'id': 5678,
+                    ...
+                },
                 ...
-            },
-            ...
-        ]
-    }]
+            ]
+        }]
 
 ### Add List Item
 
-#### POST Request
+- POST Data
 
-    [{
-        'item': {
-            'name': 'Cheerios',
-            'locations': ['Loblaws', 'Metro', ...],
-            'note': 'Please buy three boxes'
-        }
-    }]
+        [{
+            'item': {
+                'name': 'Cheerios',
+                'locations': ['Loblaws', 'Metro', ...],
+                'note': 'Please buy three boxes'
+            }
+        }]
+
 
 ### Get Locations
 
-#### Params:
+- Params
+    - changed-since: `<YYYY-MM-DDTHH:MM:SS+00:00>`
+- Response
 
-- changed-since: <YYYY-MM-DD_HH:MM:SS>
-
-#### Response
-
-[{
-    'locations': [
-        {
-            'slug': 'rona,
-            'name': 'Rona',
-            'creation_time': '2011-01-01 12:45:00',
-            'modification_time': '2011-01-02 17:55',
-        },
-        {
-            'slug': 'home-depot',
-            ...
-        },
-        ...
-    ]
-}]
+        [{
+            'locations': [
+                {
+                    'slug': 'rona,
+                    'name': 'Rona',
+                    'creation_time': '2011-01-01 12:45:00',
+                    'modification_time': '2011-01-02 17:55',
+                },
+                {
+                    'slug': 'home-depot',
+                    ...
+                },
+                ...
+            ]
+        }]
 
 
-### find friends
+### Find Friends
 
-### send friend request
+TODO
 
-### remove friends
+### Send Friend Request
+
+TODO
+
+### Remove Friends
+
+TODO
 
 ### register
 
+TODO
+
 ### change password
+
+TODO
