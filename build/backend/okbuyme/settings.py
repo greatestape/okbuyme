@@ -69,6 +69,8 @@ INSTALLED_APPS = (
 
     'django_extensions',
     'south',
+
+    'shoppinglist',
 )
 
 try:
