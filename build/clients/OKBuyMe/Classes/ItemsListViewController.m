@@ -7,7 +7,10 @@
 //
 
 #import "Item.h"
+#import "Location.h"
+#import "ItemDetailViewController.h"
 #import "ItemsListViewController.h"
+#import "NSDate+Helpers.h"
 
 
 @interface ItemsListViewController (PrivateMethods)
@@ -151,7 +154,8 @@
 		item = [_fetchedResultsController objectAtIndexPath:indexPath];
 	}
 	
-	//[cell.textLabel setText:entry.shortTitle];
+	[cell.textLabel setText:item.name];
+	[cell.detailTextLabel setText:[item.creationTime timeSince]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,8 +164,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
 									   reuseIdentifier:CellIdentifier] autorelease];
+		
+		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
 	
 	[self configureCell:cell atIndexPath:indexPath forSearchResult:(tableView != self.tableView)];
@@ -195,7 +201,21 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Item *item;
 	
+	if (tableView == self.tableView) {
+		item = [_fetchedResultsController objectAtIndexPath:indexPath];
+	} else {
+		item = [_searchResultsController objectAtIndexPath:indexPath];
+	}
+
+	ItemDetailViewController *controller = [[ItemDetailViewController alloc] initWithItem:item];
+	
+	[self.navigationController pushViewController:controller animated:YES];
+	
+	[controller release];
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -

@@ -4,3 +4,4 @@ build/clients/OKBuyMe/build
 *.mode1v3
 *.xcworkspace
 *xcuserdata*
+settings_local.py

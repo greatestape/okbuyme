@@ -23,6 +23,8 @@
 
 - (void)updateWithDictionary:(NSDictionary *)dict;
 
+- (BOOL)isValid;
+
 @end
 
 

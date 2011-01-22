@@ -1,6 +1,30 @@
-Items:
-<ul>
-{% for item in item_list %}
-<li>{{ item.name }}</li>
-{% endfor %}
-</ul>
+{% extends "base.html" %}
+
+{% block templates %}
+  <script type="text/template" id="ItemTemplate">
+    <div class="item">
+      <strong>Name: <%= name %>.</strong>
+      [
+      <% if (notes) { %>
+        <a class="toggle-notes" href="#">N</a>
+      <% } %>
+      <a class="edit" href="#">E</a>
+      <a class="delete" href="#">X</a>
+      ]
+      <em><%= owner.name %></em>
+      <div class="notes" style="display: none;">
+        <% if (notes) { %><%= notes %><% } %>
+      </div>
+    </div>
+  </script>
+{% endblock templates %}
+
+{% block main_content %}
+    <ul id="ItemList"></ul>
+    Items:
+    <ul>
+    {% for item in item_list %}
+    <li>{{ item.name }}</li>
+    {% endfor %}
+    </ul>
+{% endblock main_content %}

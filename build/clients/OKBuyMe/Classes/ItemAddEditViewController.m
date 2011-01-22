@@ -7,6 +7,7 @@
 //
 
 #import "Item.h"
+#import "Location.h"
 #import "ItemAddEditViewController.h"
 
 
@@ -73,17 +74,29 @@
 																				  target:self 
 																				  action:@selector(didTapCancel:)];
 	
-	[self.navigationItem setRightBarButtonItem:cancelButton];
+	[self.navigationItem setLeftBarButtonItem:cancelButton];
 	
 	[cancelButton release];
 	[saveButton release];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
+	[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
+								animated:YES 
+						  scrollPosition:UITableViewScrollPositionNone];
 }
 
 #pragma mark -
 #pragma mark Action callbacks
 
 - (void)didTapSave:(id)sender {
-	
+	if ([_item isValid]) {
+		[_item setCreationTime:[NSDate date]];
+		
+		[delegate itemAddEditViewController:self didCloseWithSave:YES];
+	}
 }
 
 - (void)didTapCancel:(id)sender {
@@ -97,13 +110,24 @@
     return 2;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	switch (section) {
+		case 1:
+			return @"Locations";
+			break;
+		default:
+			return nil;
+			break;
+	}
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case 0:
 			return 2;
 			break;
 		case 1:
-			return 1;
+			return [_item.locations count] + 1;
 			break;
 		default:
 			return 0;
@@ -112,18 +136,136 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-	if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
-									   reuseIdentifier:CellIdentifier] autorelease];
-    }
+	switch (indexPath.section) {
+		case 0: {
+			static NSString *editableCellIdentifier = @"editableCell";
+			
+			EditableTableViewCell *cell = (EditableTableViewCell *)[tableView dequeueReusableCellWithIdentifier:editableCellIdentifier];
+			
+			if (cell == nil) {
+				cell = [[[EditableTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+													 reuseIdentifier:editableCellIdentifier] autorelease];
+				
+				[cell setDelegate:self];
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+				[cell.textField setFont:[UIFont boldSystemFontOfSize:16.0]];
+			}
+			
+			switch (indexPath.row) {
+				case 0: {
+					[cell.textField setPlaceholder:@"Name"];
+					[cell.textField setText:_item.name];
+					
+					break;
+				}
+				case 1: {
+					[cell.textField setPlaceholder:@"Notes"];
+					[cell.textField setText:_item.notes];
+					
+					break;
+				}
+			}
+			
+			return cell;
+			break;
+		}
+		case 1: {
+			static NSString *CellIdentifier = @"Cell";
+			
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+			
+			if (cell == nil) {
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+											   reuseIdentifier:CellIdentifier] autorelease];
+			}
+			
+			switch (indexPath.row) {
+				case 0: {
+					[cell.textLabel setText:@"Add a Location"];
+					
+					break;
+				}
+				default: {
+					Location *location = [[_item.locations allObjects] objectAtIndex:(indexPath.row - 1)];
+					
+					[cell.textLabel setText:location.name];
+					
+					break;
+				}
+			}
+			
+			return cell;
+			break;
+		}
+		default: {
+			return nil;
+			break;
+		}
+	}
+}
+
+#pragma mark -
+#pragma mark EditableTableViewCellDelegate callbacks
+
+- (void)editableTableViewCellDidBeginEditing:(EditableTableViewCell *)cell {
+	/*NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	
+	_activeCell = indexPath.row;*/
+}
+
+- (void)editableTableViewCell:(EditableTableViewCell *)cell didChangeValue:(NSString *)value {
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	
+	switch (indexPath.row) {
+		case 0: {
+			[_item setName:value];
+			
+			break;
+		}
+		case 1: {
+			[_item setNotes:value];
+			
+			break;
+		}
+	}
 	
-    return cell;
+	[self.navigationItem.rightBarButtonItem setEnabled:[_item isValid]];
+}
+
+- (void)editableTableViewCellDidClear:(EditableTableViewCell *)cell {
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+	
+	switch (indexPath.row) {
+		case 0: {
+			[_item setName:nil];
+			
+			break;
+		}
+		case 1: {
+			[_item setNotes:nil];
+			
+			break;
+		}
+	}
+	
+	[self.navigationItem.rightBarButtonItem setEnabled:[_item isValid]];
+}
+
+- (void)editableTableViewCellDidReturn:(EditableTableViewCell *)cell {
+	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+	
+	switch (indexPath.row) {
+		case 0:
+			[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] 
+										animated:NO 
+								  scrollPosition:UITableViewScrollPositionNone];
+			break;
+		case 1:
+			[self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
+										animated:NO 
+								  scrollPosition:UITableViewScrollPositionNone];
+			break;
+	}
 }
 
 #pragma mark -

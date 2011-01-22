@@ -8,11 +8,13 @@
 
 #import <CoreData/CoreData.h>
 
+#import "EditableTableViewCell.h"
+
 
 @class Item;
 @protocol ItemAddEditViewControllerDelegate;
 
-@interface ItemAddEditViewController : UITableViewController {
+@interface ItemAddEditViewController : UITableViewController <EditableTableViewCellDelegate> {
 @private
 	Item *_item;
 	NSManagedObjectContext *_managedObjectContext;
