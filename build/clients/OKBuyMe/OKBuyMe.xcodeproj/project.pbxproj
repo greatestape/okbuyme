@@ -23,6 +23,8 @@
 		ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */; };
 		ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595FB12EB540400234240 /* ItemsListViewController.m */; };
 		ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5964112EB58F200234240 /* ItemAddEditViewController.m */; };
+		ECD5967C12EB60DD00234240 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5967B12EB60DD00234240 /* EditableTableViewCell.m */; };
+		ECD596F712EB749F00234240 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD596F612EB749F00234240 /* ItemDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,10 @@
 		ECD595FB12EB540400234240 /* ItemsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsListViewController.m; sourceTree = "<group>"; };
 		ECD5964012EB58F200234240 /* ItemAddEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAddEditViewController.h; sourceTree = "<group>"; };
 		ECD5964112EB58F200234240 /* ItemAddEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemAddEditViewController.m; sourceTree = "<group>"; };
+		ECD5967A12EB60DD00234240 /* EditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		ECD5967B12EB60DD00234240 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		ECD596F512EB749F00234240 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		ECD596F612EB749F00234240 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +178,7 @@
 		ECD595BE12EB49EF00234240 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECD5966B12EB605300234240 /* Cells */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -183,6 +190,8 @@
 				ECD595FB12EB540400234240 /* ItemsListViewController.m */,
 				ECD5964012EB58F200234240 /* ItemAddEditViewController.h */,
 				ECD5964112EB58F200234240 /* ItemAddEditViewController.m */,
+				ECD596F512EB749F00234240 /* ItemDetailViewController.h */,
+				ECD596F612EB749F00234240 /* ItemDetailViewController.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -192,6 +201,15 @@
 			children = (
 			);
 			name = Friends;
+			sourceTree = "<group>";
+		};
+		ECD5966B12EB605300234240 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ECD5967A12EB60DD00234240 /* EditableTableViewCell.h */,
+				ECD5967B12EB60DD00234240 /* EditableTableViewCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +285,8 @@
 				ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */,
 				ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */,
 				ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */,
+				ECD5967C12EB60DD00234240 /* EditableTableViewCell.m in Sources */,
+				ECD596F712EB749F00234240 /* ItemDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,13 +332,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Taylan Pince (3NP8F5275C)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_VERSION = coop.plausible.blocks.compilers.gcc.4_2;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9BC79E00-6A7C-4EE1-A372-6BA99D407413";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
