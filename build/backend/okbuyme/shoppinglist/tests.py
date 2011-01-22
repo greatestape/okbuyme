@@ -1,3 +1,5 @@
+import datetime
+
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import simplejson
@@ -17,6 +19,21 @@ class WebTests(TestCase):
         item_list = response.context['item_list']
         self.assertIn(item, item_list)
         self.assertContains(response, 'Test Item')
+
+
+class ModelTests(TestCase):
+    def test_creation_time_is_set(self):
+        item = Item.objects.create(name='Test Item')
+        self.assertEqual(type(item.creation_time), datetime.datetime)
+
+    def test_creation_time_is_set_once(self):
+        original_creation_time = datetime.datetime(2010,1,1,15,30,10)
+        item = Item.objects.create(name='Test Item',
+                creation_time=original_creation_time)
+        item.save()
+        item = Item.objects.get(pk=item.pk)
+        self.assertEqual(item.creation_time, original_creation_time)
+
 
 class APITests(TestCase):
     def setUp(self):
