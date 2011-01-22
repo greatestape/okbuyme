@@ -4,7 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class Item(models.Model):
     """A shopping list item"""
-    name = models.CharField(max_length=255)
+    name = models.CharField(_('name'), max_length=255)
+    notes = models.TextField(_('notes'), blank=True)
 
     class Meta:
         ordering = []
@@ -13,3 +14,7 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @models.permalink
+    def get_api_url(self):
+        return ('api-shoppinglist-item', (), {'item_id': self.pk})
