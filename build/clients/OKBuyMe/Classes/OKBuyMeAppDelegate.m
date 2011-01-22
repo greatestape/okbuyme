@@ -7,6 +7,7 @@
 //
 
 #import "OKBuyMeAppDelegate.h"
+#import "ItemsListViewController.h"
 
 
 @implementation OKBuyMeAppDelegate
@@ -17,7 +18,14 @@
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self.window makeKeyAndVisible];
+	ItemsListViewController *itemsListController = [[ItemsListViewController alloc] initWithManagedObjectContext:self.managedObjectContext];
+	
+	_rootController = [[UINavigationController alloc] initWithRootViewController:itemsListController];
+	
+	[window addSubview:_rootController.view];
+    [window makeKeyAndVisible];
+	
+	[itemsListController release];
     
     return YES;
 }
@@ -55,10 +63,9 @@
 
 - (void)saveContext {
     NSError *error = nil;
-	NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
 
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+    if (self.managedObjectContext != nil) {
+        if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
             /*
              Replace this implementation with code to handle the error appropriately.
              
@@ -159,8 +166,9 @@
 }
 
 - (void)dealloc {
-    [_managedObjectContext release];
+	[_rootController release];
     [_managedObjectModel release];
+    [_managedObjectContext release];
     [_persistentStoreCoordinator release];
     
     [window release];
