@@ -87,4 +87,8 @@
 	}
 }
 
+- (BOOL)isValid {
+	return (self.name != nil && ![self.name isEqualToString:@""]);
+}
+
 @end

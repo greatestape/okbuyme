@@ -8,6 +8,7 @@
 
 #import "Item.h"
 #import "ItemsListViewController.h"
+#import "NSDate+Helpers.h"
 
 
 @interface ItemsListViewController (PrivateMethods)
@@ -151,7 +152,8 @@
 		item = [_fetchedResultsController objectAtIndexPath:indexPath];
 	}
 	
-	//[cell.textLabel setText:entry.shortTitle];
+	[cell.textLabel setText:item.name];
+	[cell.detailTextLabel setText:[item.creationTime timeSince]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,7 +162,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle 
 									   reuseIdentifier:CellIdentifier] autorelease];
     }
 	
@@ -195,7 +197,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark -
