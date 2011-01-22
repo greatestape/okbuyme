@@ -6,7 +6,7 @@ from shoppinglist.models import Item
 class ItemHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = Item
-    fields = ('id', 'name')
+    fields = ('id', 'name', 'notes')
 
     def read(self, request, item_id=None):
         """

@@ -20,7 +20,9 @@ class WebTests(TestCase):
 
 class APITests(TestCase):
     def setUp(self):
-        self.item = Item.objects.create(name='Test Item')
+        self.item = Item.objects.create(
+                name='Test Item',
+                notes="Don't forget to foobar")
 
     def test_list_items(self):
         response = self.client.get(reverse('api-shoppinglist-item-list'))
@@ -30,3 +32,4 @@ class APITests(TestCase):
         self.assertEqual(item_list[0]['name'], self.item.name)
         self.assertEqual(item_list[0]['id'], self.item.pk)
         self.assertEqual(item_list[0]['resource_uri'], self.item.get_api_url())
+        self.assertEqual(item_list[0]['notes'], self.item.notes)

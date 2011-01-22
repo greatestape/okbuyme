@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 class Item(models.Model):
     """A shopping list item"""
     name = models.CharField(_('name'), max_length=255)
+    notes = models.TextField(_('notes'), blank=True)
 
     class Meta:
         ordering = []
