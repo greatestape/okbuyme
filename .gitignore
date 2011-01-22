@@ -1,0 +1,6 @@
+build/clients/OKBuyMe/build
+*.pbxuser
+*.perspectivev3
+*.mode1v3
+*.xcworkspace
+*xcuserdata*
