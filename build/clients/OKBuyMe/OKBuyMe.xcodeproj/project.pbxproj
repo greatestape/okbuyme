@@ -24,6 +24,7 @@
 		ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595FB12EB540400234240 /* ItemsListViewController.m */; };
 		ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5964112EB58F200234240 /* ItemAddEditViewController.m */; };
 		ECD5967C12EB60DD00234240 /* EditableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5967B12EB60DD00234240 /* EditableTableViewCell.m */; };
+		ECD596F712EB749F00234240 /* ItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD596F612EB749F00234240 /* ItemDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		ECD5964112EB58F200234240 /* ItemAddEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemAddEditViewController.m; sourceTree = "<group>"; };
 		ECD5967A12EB60DD00234240 /* EditableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		ECD5967B12EB60DD00234240 /* EditableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		ECD596F512EB749F00234240 /* ItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailViewController.h; sourceTree = "<group>"; };
+		ECD596F612EB749F00234240 /* ItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				ECD595FB12EB540400234240 /* ItemsListViewController.m */,
 				ECD5964012EB58F200234240 /* ItemAddEditViewController.h */,
 				ECD5964112EB58F200234240 /* ItemAddEditViewController.m */,
+				ECD596F512EB749F00234240 /* ItemDetailViewController.h */,
+				ECD596F612EB749F00234240 /* ItemDetailViewController.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */,
 				ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */,
 				ECD5967C12EB60DD00234240 /* EditableTableViewCell.m in Sources */,
+				ECD596F712EB749F00234240 /* ItemDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
