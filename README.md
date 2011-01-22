@@ -6,6 +6,8 @@ API
 
 ### Get List Items
 
+- URL: `/list/`
+- Method: `GET`
 - Optional Params:
 
     - `whose` : `mine`|`ours`|`<user-id>`
@@ -50,6 +52,8 @@ API
 
 ### Add List Item
 
+- URL: `/list/add/`
+- Method: `POST`
 - POST Data
 
         [{
@@ -63,6 +67,8 @@ API
 
 ### Get Locations
 
+- URL: `/locations/`
+- Method: `GET`
 - Params
     - changed-since: `<YYYY-MM-DDTHH:MM:SS+00:00>`
 - Response
