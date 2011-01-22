@@ -11,6 +11,7 @@
 
 
 @interface ItemsListViewController (PrivateMethods)
+- (void)didTapAdd:(id)sender;
 - (void)refreshFetchedResults;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath forSearchResult:(BOOL)searchResult;
 @end
@@ -54,10 +55,72 @@
 	
 	[self.tableView setTableHeaderView:searchBar];
 	
-	//[searchController release];
 	[searchBar release];
 	
 	[self refreshFetchedResults];
+	
+	UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+																				target:self 
+																				action:@selector(didTapAdd:)];
+	
+	[self.navigationItem setRightBarButtonItem:addButton];
+	
+	[addButton release];
+}
+
+#pragma mark -
+#pragma mark Add Item
+
+- (void)didTapAdd:(id)sender {
+	_scratchObjectContext = [[NSManagedObjectContext alloc] init];
+	
+	[_scratchObjectContext setPersistentStoreCoordinator:[_managedObjectContext persistentStoreCoordinator]];
+	
+	ItemAddEditViewController *controller = [[ItemAddEditViewController alloc] initWithManagedObjectContext:_scratchObjectContext];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+	
+	[controller setDelegate:self];
+	
+	[self presentModalViewController:navController animated:YES];
+	
+	[navController release];
+	[controller release];
+}
+
+- (void)itemAddEditViewController:(ItemAddEditViewController *)controller didCloseWithSave:(BOOL)save {
+	if (save) {
+		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+		
+		[dnc addObserver:self 
+				selector:@selector(scratchObjectContextDidSave:) 
+					name:NSManagedObjectContextDidSaveNotification 
+				  object:_scratchObjectContext];
+		
+		NSError *error;
+		
+		if (![_scratchObjectContext save:&error]) {
+			UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error" 
+																 message:@"Your changes could not be saved, please try again." 
+																delegate:nil 
+													   cancelButtonTitle:@"OK" 
+													   otherButtonTitles:nil];
+			
+			[errorAlert show];
+			[errorAlert release];
+		}
+		
+		[dnc removeObserver:self 
+					   name:NSManagedObjectContextDidSaveNotification 
+					 object:_scratchObjectContext];
+	}
+	
+	[_scratchObjectContext release], _scratchObjectContext = nil;
+	
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)scratchObjectContextDidSave:(NSNotification *)saveNotification {
+	[_managedObjectContext mergeChangesFromContextDidSaveNotification:saveNotification];
 }
 
 #pragma mark -
@@ -318,6 +381,7 @@
 - (void)dealloc {
 	[_searchKeywords release];
 	[_managedObjectContext release];
+	[_scratchObjectContext release];
 	[_searchResultsController release];
 	[_fetchedResultsController release];
 	

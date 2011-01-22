@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSNumber *primaryKey;
 @property (nonatomic, retain) NSDate *creationTime;
-@property (nonatomic, retain) NSString *note;
+@property (nonatomic, retain) NSString *notes;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDate *modificationTime;
 @property (nonatomic, retain) NSManagedObject *owner;

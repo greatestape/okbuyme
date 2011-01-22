@@ -8,11 +8,14 @@
 
 #import <CoreData/CoreData.h>
 
+#import "ItemAddEditViewController.h"
 
-@interface ItemsListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate> {
+
+@interface ItemsListViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchDisplayDelegate, ItemAddEditViewControllerDelegate> {
 @private
 	NSString *_searchKeywords;
 	NSManagedObjectContext *_managedObjectContext;
+	NSManagedObjectContext *_scratchObjectContext;
 	NSFetchedResultsController *_searchResultsController;
 	NSFetchedResultsController *_fetchedResultsController;
 }

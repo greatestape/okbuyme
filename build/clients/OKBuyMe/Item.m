@@ -16,7 +16,7 @@
 
 @dynamic primaryKey;
 @dynamic creationTime;
-@dynamic note;
+@dynamic notes;
 @dynamic name;
 @dynamic modificationTime;
 @dynamic owner;
@@ -25,7 +25,7 @@
 - (void)updateWithDictionary:(NSDictionary *)dict {
 	self.primaryKey = [dict nonNullValueForKey:@"id"];
 	self.name = [dict nonNullValueForKey:@"name"];
-	self.note = [dict nonNullValueForKey:@"note"];
+	self.notes = [dict nonNullValueForKey:@"notes"];
 	self.creationTime = [dict dateValueForKey:@"creation_time" withDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	self.modificationTime = [dict dateValueForKey:@"modification_time" withDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 	
@@ -77,7 +77,7 @@
 			Location *location = [[Location alloc] initWithEntity:locationEntity 
 								   insertIntoManagedObjectContext:[self managedObjectContext]];
 			
-			[location updateFromDictionary:locationInfo];
+			[location updateWithDictionary:locationInfo];
 			[location addItemsObject:self];
 			
 			[self addLocationsObject:location];
