@@ -22,6 +22,7 @@
 		ECD595F812EB4F8700234240 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F512EB4F8700234240 /* NSDate+Helpers.m */; };
 		ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */; };
 		ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD595FB12EB540400234240 /* ItemsListViewController.m */; };
+		ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD5964112EB58F200234240 /* ItemAddEditViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		ECD595F712EB4F8700234240 /* NSObject+KVCAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCAdditions.m"; sourceTree = SOURCE_ROOT; };
 		ECD595FA12EB540400234240 /* ItemsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsListViewController.h; sourceTree = "<group>"; };
 		ECD595FB12EB540400234240 /* ItemsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsListViewController.m; sourceTree = "<group>"; };
+		ECD5964012EB58F200234240 /* ItemAddEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemAddEditViewController.h; sourceTree = "<group>"; };
+		ECD5964112EB58F200234240 /* ItemAddEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemAddEditViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 			children = (
 				ECD595FA12EB540400234240 /* ItemsListViewController.h */,
 				ECD595FB12EB540400234240 /* ItemsListViewController.m */,
+				ECD5964012EB58F200234240 /* ItemAddEditViewController.h */,
+				ECD5964112EB58F200234240 /* ItemAddEditViewController.m */,
 			);
 			name = Items;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				ECD595F812EB4F8700234240 /* NSDate+Helpers.m in Sources */,
 				ECD595F912EB4F8700234240 /* NSObject+KVCAdditions.m in Sources */,
 				ECD595FC12EB540400234240 /* ItemsListViewController.m in Sources */,
+				ECD5964212EB58F200234240 /* ItemAddEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
