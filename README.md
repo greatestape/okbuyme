@@ -6,7 +6,7 @@ API
 
 ### Get List Items
 
-- URL: `/list/`
+- URL: `/api/list/`
 - Method: `GET`
 - Optional Params:
 
@@ -17,104 +17,67 @@ API
 - Response:
 
 
-        [{
-            'items': [
-                {
-                    'id': 1234,
-                    'URL': '/list/item/1234/',
-                    'name': 'Hammer',
-                    'locations': [
-                        {
-                            'slug': 'home-depot',
-                            'name': 'Home Depot'
-                        },
-                        {
-                            'slug': 'rona',
-                            'name': 'Rona'
-                        }
-                    ],
-                    'note': "Don't spend more than $10",
-                    'creation_time': '2011-01-01T12:45:00+00:00',
-                    'modification_time': '2011-01-02T17:55+00:00',
-                    'owner': {
-                        'id': 4321,
-                        'email': 'sam@pocketuniverse.ca',
-                        'name': 'Sam Bull'
-                    }
-                },
-                {
-                    'id': 5678,
-                    ...
-                },
+        [
+            {
+                'id': 1234,
+                'resource_uri': '/api/list/1234/',
+                'name': 'Hammer',
+                'note': "Don't spend more than $10",
+                'creation_time': '2011-01-01T12:45:00+00:00',
+                'last_updated_time': '2011-01-02T17:55+00:00',
+            },
+            {
+                'id': 5678,
                 ...
-            ]
-        }]
+            },
+        ]
 
 ### Get Item
 
-- URL: `/list/item/<id>/`
+- URL: `/api/list/<id>/`
 - Method: `GET`
 
 - Response:
 
 
-        [{
-            'item': {
-                'id': 1234,
-                'URL': '/list/item/1234/',
-                'name': 'Hammer',
-                'locations': [
-                    {
-                        'slug': 'home-depot',
-                        'name': 'Home Depot'
-                    },
-                    {
-                        'slug': 'rona'
-                        'name': 'Rona'
-                    }
-                ],
-                'note': "Don't spend more than $10"
-                'creation_time': '2011-01-01T12:45:00+00:00',
-                'modification_time': '2011-01-02T17:55+00:00',
-                'owner': {
-                    'id': 4321,
-                    'email': 'sam@pocketuniverse.ca',
-                    'name': 'Sam Bull'
-                }
-            }
-        }]
+        {
+            'id': 1234,
+            'resource_uri': '/api/list/1234/',
+            'name': 'Hammer',
+            'note': "Don't spend more than $10",
+            'creation_time': '2011-01-01T12:45:00+00:00',
+            'last_updated_time': '2011-01-02T17:55+00:00',
+        }
 
 ### Add List Item
 
-- URL: `/list/add/`
+- URL: `/api/list/add/`
 - Method: `POST`
 - POST Data
 
-        [{
+        {
             'item': {
                 'name': 'Cheerios',
-                'locations': ['Loblaws', 'Metro', ...],
                 'note': 'Please buy three boxes'
             }
-        }]
+        }
 
 ### Edit List Item
 
-- URL: `/list/item/<item-id>`
+- URL: `/api/list/<item-id>/`
 - Method: `PUT`
 - POST Data
 
-        [{
+        {
             'item': {
                 'name': 'Cheerios',
-                'locations': ['Loblaws', 'Metro', ...],
                 'note': 'Please buy four boxes'
             }
-        }]
+        }
 
 ### Remove List Item
 
-- URL: `/list/item/<item-id>`
+- URL: `/list/<item-id>/`
 - Method: `DELETE`
 
 ### Get Locations
