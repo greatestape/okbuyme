@@ -26,7 +26,7 @@ class Item(models.Model):
         return _timezoneify(self.utc_creation_time)
 
     def _set_creation_time(self, dt):
-        self.utc_creation_time = _detimezonify(dt)
+        self.utc_creation_time = _detimezoneify(dt)
 
     creation_time = property(_get_creation_time, _set_creation_time)
 
@@ -34,7 +34,7 @@ class Item(models.Model):
         return _timezoneify(self.utc_last_updated_time)
 
     def _set_last_updated_time(self, dt):
-        self.utc_last_updated_time = _detimezonify(dt)
+        self.utc_last_updated_time = _detimezoneify(dt)
 
     last_updated_time = property(_get_last_updated_time, _set_last_updated_time)
 
@@ -56,7 +56,7 @@ def _timezoneify(dt, tz=pytz.utc):
         return dt
 
 
-def _detimezonify(dt, tz=pytz.utc):
+def _detimezoneify(dt, tz=pytz.utc):
     if dt is not None:
         return dt.astimezone(tz).replace(tzinfo=None)
     else:
