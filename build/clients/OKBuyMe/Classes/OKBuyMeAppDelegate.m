@@ -6,8 +6,10 @@
 //  Copyright 2011 Hippo Foundry. All rights reserved.
 //
 
+#import "APIManager.h"
 #import "OKBuyMeAppDelegate.h"
 #import "ItemsListViewController.h"
+#import "LoginRegisterViewController.h"
 
 
 @implementation OKBuyMeAppDelegate
@@ -26,6 +28,16 @@
     [window makeKeyAndVisible];
 	
 	[itemsListController release];
+	
+	if (![[APIManager sharedManager] isAuthenticated]) {
+		LoginRegisterViewController *controller = [[LoginRegisterViewController alloc] initWithStyle:UITableViewStyleGrouped];
+		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+		
+		[_rootController presentModalViewController:navController animated:YES];
+		
+		[navController release];
+		[controller release];
+	}
     
     return YES;
 }
