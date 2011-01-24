@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import simplejson
 
+import pytz
+
 from shoppinglist.models import Item
 
 
@@ -27,7 +29,7 @@ class ModelTests(TestCase):
         self.assertEqual(type(item.creation_time), datetime.datetime)
 
     def test_creation_time_is_set_once(self):
-        original_creation_time = datetime.datetime(2010,1,1,15,30,10)
+        original_creation_time = datetime.datetime(2010,1,1,15,30,10, tzinfo=pytz.utc)
         item = Item.objects.create(name='Test Item',
                 creation_time=original_creation_time)
         item.save()
@@ -37,9 +39,11 @@ class ModelTests(TestCase):
 
 class APITests(TestCase):
     def setUp(self):
+        self.creation_time = datetime.datetime(2010, 2, 3, 4, 5, 6, tzinfo=pytz.utc)
         self.item = Item.objects.create(
                 name='Test Item',
-                notes="Don't forget to foobar")
+                notes="Don't forget to foobar",
+                creation_time=self.creation_time)
 
     def test_list_items(self):
         response = self.client.get(reverse('api-shoppinglist-item-list'))
@@ -50,3 +54,5 @@ class APITests(TestCase):
         self.assertEqual(item_list[0]['id'], self.item.pk)
         self.assertEqual(item_list[0]['resource_uri'], self.item.get_api_url())
         self.assertEqual(item_list[0]['notes'], self.item.notes)
+        self.assertEqual(item_list[0]['creation_time'],
+                self.creation_time.isoformat('T'))

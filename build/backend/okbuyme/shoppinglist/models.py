@@ -11,7 +11,7 @@ class Item(models.Model):
     """A shopping list item"""
     name = models.CharField(_('name'), max_length=255)
     notes = models.TextField(_('notes'), blank=True)
-    creation_time = models.DateTimeField(blank=True, null=True)
+    utc_creation_time = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         ordering = []
@@ -20,6 +20,20 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def _get_creation_time(self):
+        if self.utc_creation_time is not None:
+            return self.utc_creation_time.replace(tzinfo=pytz.utc)
+        else:
+            return self.utc_creation_time
+
+    def _set_creation_time(self, dt):
+        if dt is not None:
+            self.utc_creation_time = dt.astimezone(pytz.utc).replace(tzinfo=None)
+        else:
+            self.utc_creation_time = dt
+
+    creation_time = property(_get_creation_time, _set_creation_time)
 
     def save(self, *args, **kwargs):
         if not self.pk and not self.creation_time:
