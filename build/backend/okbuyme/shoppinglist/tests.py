@@ -36,6 +36,19 @@ class ModelTests(TestCase):
         item = Item.objects.get(pk=item.pk)
         self.assertEqual(item.creation_time, original_creation_time)
 
+    def test_last_updated_is_set(self):
+        item = Item.objects.create(name='Test Item')
+        self.assertEqual(type(item.last_updated_time), datetime.datetime)
+
+    def test_last_updated_is_always_updated(self):
+        item = Item.objects.create(name='Test Item')
+        item.save()
+        original_last_updated_time = item.last_updated_time
+        item.name = 'New Name'
+        item.save()
+        item = Item.objects.get(pk=item.pk)
+        self.assertNotEqual(item.last_updated_time, original_last_updated_time)
+
 
 class APITests(TestCase):
     def setUp(self):
@@ -56,3 +69,5 @@ class APITests(TestCase):
         self.assertEqual(item_list[0]['notes'], self.item.notes)
         self.assertEqual(item_list[0]['creation_time'],
                 self.creation_time.isoformat('T'))
+        self.assertEqual(item_list[0]['last_updated_time'],
+                self.item.last_updated_time.isoformat('T'))
