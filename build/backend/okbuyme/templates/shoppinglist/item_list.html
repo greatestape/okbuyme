@@ -20,6 +20,10 @@
 {% endblock templates %}
 
 {% block main_content %}
+<div id="FilterPanel">
+</div>
+<div id="ItemList">
+    {% comment %}
     <ul id="ItemList"></ul>
     Items:
     <ul>
@@ -27,4 +31,6 @@
     <li>{{ item.name }}</li>
     {% endfor %}
     </ul>
+    {% endcomment %}
+</div>
 {% endblock main_content %}

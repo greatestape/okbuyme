@@ -4,15 +4,49 @@
 
 
 /*	Default 8-column layout
+ *	Tablets, netbooks, IE6-8
 	60 px columns, 24 px gutters, 60 px margins, 768 px total
 	---------------------------------------------------------
 	1     2      3      4      5      6      7      8     
 	60px  144px  228px  312px  396px  480px  564px  648px	*/
 
 #Container {
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-position: center -12px; /* 96 top padding for default - 84 here */
+    margin: 0 auto;
 	padding: 84px 60px 0;
 	width: 648px;
+    position: relative;
 	-webkit-tap-highlight-color: rgb(255,255,0);
+}
+
+#MainContent {
+    background: none;
+}
+
+header h1 {
+    background: url(../images/okbuyme.png) no-repeat center top;
+    height: 65px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#ItemList {
+    height: 100px;
+    background: #fff;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+#FilterPanel {
+    height: 100px;
+    width: 608px;
+    margin: 0 auto;
+    background: #5291a1;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
 }
 
 ::selection 	 	{background: rgb(255,255,0);}
@@ -20,13 +54,10 @@
 img::selection 		{background: transparent;}
 img::-moz-selection {background: transparent;}
 
-/*#example {*/
-	/*height: 600px;*/
-	/*background: rgb(60,97,158);*/
-/*}*/
 
 
 /*	13-column layout
+ *	Laptops, desktops
 	60 px columns, 24 px gutters, 72 px margins, 1212 px total (extra space for scrollbars)
 	---------------------------------------------------------------------------------------
 	1     2      3      4      5      6      7      8      9      10     11     12     13
@@ -35,14 +66,26 @@ img::-moz-selection {background: transparent;}
 @media only screen and (min-width: 1212px) {
 	
 	#Container {
+        background-position: center top;
 		padding: 96px 72px 0;
-		width: 1068px;
+		width: 816px; /* only need 10 columns */
 	}
+
+    #ItemList {
+        width: 480px;
+        float: right;
+    }
+    #FilterPanel {
+        width: 336px; /* 4 cols + 1 gutter */
+        float: right;
+        margin-top: 10px;
+    }
 	
 }
 
 
 /*	5-column layout
+ *	480px phones, landscape iPhones, extremely narrow browsers
 	60 px columns, 24 px gutters, 42 px margins, 480 px total
 	---------------------------------------------------------
 	1     2      3      4      5
@@ -51,16 +94,25 @@ img::-moz-selection {background: transparent;}
 @media only screen and (max-width: 767px) and (min-width: 480px) {
 	
 	#Container {
-		padding: 60px 42px 0;
+		padding: 15px 42px 0;
+        background-image: none;
 		width: 396px;
 		/* Prevents Mobile Safari from bumping up font sizes in landscape */
 		-webkit-text-size-adjust: 100%; 
 	}
+
+    #ItemList {
+        width: 396px;
+    }
+    #FilterPanel {
+        width: 376px;
+    }
 	
 }
 
 
 /*	3-column layout
+ *	iPhones, iPod Touch, other 320px phones
 	60 px columns, 24 px gutters, 46 px margins, 320 px total
 	---------------------------------------------------------
 	1     2      3
@@ -69,11 +121,24 @@ img::-moz-selection {background: transparent;}
 @media only screen and (max-width: 479px) {
 	
 	#Container {
-		padding: 48px 46px 0;
-		width: 228px;
+		padding: 20px 10px 0;
+        background-image: none;
+		width: 300px;
 		/* Prevents Mobile Safari from bumping up font sizes in landscape */
 		-webkit-text-size-adjust: 100%;
 	}
+
+    #ItemList {
+        width: 300px;
+    }
+    #FilterPanel {
+        width: 290px;
+    }
+
+    header h1 {
+        background: url(../images/okbuyme-small.png) no-repeat center top;
+        margin: 10px 0;
+    }
 	
 }
 
