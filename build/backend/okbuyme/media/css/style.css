@@ -177,7 +177,29 @@ button {  width: auto; overflow: visible; }
     Author:
  */
 
+body {
+    background: #e1f9ab url(../images/bg-tile.png) repeat left top;
+    border-top: 7px solid #323016;
+}
 
+#Container {
+    background: url(../images/logo.png) no-repeat center top;
+    margin: 0 auto;
+}
+
+header h1 {
+    background: url(../images/okbuyme.png) no-repeat center top;
+    height: 65px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#MainContent {
+    background: #fff;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
 
 
 

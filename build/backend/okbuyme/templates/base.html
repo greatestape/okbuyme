@@ -29,15 +29,7 @@
 
   <div id="Container">
     <header>
-        <h1>Ok, buy me...</h1>
-        <ul id="Nav">
-            {% if request.user %}
-                <li><a href="#TODO">Account</a></li>
-                <li><a href="#TODO">Sign out</a></li>
-            {% else %}
-                <li><a href="#TODO">Sign in</a></li>
-            {% endif %}
-        </ul>
+        <h1 class="ir">Ok, buy me...</h1>
     </header>
 
     <div id="MainContent" role="main">
@@ -61,6 +53,8 @@
   <script src="{{ MEDIA_URL }}js/mylibs/app-models.js"></script>
   <script src="{{ MEDIA_URL }}js/mylibs/app-views.js"></script>
   <script src="{{ MEDIA_URL }}js/mylibs/app.js"></script>
+
+  {% block javascript %}{% endblock javascript %}
 
   <!-- scripts concatenated and minified via ant build script-->
   <!--<script src="js/plugins.js"></script>-->
