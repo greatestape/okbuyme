@@ -22,7 +22,7 @@ API
                 'id': 1234,
                 'resource_uri': '/api/list/1234/',
                 'name': 'Hammer',
-                'note': "Don't spend more than $10",
+                'notes': "Don't spend more than $10",
                 'creation_time': '2011-01-01T12:45:00+00:00',
                 'last_updated_time': '2011-01-02T17:55+00:00',
             },
@@ -44,7 +44,7 @@ API
             'id': 1234,
             'resource_uri': '/api/list/1234/',
             'name': 'Hammer',
-            'note': "Don't spend more than $10",
+            'notes': "Don't spend more than $10",
             'creation_time': '2011-01-01T12:45:00+00:00',
             'last_updated_time': '2011-01-02T17:55+00:00',
         }
@@ -58,7 +58,7 @@ API
         {
             'item': {
                 'name': 'Cheerios',
-                'note': 'Please buy three boxes'
+                'notes': 'Please buy three boxes'
             }
         }
 
@@ -71,7 +71,7 @@ API
         {
             'item': {
                 'name': 'Cheerios',
-                'note': 'Please buy four boxes'
+                'notes': 'Please buy four boxes'
             }
         }
 
