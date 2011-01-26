@@ -15,10 +15,10 @@
     background-repeat: no-repeat;
     background-position: center -12px; /* 96 top padding for default - 84 here */
     margin: 0 auto;
-	padding: 84px 60px 0;
-	width: 648px;
+    padding: 84px 60px 0;
+    width: 648px;
     position: relative;
-	-webkit-tap-highlight-color: rgb(255,255,0);
+	  -webkit-tap-highlight-color: rgb(255,255,0);
 }
 
 #MainContent {
@@ -39,6 +39,14 @@ header h1 {
     -webkit-border-radius: 7px;
     border-radius: 7px;
 }
+
+#ItemList header {
+    background: url(../images/banner-green-left.png) no-repeat left 15px;
+    height: 54px;
+    padding-top: 15px;
+    margin: 0 0 0 -8px;
+}
+
 #FilterPanel {
     height: 100px;
     width: 608px;
@@ -75,27 +83,27 @@ img::-moz-selection {background: transparent;}
 		width: 816px; /* only need 10 columns */
 	}
 
-    #ItemList {
-        width: 480px;
-        float: right;
-    }
-    #FilterPanel {
-        width: 335px; /* 4 cols + 1 gutter - 1px border */
-        float: right;
-        margin-top: 10px;
-        -webkit-border-top-right-radius: 7px;
-        -webkit-border-top-left-radius: 0;
-        -webkit-border-bottom-right-radius: 7px;
-        -moz-border-radius-topright: 7px;
-        -moz-border-radius-topleft: 0px;
-        -moz-border-radius-bottomright: 7px;
-        border-top-right-radius: 7px;
-        border-top-left-radius: 0px;
-        border-bottom-right-radius: 7px;
-        border-left: 1px solid #666;
-        border-bottom: 0;
-    }
-	
+  #ItemList {
+      width: 480px;
+      float: right;
+  }
+
+  #FilterPanel {
+      width: 335px; /* 4 cols + 1 gutter - 1px border */
+      float: right;
+      margin-top: 10px;
+      -webkit-border-top-right-radius: 7px;
+      -webkit-border-top-left-radius: 0;
+      -webkit-border-bottom-right-radius: 7px;
+      -moz-border-radius-topright: 7px;
+      -moz-border-radius-topleft: 0px;
+      -moz-border-radius-bottomright: 7px;
+      border-top-right-radius: 7px;
+      border-top-left-radius: 0px;
+      border-bottom-right-radius: 7px;
+      border-left: 1px solid #666;
+      border-bottom: 0;
+  }
 }
 
 
@@ -116,19 +124,18 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%; 
 	}
 
-    #ItemList {
-        width: 396px;
-    }
-    #FilterPanel {
-        width: 376px;
-        -webkit-border-top-right-radius: 7px;
-        -webkit-border-top-left-radius: 7px;
-        -moz-border-radius-topright: 7px;
-        -moz-border-radius-topleft: 7px;
-        border-top-right-radius: 7px;
-        border-top-left-radius: 7px;
-    }
-	
+  #ItemList {
+      width: 396px;
+  }
+  #FilterPanel {
+      width: 376px;
+      -webkit-border-top-right-radius: 7px;
+      -webkit-border-top-left-radius: 7px;
+      -moz-border-radius-topright: 7px;
+      -moz-border-radius-topleft: 7px;
+      border-top-right-radius: 7px;
+      border-top-left-radius: 7px;
+  }
 }
 
 
@@ -149,24 +156,24 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%;
 	}
 
-    #ItemList {
-        width: 300px;
-    }
-    #FilterPanel {
-        width: 290px;
-        -webkit-border-top-right-radius: 7px;
-        -webkit-border-top-left-radius: 7px;
-        -moz-border-radius-topright: 7px;
-        -moz-border-radius-topleft: 7px;
-        border-top-right-radius: 7px;
-        border-top-left-radius: 7px;
-    }
+  #ItemList {
+      width: 300px;
+  }
 
-    header h1 {
-        background: url(../images/okbuyme-small.png) no-repeat center top;
-        margin: 10px 0;
-    }
-	
+  #FilterPanel {
+      width: 290px;
+      -webkit-border-top-right-radius: 7px;
+      -webkit-border-top-left-radius: 7px;
+      -moz-border-radius-topright: 7px;
+      -moz-border-radius-topleft: 7px;
+      border-top-right-radius: 7px;
+      border-top-left-radius: 7px;
+  }
+
+  header h1 {
+      background: url(../images/okbuyme-small.png) no-repeat center top;
+      margin: 10px 0;
+  }
 }
 
 
@@ -178,4 +185,3 @@ img::-moz-selection {background: transparent;}
 	only screen and (min-device-pixel-ratio: 2) {
 	
 }
-

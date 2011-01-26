@@ -6,11 +6,6 @@
 	font-style: normal;
 }
 
-#ItemList header {
-    background: url(../images/banner-green-left.png) no-repeat left top;
-    height: 54px;
-    margin: 15px 0 0 -8px;
-}
 
 header h2 {
     font-family: 'ArvoBold', Helvetica, Arial, sans-serif;
