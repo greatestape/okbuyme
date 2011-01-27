@@ -1,9 +1,12 @@
 import datetime
 
 from django.db import models
+from django.http import HttpRequest
 from django.utils.translation import ugettext_lazy as _
 
 import dateutil
+from piston.emitters import JSONEmitter
+from piston.handler import typemapper
 import pytz
 
 
@@ -47,6 +50,10 @@ class Item(models.Model):
     @models.permalink
     def get_api_url(self):
         return ('api-shoppinglist-item', (), {'item_id': self.pk})
+
+    def get_json(self):
+        from shoppinglist.handlers import ItemHandler
+        return JSONEmitter(self, typemapper, ItemHandler, ItemHandler.fields).render(HttpRequest())
 
 
 def _timezoneify(dt, tz=pytz.utc):
