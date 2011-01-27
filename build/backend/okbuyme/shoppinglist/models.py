@@ -18,7 +18,6 @@ class Item(models.Model):
     utc_last_updated_time = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        ordering = []
         verbose_name = _('item')
         verbose_name_plural = _('items')
 
