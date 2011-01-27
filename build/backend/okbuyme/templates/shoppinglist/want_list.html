@@ -111,3 +111,13 @@
     </div>
 </div>
 {% endblock main_content %}
+
+{% block javascript %}
+<script language="JavaScript">
+var wantList = [
+    {% for want in want_list %}
+        {{ want.get_json|safe }}{% if not forloop.last %},{% endif %}
+    {% endfor %}
+]
+</script>
+{% endblock %}
