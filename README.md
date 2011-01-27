@@ -6,13 +6,13 @@ API
 
 ### Get List Items
 
-- URL: `/api/list/`
+- URL: `/api/wants/`
 - Method: `GET`
 - Optional Params:
 
-    - `whose` : `mine`|`ours`|`<user-id>`
-    - `where` : `<location-slug>`
-    - `changed-since` : `<YYYY-MM-DDTHH:MM:SS+00:00>`
+    - `whose` : `mine`|`ours`|`<user-id>` (TODO)
+    - `where` : `<location-slug>` (TODO)
+    - `changed-since` : `<YYYY-MM-DDTHH:MM:SS+00:00>` (TODO)
 
 - Response:
 
@@ -20,7 +20,7 @@ API
         [
             {
                 'id': 1234,
-                'resource_uri': '/api/list/1234/',
+                'resource_uri': '/api/wants/want/1234/',
                 'name': 'Hammer',
                 'notes': "Don't spend more than $10",
                 'creation_time': '2011-01-01T12:45:00+00:00',
@@ -34,7 +34,7 @@ API
 
 ### Get Item
 
-- URL: `/api/list/<id>/`
+- URL: `/api/wants/want/<id>/`
 - Method: `GET`
 
 - Response:
@@ -42,16 +42,16 @@ API
 
         {
             'id': 1234,
-            'resource_uri': '/api/list/1234/',
+            'resource_uri': '/api/wants/want/1234/',
             'name': 'Hammer',
             'notes': "Don't spend more than $10",
             'creation_time': '2011-01-01T12:45:00+00:00',
             'last_updated_time': '2011-01-02T17:55+00:00',
         }
 
-### Add List Item
+### Add List Item (TODO)
 
-- URL: `/api/list/add/`
+- URL: `/api/wants/want/add/`
 - Method: `POST`
 - POST Data
 
@@ -62,9 +62,9 @@ API
             }
         }
 
-### Edit List Item
+### Edit List Item (TODO)
 
-- URL: `/api/list/<item-id>/`
+- URL: `/api/wants/want/<item-id>/`
 - Method: `PUT`
 - POST Data
 
@@ -75,14 +75,14 @@ API
             }
         }
 
-### Remove List Item
+### Remove List Item (TODO)
 
-- URL: `/list/<item-id>/`
+- URL: `/api/wants/want/<item-id>/`
 - Method: `DELETE`
 
-### Get Locations
+### Get Locations (TODO)
 
-- URL: `/locations/`
+- URL: `/api/locations/`
 - Method: `GET`
 - Params
     - changed-since: `<YYYY-MM-DDTHH:MM:SS+00:00>`
