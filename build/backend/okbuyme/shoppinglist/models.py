@@ -10,16 +10,16 @@ from piston.handler import typemapper
 import pytz
 
 
-class Item(models.Model):
-    """A shopping list item"""
+class Want(models.Model):
+    """Something somebody wants"""
     name = models.CharField(_('name'), max_length=255)
     notes = models.TextField(_('notes'), blank=True)
     utc_creation_time = models.DateTimeField(blank=True, null=True)
     utc_last_updated_time = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        verbose_name = _('item')
-        verbose_name_plural = _('items')
+        verbose_name = _('want')
+        verbose_name_plural = _('wants')
 
     def __unicode__(self):
         return self.name
@@ -44,16 +44,16 @@ class Item(models.Model):
         if not self.pk and not self.creation_time:
             self.creation_time = datetime.datetime.now(pytz.utc)
         self.last_updated_time = datetime.datetime.now(pytz.utc)
-        super(Item, self).save(*args, **kwargs)
+        super(Want, self).save(*args, **kwargs)
 
     @models.permalink
     def get_api_url(self):
-        return ('api-shoppinglist-item', (), {'item_id': self.pk})
+        return ('api-shoppinglist-want-detail', (), {'want_id': self.pk})
 
     def get_json(self):
-        from shoppinglist.handlers import ItemHandler
-        return JSONEmitter(self, typemapper, ItemHandler,
-                ItemHandler.fields, False).render(HttpRequest())
+        from shoppinglist.handlers import WantHandler
+        return JSONEmitter(self, typemapper, WantHandler,
+                WantHandler.fields, False).render(HttpRequest())
 
 
 def _timezoneify(dt, tz=pytz.utc):

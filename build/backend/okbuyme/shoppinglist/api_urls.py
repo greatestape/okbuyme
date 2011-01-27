@@ -2,15 +2,15 @@ from django.conf.urls.defaults import *
 
 from piston.resource import Resource
 
-from shoppinglist.handlers import ItemHandler
+from shoppinglist.handlers import WantHandler
 
 
-item_handler = Resource(ItemHandler)
+want_handler = Resource(WantHandler)
 
 
 urlpatterns = patterns('',
-    url(r'^$', item_handler, {'emitter_format': 'json'},
-            name='api-shoppinglist-item-list'),
-    url(r'^(?P<item_id>\d+)/$', item_handler, {'emitter_format': 'json'},
-            name='api-shoppinglist-item'),
+    url(r'^$', want_handler, {'emitter_format': 'json'},
+            name='api-shoppinglist-want-list'),
+    url(r'^want/(?P<want_id>\d+)/$', want_handler, {'emitter_format': 'json'},
+            name='api-shoppinglist-want-detail'),
 )
