@@ -53,7 +53,8 @@ class Item(models.Model):
 
     def get_json(self):
         from shoppinglist.handlers import ItemHandler
-        return JSONEmitter(self, typemapper, ItemHandler, ItemHandler.fields).render(HttpRequest())
+        return JSONEmitter(self, typemapper, ItemHandler,
+                ItemHandler.fields, False).render(HttpRequest())
 
 
 def _timezoneify(dt, tz=pytz.utc):
