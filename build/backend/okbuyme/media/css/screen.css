@@ -35,3 +35,114 @@ header h2 {
     background-position: left bottom;
 }
 
+#ItemList p {
+  font-size: 14px;
+  color: #777;
+}
+
+#ItemList table {
+  margin-top: 20px;
+  width: 100%;
+}
+
+#ItemList th {
+  text-align: left;
+  color: #6b7617;
+  font-size: 14px;
+}
+#ItemList th:first-child {
+  padding-left: 20px;
+}
+
+#ItemList th, #ItemList td {
+  vertical-align: middle;
+  line-height: 18px;
+}
+
+#ItemList tr:hover td {
+  background: #f4f4f4;
+}
+
+#ItemList td.item {
+  color: #274135;
+  font-size: 18px;
+  padding: 8px 10px 10px 20px;
+}
+#ItemList td.item.closed {
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+#ItemList td.item.open {
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-bottomleft: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 0;
+}
+
+#ItemList td.owner {
+  color: #777777;
+  font-style: italic;
+  font-size: 14px;
+}
+
+#ItemList td.actions {
+  text-align: right;
+  width: 70px;
+  padding-right: 15px;
+}
+#ItemList td.actions.closed {
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+#ItemList td.actions.open {
+  -webkit-border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-topright: 20px;
+  -moz-border-radius-bottomright: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 0;
+}
+#ItemList td.actions div {
+  float: right;
+}
+
+#ItemList tr a {
+  display: none;
+}
+#ItemList tr:hover a.details,
+#ItemList tr:hover a.edit,
+#ItemList tr:hover a.delete {
+  background-image: url(../images/sprite-item-icons.png);
+  background-repeat: no-repeat;
+  display: block;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+#ItemList a.details       { background-position: left -39px; }
+#ItemList a.details:hover { background-position: left 0px; }
+#ItemList a.edit       { background-position: left -116px; margin-right: 6px; }
+#ItemList a.edit:hover { background-position: left -78px; }
+#ItemList a.delete       { background-position: left -193px; }
+#ItemList a.delete:hover { background-position: left -155px; }
+
+#ItemList td.notes {
+  background: #f4f4f4;
+  padding: 5px 20px 0 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}

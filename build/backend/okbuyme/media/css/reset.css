@@ -87,7 +87,7 @@ body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
   color: #444;
   /* set your base font here, to apply evenly */
-  /* font-family: Georgia, serif;  */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* headers (h1,h2,etc) have no default font-size or margin,
@@ -180,9 +180,12 @@ button {  width: auto; overflow: visible; }
 body {
     background: #e1f9ab url(../images/bg-tile.png) repeat left top;
     border-top: 7px solid #323016;
+    padding-bottom: 50px;
 }
 
-
+p {
+  margin-bottom: 10px;
+}
 
 
 

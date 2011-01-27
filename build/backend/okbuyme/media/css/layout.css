@@ -33,11 +33,14 @@ header h1 {
 }
 
 #ItemList {
-    height: 100px;
     background: #fff;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
+}
+
+#ItemList .wrapper {
+  padding: 20px;
 }
 
 #ItemList header {
@@ -48,8 +51,8 @@ header h1 {
 }
 
 #FilterPanel {
-    height: 100px;
     width: 608px;
+    height: 100px; /* TODO remove, just to see that it's there */
     margin: 0 auto;
     background: #5291a1;
     -webkit-border-top-right-radius: 7px;
@@ -61,11 +64,16 @@ header h1 {
     border-bottom: 1px solid #666;
 }
 
-::selection 	 	{background: rgb(255,255,0);}
-::-moz-selection 	{background: rgb(255,255,0);}
+/*::selection 	 	{background: rgb(255,255,0);}*/
+/*::-moz-selection 	{background: rgb(255,255,0);}*/
 img::selection 		{background: transparent;}
 img::-moz-selection {background: transparent;}
 
+  .wide-text { display: none; visibility: hidden; }
+  .narrow-text {
+    display: inline;
+    visibility: visible;
+  }
 
 
 /*	13-column layout
@@ -88,6 +96,10 @@ img::-moz-selection {background: transparent;}
       float: right;
   }
 
+  #ItemList .wrapper {
+    padding: 20px;
+  }
+
   #FilterPanel {
       width: 335px; /* 4 cols + 1 gutter - 1px border */
       float: right;
@@ -103,6 +115,12 @@ img::-moz-selection {background: transparent;}
       border-bottom-right-radius: 7px;
       border-left: 1px solid #666;
       border-bottom: 0;
+  }
+
+  .narrow-text { display: none; visibility: hidden; }
+  .wide-text {
+    display: inline;
+    visibility: visible;
   }
 }
 
@@ -135,6 +153,12 @@ img::-moz-selection {background: transparent;}
       -moz-border-radius-topleft: 7px;
       border-top-right-radius: 7px;
       border-top-left-radius: 7px;
+  }
+
+  .wide-text { display: none; visibility: hidden; }
+  .narrow-text {
+    display: inline;
+    visibility: visible;
   }
 }
 
@@ -173,6 +197,11 @@ img::-moz-selection {background: transparent;}
   header h1 {
       background: url(../images/okbuyme-small.png) no-repeat center top;
       margin: 10px 0;
+  }
+  .wide-text { display: none; visibility: hidden; }
+  .narrow-text {
+    display: inline;
+    visibility: visible;
   }
 }
 

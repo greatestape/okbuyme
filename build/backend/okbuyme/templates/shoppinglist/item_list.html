@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 
 {% block templates %}
   <script type="text/template" id="ItemTemplate">
@@ -23,18 +25,89 @@
 <div id="FilterPanel">
 </div>
 <div id="ItemList">
-    <header>
-        <h2>Stuff to get!</h2>
-        <a href="#">Add</a>
-    </header>
     {% comment %}
-    <ul id="ItemList"></ul>
-    Items:
-    <ul>
-    {% for item in item_list %}
-    <li>{{ item.name }}</li>
-    {% endfor %}
-    </ul>
+    {{ item_list }}
+    TODO Handle when there are no items
     {% endcomment %}
+
+    <header>
+    <h2>{% trans "Stuff to get!" %}</h2>
+    <a href="#">{% trans "Add" %}</a>
+    </header>
+
+    <div class="wrapper">
+      <p>{% trans "Below is a list of items that either you or your friends need. You can fine tune this list with the controls" %} <span class="wide-text">{% trans "on the right" %}</span><span class="narrow-text">{% trans "above" %}</span>. {% trans "And if you see something that you can get for a friend, be a pal and pick it up!" %}</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>{% trans "These things..." %}</th>
+            <th colspan="2">{% trans "are needed by..." %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="item closed">
+                Hammer
+            </td>
+            <td class="owner">you!</td>
+            <td class="actions closed">
+              <div>
+                <a href="#" class="ir details">N</a>
+                <a href="#" class="ir edit">E</a>
+                <a href="#" class="ir delete">D</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="item closed">Cat scratch mat</td>
+            <td class="owner">Sam B</td>
+            <td class="actions closed">
+              <div>
+                <a href="#" class="ir details">N</a>
+                <a href="#" class="ir delete">D</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="item open">Duct tape</td>
+            <td class="owner">Taylan P</td>
+            <td class="actions open">
+              <div>
+                <a href="#" class="ir details">N</a>
+                <a href="#" class="ir delete">D</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="notes hidden" colspan="3">
+              <p>You know, the silver kind that holds the universe together. I'm going to use it to get the cat hair off my couch.</p>
+              <p>Please don't spend more than $500, but whatever brand is fine with me.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="item closed">Tea light candles</td>
+            <td class="owner">Sam B</td>
+            <td class="actions closed">
+              <div>
+                <a href="#" class="ir details">N</a>
+                <a href="#" class="ir delete">D</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="item closed">Widget</td>
+            <td class="owner">you!</td>
+            <td class="actions closed">
+              <div>
+                <a href="#" class="ir details">N</a>
+                <a href="#" class="ir edit">E</a>
+                <a href="#" class="ir delete">D</a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
 {% endblock main_content %}
