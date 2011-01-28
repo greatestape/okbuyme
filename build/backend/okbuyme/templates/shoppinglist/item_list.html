@@ -22,8 +22,28 @@
 {% endblock templates %}
 
 {% block main_content %}
-<div id="FilterPanel">
+<div id="FilterPanel" class="clearfix">
+  <h2>{% trans "Filtering options" %}</h2>
+  <h3>{% trans "Narrow by owner" %}</h3>
+  <p>{% trans "Whose items should be on the list?" %}</p>
+  <ul id="ByOwner">
+    <li><input id="ShowYours" type="checkbox" checked="checked"></input><label for="ShowYours">{% trans "Your stuff" %}</label></li>
+    <li><input id="ShowFriends" type="checkbox" checked="checked"></input><label for="ShowFriends">{% trans "Your friends' stuff" %}</label></li>
+  </ul>
+
+  <h3>{% trans "Narrow by location" %}</h3>
+  <p>{% trans "Click a location to show or hide items for it." %}</p>
+  <ul id="ByLocation">
+    <li class="tag on">Home Depot</li>
+    <li class="tag off">Hardware store</li>
+    <li class="tag on">Shoppers Drug Mart</li>
+    <li class="tag on">Loblaws</li>
+    <li class="tag off">Zellers</li>
+    <li class="tag on">Grocery store</li>
+    <li class="tag off">RONA</li>
+  </ul>
 </div>
+
 <div id="ItemList">
     {% comment %}
     {{ item_list }}
@@ -53,8 +73,8 @@
             <td class="owner">you!</td>
             <td class="actions closed">
               <div>
-                <a href="#" class="ir details">N</a>
                 <a href="#" class="ir edit">E</a>
+                <a href="#" class="ir details">N</a>
                 <a href="#" class="ir delete">D</a>
               </div>
             </td>
@@ -100,8 +120,8 @@
             <td class="owner">you!</td>
             <td class="actions closed">
               <div>
-                <a href="#" class="ir details">N</a>
                 <a href="#" class="ir edit">E</a>
+                <a href="#" class="ir details">N</a>
                 <a href="#" class="ir delete">D</a>
               </div>
             </td>

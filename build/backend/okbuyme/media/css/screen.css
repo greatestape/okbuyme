@@ -19,6 +19,65 @@ header h2 {
     text-shadow: 1px 1px 1px #1d573d;
 }
 
+/* ----- Filter panel ----- */
+#FilterPanel h2 {
+    color: #afdeea;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px #3b6974;
+}
+
+#FilterPanel h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #cfe433;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top:1px solid #5e9eae;
+}
+
+#FilterPanel p {
+    color: #294a52;
+}
+
+#ByOwner li {
+  list-style-type: none;
+  display: block;
+  margin-bottom: 5px;
+}
+#ByOwner input {
+    float: left;
+    margin: 3px 3px 0 0;
+}
+#ByOwner label {
+    color: #fff;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+#ByLocation li {
+    float: left;
+    list-style-type: none;
+    margin: 7px 7px 0 0;
+    font-size: 16px;
+    line-height: 16px;
+    height: 18px;
+    color: #294a52;
+    padding: 5px 10px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border--radius: 5px;
+}
+#ByLocation li.tag.on {
+    background: #eee;
+}
+#ByLocation li.tag.off {
+    background: #3f7b8a;
+}
+
+
+/* ----- Item list ----- */
+
 #ItemList header a {
     background: url(../images/sprite-btn-add.png) no-repeat left top;
     width: 87px;
