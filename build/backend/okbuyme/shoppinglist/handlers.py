@@ -1,11 +1,11 @@
 from piston.handler import BaseHandler
 
-from shoppinglist.models import Item
+from shoppinglist.models import Want
 
 
-class ItemHandler(BaseHandler):
+class WantHandler(BaseHandler):
     allowed_methods = ('GET',)
-    model = Item
+    model = Want
     fields = ('id', 'name', 'notes', 'creation_time', 'last_updated_time')
 
     @classmethod
@@ -16,15 +16,15 @@ class ItemHandler(BaseHandler):
     def last_updated_time(self, instance):
         return instance.last_updated_time.isoformat('T')
 
-    def read(self, request, item_id=None):
+    def read(self, request, want_id=None):
         """
-        Returns a single post if `item_id` is given,
+        Returns a single post if `want_id` is given,
         otherwise a subset.
 
         """
-        base = Item.objects
+        base = Want.objects
 
-        if item_id:
-            return base.get(pk=item_id)
+        if want_id:
+            return base.get(pk=want_id)
         else:
             return base.all() # Or base.filter(...)

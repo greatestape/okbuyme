@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.views.generic import simple
 
-from shoppinglist.models import Item
+from shoppinglist.models import Want
 
 
 def list(request):
-    items = Item.objects.all()
+    wants = Want.objects.all()
     return simple.direct_to_template(
             request,
-            'shoppinglist/item_list.html',
-            extra_context={'item_list': items},
+            'shoppinglist/want_list.html',
+            extra_context={'want_list': wants},
             )

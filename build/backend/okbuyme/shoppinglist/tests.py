@@ -6,7 +6,7 @@ from django.utils import simplejson
 
 import pytz
 
-from shoppinglist.models import Item
+from shoppinglist.models import Want
 
 
 class WebTests(TestCase):
@@ -14,60 +14,80 @@ class WebTests(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_items_appear_on_home_page(self):
-        item = Item.objects.create(name='Test Item')
+    def test_wants_appear_on_home_page(self):
+        want = Want.objects.create(name='Test Want')
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        item_list = response.context['item_list']
-        self.assertIn(item, item_list)
-        self.assertContains(response, 'Test Item')
+        want_list = response.context['want_list']
+        self.assertIn(want, want_list)
+        self.assertContains(response, 'Test Want')
 
 
 class ModelTests(TestCase):
     def test_creation_time_is_set(self):
-        item = Item.objects.create(name='Test Item')
-        self.assertEqual(type(item.creation_time), datetime.datetime)
+        want = Want.objects.create(name='Test Want')
+        self.assertEqual(type(want.creation_time), datetime.datetime)
 
     def test_creation_time_is_set_once(self):
         original_creation_time = datetime.datetime(2010,1,1,15,30,10, tzinfo=pytz.utc)
-        item = Item.objects.create(name='Test Item',
+        want = Want.objects.create(name='Test Want',
                 creation_time=original_creation_time)
-        item.save()
-        item = Item.objects.get(pk=item.pk)
-        self.assertEqual(item.creation_time, original_creation_time)
+        want.save()
+        want = Want.objects.get(pk=want.pk)
+        self.assertEqual(want.creation_time, original_creation_time)
 
     def test_last_updated_is_set(self):
-        item = Item.objects.create(name='Test Item')
-        self.assertEqual(type(item.last_updated_time), datetime.datetime)
+        want = Want.objects.create(name='Test Want')
+        self.assertEqual(type(want.last_updated_time), datetime.datetime)
 
     def test_last_updated_is_always_updated(self):
-        item = Item.objects.create(name='Test Item')
-        item.save()
-        original_last_updated_time = item.last_updated_time
-        item.name = 'New Name'
-        item.save()
-        item = Item.objects.get(pk=item.pk)
-        self.assertNotEqual(item.last_updated_time, original_last_updated_time)
+        want = Want.objects.create(name='Test Want')
+        want.save()
+        original_last_updated_time = want.last_updated_time
+        want.name = 'New Name'
+        want.save()
+        want = Want.objects.get(pk=want.pk)
+        self.assertNotEqual(want.last_updated_time, original_last_updated_time)
 
 
 class APITests(TestCase):
     def setUp(self):
         self.creation_time = datetime.datetime(2010, 2, 3, 4, 5, 6, tzinfo=pytz.utc)
-        self.item = Item.objects.create(
-                name='Test Item',
+        self.want = Want.objects.create(
+                name='Test Want',
                 notes="Don't forget to foobar",
                 creation_time=self.creation_time)
 
-    def test_list_items(self):
-        response = self.client.get(reverse('api-shoppinglist-item-list'))
+    def test_want_list(self):
+        response = self.client.get(reverse('api-shoppinglist-want-list'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json; charset=utf-8')
-        item_list = simplejson.loads(response.content)
-        self.assertEqual(item_list[0]['name'], self.item.name)
-        self.assertEqual(item_list[0]['id'], self.item.pk)
-        self.assertEqual(item_list[0]['resource_uri'], self.item.get_api_url())
-        self.assertEqual(item_list[0]['notes'], self.item.notes)
-        self.assertEqual(item_list[0]['creation_time'],
+        want_list = simplejson.loads(response.content)
+        self.assertEqual(want_list[0]['name'], self.want.name)
+        self.assertEqual(want_list[0]['id'], self.want.pk)
+        self.assertEqual(want_list[0]['resource_uri'], self.want.get_api_url())
+        self.assertEqual(want_list[0]['notes'], self.want.notes)
+        self.assertEqual(want_list[0]['creation_time'],
                 self.creation_time.isoformat('T'))
-        self.assertEqual(item_list[0]['last_updated_time'],
-                self.item.last_updated_time.isoformat('T'))
+        self.assertEqual(want_list[0]['last_updated_time'],
+                self.want.last_updated_time.isoformat('T'))
+
+    def test_want_detail(self):
+        response = self.client.get(reverse('api-shoppinglist-want-detail',
+                kwargs={'want_id': self.want.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response['Content-Type'], 'application/json; charset=utf-8')
+        want = simplejson.loads(response.content)
+        self.assertEqual(want['name'], self.want.name)
+        self.assertEqual(want['id'], self.want.pk)
+        self.assertEqual(want['resource_uri'], self.want.get_api_url())
+        self.assertEqual(want['notes'], self.want.notes)
+        self.assertEqual(want['creation_time'],
+                self.creation_time.isoformat('T'))
+        self.assertEqual(want['last_updated_time'],
+                self.want.last_updated_time.isoformat('T'))
+
+    def test_model_can_generate_json(self):
+        response = self.client.get(reverse('api-shoppinglist-want-detail',
+                kwargs={'want_id': self.want.id}))
+        self.assertEqual(self.want.get_json(), response.content)
