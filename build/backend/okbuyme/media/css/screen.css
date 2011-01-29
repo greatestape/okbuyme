@@ -24,6 +24,7 @@ header h2 {
     color: #afdeea;
     font-size: 18px;
     text-shadow: 1px 1px 1px #3b6974;
+    padding-bottom: 5px;
 }
 
 #FilterPanel h3 {
@@ -39,40 +40,36 @@ header h2 {
     color: #294a52;
 }
 
-#ByOwner li {
-  list-style-type: none;
-  display: block;
-  margin-bottom: 5px;
-}
-#ByOwner input {
-    float: left;
-    margin: 3px 3px 0 0;
-}
-#ByOwner label {
-    color: #fff;
-    margin-left: 5px;
-    font-size: 16px;
-}
-
 #ByLocation li {
     float: left;
     list-style-type: none;
     margin: 7px 7px 0 0;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     line-height: 16px;
     height: 18px;
     color: #294a52;
     padding: 5px 10px;
     cursor: pointer;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border--radius: 5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border--radius: 4px;
 }
 #ByLocation li.tag.on {
-    background: #eee;
+    border-top: 1px solid #717f00;
+    border-left: 1px solid #717f00;
+    border-right: 1px solid #abe0ed;
+    border-bottom: 1px solid #abe0ed;
+    background: #cce02f;
+    color: #333;
 }
 #ByLocation li.tag.off {
-    background: #3f7b8a;
+    border-top: 1px solid #80bdcc;
+    border-left: 1px solid #80bdcc;
+    border-right: 1px solid #41737e;
+    border-bottom: 1px solid #41737e;
+    background: #5da4b7;
+    color: #a8d8e5;
 }
 
 

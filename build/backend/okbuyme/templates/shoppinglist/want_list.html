@@ -23,16 +23,10 @@
 
 {% block main_content %}
 <div id="FilterPanel" class="clearfix">
-  <h2>{% trans "Filtering options" %}</h2>
-  <h3>{% trans "Narrow by owner" %}</h3>
-  <p>{% trans "Whose items should be on the list?" %}</p>
-  <ul id="ByOwner">
-    <li><input id="ShowYours" type="checkbox" checked="checked"></input><label for="ShowYours">{% trans "Your stuff" %}</label></li>
-    <li><input id="ShowFriends" type="checkbox" checked="checked"></input><label for="ShowFriends">{% trans "Your friends' stuff" %}</label></li>
-  </ul>
+  <h2>{% trans "Locations" %}</h2>
 
-  <h3>{% trans "Narrow by location" %}</h3>
   <p>{% trans "Click a location to show or hide items for it." %}</p>
+
   <ul id="ByLocation">
     <li class="tag on">Home Depot</li>
     <li class="tag off">Hardware store</li>
@@ -45,20 +39,15 @@
 </div>
 
 <div id="ItemList">
-    {% comment %}
-    {{ item_list }}
-    TODO Handle when there are no items
-    {% endcomment %}
-
     <header>
     <h2>{% trans "Stuff to get!" %}</h2>
     <a href="#">{% trans "Add" %}</a>
     </header>
 
     <div class="wrapper">
-      <p>{% trans "Below is a list of items that either you or your friends need. You can fine tune this list with the controls" %} <span class="wide-text">{% trans "on the right" %}</span><span class="narrow-text">{% trans "above" %}</span>. {% trans "And if you see something that you can get for a friend, be a pal and pick it up!" %}</p>
+      <p id="ItemListIntro">{% trans "Here is where your items to buy will appear. To make a list, select some locations based on where you are or will be shopping. And if you see something a friend needs, be a pal and pick it up!" %}</p>
 
-      <table>
+      <table style="display: none">
         <thead>
           <tr>
             <th>{% trans "These things..." %}</th>
