@@ -32,18 +32,18 @@ header h1 {
     margin: 20px 0;
 }
 
-#ItemList {
+#ListArea {
     background: #fff;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
 }
 
-#ItemList .wrapper {
+#ListArea .wrapper {
   padding: 20px;
 }
 
-#ItemList header {
+#ListArea header {
     background: url(../images/banner-green-left.png) no-repeat left 15px;
     height: 54px;
     padding-top: 15px;
@@ -92,16 +92,16 @@ img::-moz-selection {background: transparent;}
 	}
 
 
-#ItemListIntro {
+#ListAreaIntro {
     padding-bottom: 110px;
     background: url(../images/arrow-right.png) no-repeat right bottom;
 }
-  #ItemList {
+  #ListArea {
       width: 480px;
       float: right;
   }
 
-  #ItemList .wrapper {
+  #ListArea .wrapper {
     padding: 20px;
   }
 
@@ -148,7 +148,7 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%; 
 	}
 
-  #ItemList {
+  #ListArea {
       width: 396px;
   }
   #FilterPanel {
@@ -187,7 +187,7 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%;
 	}
 
-  #ItemList {
+  #ListArea {
       width: 300px;
   }
 

@@ -2,8 +2,8 @@
 
 
 //-------------- MODEL --------------
-// An Item is one thing a user wishes to have.
-window.Item = Backbone.Model.extend({
+// A Want is one thing a user wishes to have.
+window.Want = Backbone.Model.extend({
 
   initialize: function() {
   },
@@ -16,7 +16,7 @@ window.Item = Backbone.Model.extend({
   clear: function(){
     this.destroy({
       success: function(){
-        console.log('Item destroyed')
+        console.log('Want destroyed');
         this.view.remove();
       }
     });
@@ -25,12 +25,12 @@ window.Item = Backbone.Model.extend({
 
 
 //-------------- COLLECTION --------------
-// An ItemList is a group of Items, which serves as a shopping list.
-window.ItemList = Backbone.Collection.extend({
+// An WantList is a group of Wants, which serves as a shopping list.
+window.WantList = Backbone.Collection.extend({
 
-  model: Item
+  model: Want
 
   // TODO: need comparator
 
 });
-window.items = new ItemList;
+window.wants = new WantList();

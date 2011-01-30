@@ -8,5 +8,8 @@
 
 
 $(function(){
-  window.app = new AppView;
+  _.each(window.wantList, function(want){
+    window.wants.add(want);
+  });
+  //window.app = new AppView();
 });

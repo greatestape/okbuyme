@@ -19,6 +19,7 @@ header h2 {
     text-shadow: 1px 1px 1px #1d573d;
 }
 
+
 /* ----- Filter panel ----- */
 #FilterPanel h2 {
     color: #afdeea;
@@ -73,9 +74,9 @@ header h2 {
 }
 
 
-/* ----- Item list ----- */
+/* ----- Want list ----- */
 
-#ItemList header a {
+#ListArea header a {
     background: url(../images/sprite-btn-add.png) no-repeat left top;
     width: 87px;
     height: 34px;
@@ -87,97 +88,68 @@ header h2 {
     text-decoration: none;
     float: right;
 }
-#ItemList header a:hover {
+#ListArea header a:hover {
     background-position: left bottom;
 }
 
-#ItemList p {
-  font-size: 14px;
-  color: #777;
+#WantListIntro {
+    font-size: 14px;
+    color: #777;
+    margin: 20px;
+} /* TODO arrow */
+
+
+#WantList {
+    margin: 20px;
+    line-height: 18px;
+    list-style-type: none;
 }
 
-#ItemList table {
-  margin-top: 20px;
-  width: 100%;
+#WantList li {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    float: left;
+    clear: both;
+    width: 100%;
+}
+#WantList li:hover {
+    background: #f4f4f4;
+}
+#WantList .want {
+    margin: 10px;
 }
 
-#ItemList th {
-  text-align: left;
-  color: #6b7617;
-  font-size: 14px;
+#WantList .want-name {
+    color: #274135;
+    font-size: 18px;
+    margin-left: 10px;
+    width: 50%;
+    float: left;
 }
-#ItemList th:first-child {
-  padding-left: 20px;
+#WantList .want-owner {
+    color: #ccc;
+    font-style: italic;
+    font-size: 14px;
 }
-
-#ItemList th, #ItemList td {
-  vertical-align: middle;
-  line-height: 18px;
+#WantList .want-actions {
+    float: right;
+    text-align: right;
+    padding: 2px 5px 0 0;
 }
-
-#ItemList tr:hover td {
-  background: #f4f4f4;
-}
-
-#ItemList td.item {
-  color: #274135;
-  font-size: 18px;
-  padding: 8px 10px 10px 20px;
-}
-#ItemList td.item.closed {
-  -webkit-border-top-left-radius: 20px;
-  -webkit-border-bottom-left-radius: 20px;
-  -moz-border-radius-topleft: 20px;
-  -moz-border-radius-bottomleft: 20px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-#ItemList td.item.open {
-  -webkit-border-top-left-radius: 20px;
-  -webkit-border-bottom-left-radius: 0;
-  -moz-border-radius-topleft: 20px;
-  -moz-border-radius-bottomleft: 0;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 0;
+#WantList .want-details {
+    display: none;
+    padding: 10px 10px 0 10px;
+    color: #666;
+    font-size: 14px;
 }
 
-#ItemList td.owner {
-  color: #777777;
-  font-style: italic;
-  font-size: 14px;
+#WantList .want a { /* TODO end hover abuse! ipad users can't use this now */
+    display: none;
 }
-
-#ItemList td.actions {
-  text-align: right;
-  width: 70px;
-  padding-right: 15px;
-}
-#ItemList td.actions.closed {
-  -webkit-border-top-right-radius: 20px;
-  -webkit-border-bottom-right-radius: 20px;
-  -moz-border-radius-topright: 20px;
-  -moz-border-radius-bottomright: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-}
-#ItemList td.actions.open {
-  -webkit-border-top-right-radius: 20px;
-  -webkit-border-bottom-right-radius: 0;
-  -moz-border-radius-topright: 20px;
-  -moz-border-radius-bottomright: 0;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 0;
-}
-#ItemList td.actions div {
-  float: right;
-}
-
-#ItemList tr a {
-  display: none;
-}
-#ItemList tr:hover a.details,
-#ItemList tr:hover a.edit,
-#ItemList tr:hover a.delete {
+#WantList li:hover a.details,
+#WantList li:hover a.edit,
+#WantList li:hover a.delete {
   background-image: url(../images/sprite-item-icons.png);
   background-repeat: no-repeat;
   display: block;
@@ -185,20 +157,12 @@ header h2 {
   width: 16px;
   height: 16px;
 }
-#ItemList a.details       { background-position: left -39px; }
-#ItemList a.details:hover { background-position: left 0px; }
-#ItemList a.edit       { background-position: left -116px; margin-right: 6px; }
-#ItemList a.edit:hover { background-position: left -78px; }
-#ItemList a.delete       { background-position: left -193px; }
-#ItemList a.delete:hover { background-position: left -155px; }
+#WantList a.details       { background-position: left -39px; }
+#WantList a.details:hover { background-position: left 0px; }
+#WantList a.edit          { background-position: left -116px; margin-right: 6px; }
+#WantList a.edit:hover    { background-position: left -78px; }
+#WantList a.delete        { background-position: left -193px; }
+#WantList a.delete:hover  { background-position: left -155px; }
 
-#ItemList td.notes {
-  background: #f4f4f4;
-  padding: 5px 20px 0 20px;
-  -webkit-border-bottom-left-radius: 20px;
-  -webkit-border-bottom-right-radius: 20px;
-  -moz-border-radius-bottomleft: 20px;
-  -moz-border-radius-bottomright: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+#WantList td.notes {
 }
