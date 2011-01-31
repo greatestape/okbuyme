@@ -8,7 +8,7 @@ from shoppinglist.models import Want
 
 
 class WantHandler(BaseHandler):
-    allowed_methods = ('GET', 'PUT', 'POST')
+    allowed_methods = ('GET', 'PUT', 'POST', 'DELETE')
     model = Want
     fields = ('id', 'name', 'notes', 'creation_time', 'last_updated_time')
 
@@ -41,6 +41,10 @@ class WantHandler(BaseHandler):
     @require_mime('json')
     def create(self, request):
         return _fill_and_validate(Want(), request.data, rc.CREATED)
+
+    def delete(self, request, want_id=None):
+        get_object_or_404(Want, id=want_id).delete()
+        return rc.DELETED
 
 
 def _clean_data(data, valid_fields):

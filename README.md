@@ -71,7 +71,7 @@ API
             'notes': 'Please buy four boxes'
         }
 
-### Remove List Item (TODO)
+### Remove List Item
 
 - URL: `/api/wants/want/<item-id>/`
 - Method: `DELETE`

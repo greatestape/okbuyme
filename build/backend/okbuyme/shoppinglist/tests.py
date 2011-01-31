@@ -114,3 +114,10 @@ class APITests(TestCase):
         new_want = Want.objects.latest('id')
         self.assertNotEqual(new_want, self.want)
         self.assertEqual(new_want.name, 'A new want')
+
+    def test_want_delete(self):
+        response = self.client.delete(reverse('api-shoppinglist-want-detail',
+                kwargs={'want_id': self.want.id}))
+        self.assertEqual(response.status_code, 204,
+                "Response wasn't 204. It was %s: %s" % (response.status_code, response.content))
+        self.assertEqual(Want.objects.filter(pk=self.want.pk).count(), 0)
