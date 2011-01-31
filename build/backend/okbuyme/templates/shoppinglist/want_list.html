@@ -1,116 +1,56 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}
+    {{ block.super }} | {% trans "Your list" %}
+{% endblock title %}
 
 {% block templates %}
-  <script type="text/template" id="ItemTemplate">
-    <div class="item">
-      <strong>Name: <%= name %>.</strong>
-      [
-      <% if (notes) { %>
-        <a class="toggle-notes" href="#">N</a>
-      <% } %>
-      <a class="edit" href="#">E</a>
-      <a class="delete" href="#">X</a>
-      ]
-      <em><%= owner.name %></em>
-      <div class="notes" style="display: none;">
-        <% if (notes) { %><%= notes %><% } %>
-      </div>
+<script type="text/template" id="WantTemplate">
+    <div class="want">
+        <span class="want-name"><%= name %></span>
+        <span class="want-owner">Dieter L</span>
+        <span class="want-actions">
+            <a href="#" class="ir edit">edit</a>
+            <a href="#" class="ir details">details</a>
+            <a href="#" class="ir delete">delete</a>
+        </span>
+        <div class="want-details">
+            <%= notes %>
+        </div>
     </div>
-  </script>
+</script>
 {% endblock templates %}
 
 {% block main_content %}
-<div id="FilterPanel">
-</div>
-<div id="ItemList">
-    {% comment %}
-    {{ item_list }}
-    TODO Handle when there are no items
-    {% endcomment %}
+<div id="FilterPanel" class="clearfix">
+  <h2>{% trans "Locations" %}</h2>
 
+  <p>{% trans "Click a location to show or hide items for it." %}</p>
+
+  <ul id="ByLocation">
+    <li class="tag on">Home Depot</li>
+    <li class="tag off">Hardware store</li>
+    <li class="tag on">Shoppers Drug Mart</li>
+    <li class="tag on">Loblaws</li>
+    <li class="tag off">Zellers</li>
+    <li class="tag on">Grocery store</li>
+    <li class="tag off">RONA</li>
+  </ul>
+</div>
+
+<div id="ListArea">
     <header>
     <h2>{% trans "Stuff to get!" %}</h2>
     <a href="#">{% trans "Add" %}</a>
     </header>
 
-    <div class="wrapper">
-      <p>{% trans "Below is a list of items that either you or your friends need. You can fine tune this list with the controls" %} <span class="wide-text">{% trans "on the right" %}</span><span class="narrow-text">{% trans "above" %}</span>. {% trans "And if you see something that you can get for a friend, be a pal and pick it up!" %}</p>
+    <p id="WantListIntro">{% trans "Here is where your items to buy will appear. To make a list, select some locations based on where you are or will be shopping." %}</p>
 
-      <table>
-        <thead>
-          <tr>
-            <th>{% trans "These things..." %}</th>
-            <th colspan="2">{% trans "are needed by..." %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="item closed">
-                Hammer
-            </td>
-            <td class="owner">you!</td>
-            <td class="actions closed">
-              <div>
-                <a href="#" class="ir details">N</a>
-                <a href="#" class="ir edit">E</a>
-                <a href="#" class="ir delete">D</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="item closed">Cat scratch mat</td>
-            <td class="owner">Sam B</td>
-            <td class="actions closed">
-              <div>
-                <a href="#" class="ir details">N</a>
-                <a href="#" class="ir delete">D</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="item open">Duct tape</td>
-            <td class="owner">Taylan P</td>
-            <td class="actions open">
-              <div>
-                <a href="#" class="ir details">N</a>
-                <a href="#" class="ir delete">D</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="notes hidden" colspan="3">
-              <p>You know, the silver kind that holds the universe together. I'm going to use it to get the cat hair off my couch.</p>
-              <p>Please don't spend more than $500, but whatever brand is fine with me.</p>
-            </td>
-          </tr>
-          <tr>
-            <td class="item closed">Tea light candles</td>
-            <td class="owner">Sam B</td>
-            <td class="actions closed">
-              <div>
-                <a href="#" class="ir details">N</a>
-                <a href="#" class="ir delete">D</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="item closed">Widget</td>
-            <td class="owner">you!</td>
-            <td class="actions closed">
-              <div>
-                <a href="#" class="ir details">N</a>
-                <a href="#" class="ir edit">E</a>
-                <a href="#" class="ir delete">D</a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ul id="WantList" class="clearfix"></ul>
 </div>
 {% endblock main_content %}
+
 
 {% block javascript %}
 <script language="JavaScript">
@@ -119,5 +59,10 @@ var wantList = [
         {{ want.get_json|safe }}{% if not forloop.last %},{% endif %}
     {% endfor %}
 ]
+
+_.each(wantList, function(want){
+    wants.add(want);
+});
+var app = new AppView();
 </script>
 {% endblock %}

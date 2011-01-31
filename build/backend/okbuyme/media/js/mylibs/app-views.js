@@ -3,13 +3,12 @@
 
 //-------------- VIEWS --------------
 
-// View for one Item (ie one entry in the items list).
-window.ItemView = Backbone.View.extend({
+// View for one Want (ie one entry in the wants list).
+window.WantView = Backbone.View.extend({
 
   tagName: "li",
-  className: "item-row",
 
-  template: _.template($('#ItemTemplate').html()),
+  template: _.template($('#WantTemplate').html()),
 
   initialize: function() {
     _.bindAll(this, "render");
@@ -23,22 +22,21 @@ window.ItemView = Backbone.View.extend({
   },
 
   events: {
-    //"hover .toggle-details" : "toggleDetails", // TODO activate when hovering over entire row, which is `this`
-    "click .toggle-notes" : "toggleNotes",
-    "click .edit" : "edit",
-    "click .delete" : "delete",
+    "click .toggle-details" : "toggleDetails",
+    "click .edit" : "editWant",
+    "click .delete" : "deleteWant"
   },
 
-  toggleNotes: function(e){
+  toggleDetails: function(e){
     $(this.el).find('.notes').toggle();
     e.preventDefault();
   },
 
-  edit: function(e){
+  editWant: function(e){
     e.preventDefault();
   },
 
-  delete: function(e){
+  deleteWant: function(e){
     e.preventDefault();
     var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
     if (proceed) {
@@ -67,11 +65,11 @@ window.AppView = Backbone.View.extend({
   },
 
   render: function() {
-    window.items.each(this.renderOne);
+    window.wants.each(this.renderOne);
   },
 
-  renderOne: function(item) {
-    var view = new ItemView({model: item});
-    this.$("#ItemList").append(view.render().el);
+  renderOne: function(want) {
+    var view = new WantView({model: want});
+    this.$("#WantList").append(view.render().el);
   }
 });

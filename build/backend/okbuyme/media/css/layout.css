@@ -32,18 +32,18 @@ header h1 {
     margin: 20px 0;
 }
 
-#ItemList {
+#ListArea {
     background: #fff;
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
 }
 
-#ItemList .wrapper {
+#ListArea .wrapper {
   padding: 20px;
 }
 
-#ItemList header {
+#ListArea header {
     background: url(../images/banner-green-left.png) no-repeat left 15px;
     height: 54px;
     padding-top: 15px;
@@ -51,9 +51,9 @@ header h1 {
 }
 
 #FilterPanel {
-    width: 608px;
-    height: 100px; /* TODO remove, just to see that it's there */
+    width: 568px;
     margin: 0 auto;
+    padding: 20px;
     background: #5291a1;
     -webkit-border-top-right-radius: 7px;
     -webkit-border-top-left-radius: 7px;
@@ -91,19 +91,25 @@ img::-moz-selection {background: transparent;}
 		width: 816px; /* only need 10 columns */
 	}
 
-  #ItemList {
+
+#ListAreaIntro {
+    padding-bottom: 110px;
+    background: url(../images/arrow-right.png) no-repeat right bottom;
+}
+  #ListArea {
       width: 480px;
       float: right;
   }
 
-  #ItemList .wrapper {
+  #ListArea .wrapper {
     padding: 20px;
   }
 
   #FilterPanel {
-      width: 335px; /* 4 cols + 1 gutter - 1px border */
+      width: 295px; /* 4 cols + 1 gutter - 1px border - 40px padding*/
+      padding: 20px;
       float: right;
-      margin-top: 10px;
+      margin-top: 65px;
       -webkit-border-top-right-radius: 7px;
       -webkit-border-top-left-radius: 0;
       -webkit-border-bottom-right-radius: 7px;
@@ -142,11 +148,12 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%; 
 	}
 
-  #ItemList {
+  #ListArea {
       width: 396px;
   }
   #FilterPanel {
-      width: 376px;
+      width: 336px;
+      padding: 20px;
       -webkit-border-top-right-radius: 7px;
       -webkit-border-top-left-radius: 7px;
       -moz-border-radius-topright: 7px;
@@ -180,12 +187,13 @@ img::-moz-selection {background: transparent;}
 		-webkit-text-size-adjust: 100%;
 	}
 
-  #ItemList {
+  #ListArea {
       width: 300px;
   }
 
   #FilterPanel {
-      width: 290px;
+      width: 250px;
+      padding: 20px;
       -webkit-border-top-right-radius: 7px;
       -webkit-border-top-left-radius: 7px;
       -moz-border-radius-topright: 7px;

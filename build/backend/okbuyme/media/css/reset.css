@@ -105,7 +105,6 @@ a, a:active, a:visited { color: #607890; }
 a:hover { color: #036; }
 
 
-ul, ol { margin-left: 2em; }
 ol { list-style-type: decimal; }
 
 /* remove margins for navigation lists */
@@ -183,9 +182,7 @@ body {
     padding-bottom: 50px;
 }
 
-p {
-  margin-bottom: 10px;
-}
+
 
 
 
@@ -195,7 +192,7 @@ p {
   */
 
  /* for image replacement */
- .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
+ .ir { text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
 
  /* Hide for both screenreaders and browsers
     css-discuss.incutio.com/wiki/Screenreader_Visibility */
