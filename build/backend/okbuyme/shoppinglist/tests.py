@@ -22,6 +22,19 @@ class WebTests(TestCase):
         self.assertIn(want, want_list)
         self.assertContains(response, 'Test Want')
 
+    def test_add_page_loads(self):
+        response = self.client.get(reverse('shoppinglist-add'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_adding_want_via_post(self):
+        old_count = Want.objects.count()
+        response = self.client.post(reverse('shoppinglist-add'),
+                data={'name': 'Posted Name', 'notes': 'Posted notes'})
+        self.assertEqual(Want.objects.count(), old_count + 1)
+        want = Want.objects.latest('pk')
+        self.assertEqual(want.name, 'Posted Name')
+        self.assertEqual(want.notes, 'Posted notes')
+
 
 class ModelTests(TestCase):
     def test_creation_time_is_set(self):

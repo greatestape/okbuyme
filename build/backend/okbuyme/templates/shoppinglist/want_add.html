@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+{{ block.super }} - {% trans "Add to Your List"}
+{% endblock title %}
+
+{% block main_content %}
+<div id="ListArea">
+    <header>
+    <h2>{% trans "Add to Your List" %}</h2>
+    </header>
+
+    <form action="{% url shoppinglist-add %}" method="POST">
+    {% csrf_token %}
+    <ul>
+        {{ form.as_ul }}
+        <input type="submit" value="{% trans "Add" %}" />
+    </ul>
+    </form>
+</div>
+{% endblock main_content %}
