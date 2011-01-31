@@ -49,30 +49,26 @@ API
             'last_updated_time': '2011-01-02T17:55+00:00',
         }
 
-### Add List Item (TODO)
+### Add List Item
 
-- URL: `/api/wants/want/add/`
+- URL: `/api/wants/`
 - Method: `POST`
 - POST Data
 
         {
-            'item': {
-                'name': 'Cheerios',
-                'notes': 'Please buy three boxes'
-            }
+            'name': 'Cheerios',
+            'notes': 'Please buy three boxes'
         }
 
-### Edit List Item (TODO)
+### Edit List Item
 
 - URL: `/api/wants/want/<item-id>/`
 - Method: `PUT`
 - POST Data
 
         {
-            'item': {
-                'name': 'Cheerios',
-                'notes': 'Please buy four boxes'
-            }
+            'name': 'Cheerios',
+            'notes': 'Please buy four boxes'
         }
 
 ### Remove List Item (TODO)

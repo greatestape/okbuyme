@@ -91,3 +91,26 @@ class APITests(TestCase):
         response = self.client.get(reverse('api-shoppinglist-want-detail',
                 kwargs={'want_id': self.want.id}))
         self.assertEqual(self.want.get_json(), response.content)
+
+    def test_want_update(self):
+        response = self.client.put(reverse('api-shoppinglist-want-detail',
+                kwargs={'want_id': self.want.id}),
+                data=simplejson.dumps({'notes': 'A new note'}),
+                content_type='application/json')
+        self.assertEqual(response.status_code, 200,
+                "Response wasn't 200. It was %s: %s" % (response.status_code, response.content))
+        want = Want.objects.get(pk=self.want.pk)
+        # Test notes has been updated
+        self.assertEqual(want.notes, 'A new note')
+        # Test name hasn't been updated
+        self.assertEqual(want.name, 'Test Want')
+
+    def test_want_create(self):
+        response = self.client.post(reverse('api-shoppinglist-want-list'),
+                data=simplejson.dumps({'name': 'A new want'}),
+                content_type='application/json')
+        self.assertEqual(response.status_code, 201,
+                "Response wasn't 201. It was %s: %s" % (response.status_code, response.content))
+        new_want = Want.objects.latest('id')
+        self.assertNotEqual(new_want, self.want)
+        self.assertEqual(new_want.name, 'A new want')
