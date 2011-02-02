@@ -22,13 +22,13 @@ window.WantView = Backbone.View.extend({
   },
 
   events: {
-    "click .toggle-details" : "toggleDetails",
-    "click .edit" : "editWant",
-    "click .delete" : "deleteWant"
+    "click .details"  : "toggleDetails",
+    "click .edit"     : "editWant",
+    "click .delete"   : "deleteWant"
   },
 
   toggleDetails: function(e){
-    $(this.el).find('.notes').toggle();
+    $(this.el).find('.want-details').toggle();
     e.preventDefault();
   },
 
@@ -54,6 +54,33 @@ window.WantView = Backbone.View.extend({
 });
 
 
+// View to present the add form
+window.AddView = Backbone.View.extend({
+  el: $("#AddWantFormContainer"),
+
+  template: _.template($('#AddWantFormTemplate').html()),
+
+  events: {
+    "click #AddWant" : "addWant"
+  },
+
+  initialize: function(){
+    this.render();
+  },
+
+  render: function(){
+    var html = $(this.el).html(this.template());
+  },
+
+  addWant: function(e) {
+    e.preventDefault();
+    $(e.target)
+      .toggleClass("closed")
+      .toggleClass("open");
+    $(this.el).find('form').slideToggle();
+  }
+});
+
 
 // Top-level view for the entire app
 window.AppView = Backbone.View.extend({
@@ -66,10 +93,16 @@ window.AppView = Backbone.View.extend({
 
   render: function() {
     window.wants.each(this.renderOne);
+    this.renderAddForm();
   },
 
   renderOne: function(want) {
     var view = new WantView({model: want});
     this.$("#WantList").append(view.render().el);
+  },
+
+  renderAddForm: function(){
+    var view = new AddView();
+    this.$("#AddWantFormContainer").append(view);
   }
 });
