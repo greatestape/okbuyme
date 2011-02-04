@@ -120,14 +120,18 @@ label {
   font-size: 14px;
   font-weight: bold;
 }
+.error-text,
 .req-asterisk {
   color: #900;
+  font-weight: bold;
 }
 #AddWantFormContainer .field input,
 #AddWantFormContainer .field textarea {
   width: 100%;
 }
-
+#AddWantFormContainer .field textarea {
+    height: 100px;
+}
 
 
 #WantListIntro {

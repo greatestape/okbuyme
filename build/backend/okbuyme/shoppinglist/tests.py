@@ -22,18 +22,29 @@ class WebTests(TestCase):
         self.assertIn(want, want_list)
         self.assertContains(response, 'Test Want')
 
-    def test_add_page_loads(self):
-        response = self.client.get(reverse('shoppinglist-add'))
+    def test_form_appears_on_home_page(self):
+        response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'form')
+        self.assertFalse(response.context['form'].is_bound)
 
     def test_adding_want_via_post(self):
         old_count = Want.objects.count()
-        response = self.client.post(reverse('shoppinglist-add'),
+        response = self.client.post('/',
                 data={'name': 'Posted Name', 'notes': 'Posted notes'})
         self.assertEqual(Want.objects.count(), old_count + 1)
         want = Want.objects.latest('pk')
         self.assertEqual(want.name, 'Posted Name')
         self.assertEqual(want.notes, 'Posted notes')
+
+    def test_adding_want_via_post_invalid_data(self):
+        old_count = Want.objects.count()
+        response = self.client.post('/',
+                data={'name': '', 'notes': 'Posted notes'})
+        self.assertContains(response, 'form')
+        self.assertTrue(response.context['form'].is_bound)
+        self.assertFalse(response.context['form'].is_valid())
+        self.assertEqual(Want.objects.count(), old_count)
 
 
 class ModelTests(TestCase):
