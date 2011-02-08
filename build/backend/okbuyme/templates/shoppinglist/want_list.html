@@ -12,7 +12,9 @@
         <span class="want-owner">Dieter L</span>
         <span class="want-actions">
             <a href="#" class="ir edit">edit</a>
-            <a href="#" class="ir details">details</a>
+            <% if (notes) { %>
+              <a href="#" class="ir details">details</a>
+            <% } %>
             <a href="#" class="ir delete">delete</a>
         </span>
         <div class="want-details">
