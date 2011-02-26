@@ -10,14 +10,15 @@ window.Want = Backbone.Model.extend({
 
   validate: function(attrs){
     console.log('Validate called');
-    // TODO name required
   },
 
   clear: function(){
     this.destroy({
-      success: function(){
-        console.log('Want destroyed');
-        this.view.remove();
+      error: function(model, data){
+        alert('An error occurred deleting your item.');
+      },
+      success: function(model, data){
+        model.view.remove();
       }
     });
   }
@@ -29,8 +30,6 @@ window.Want = Backbone.Model.extend({
 window.WantList = Backbone.Collection.extend({
 
   model: Want
-
-  // TODO: need comparator
 
 });
 window.wants = new WantList();
