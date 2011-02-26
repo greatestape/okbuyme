@@ -34,7 +34,7 @@ class WantHandler(BaseHandler):
             return base.all() # Or base.filter(...)
 
     @require_mime('json')
-    def update(self, request, want_id=None):
+    def update(self, request, want_id):
         want = get_object_or_404(Want, id=want_id)
         return _fill_and_validate(want, request.data, rc.ALL_OK)
 
@@ -42,7 +42,7 @@ class WantHandler(BaseHandler):
     def create(self, request):
         return _fill_and_validate(Want(), request.data, rc.CREATED)
 
-    def delete(self, request, want_id=None):
+    def delete(self, request, want_id):
         get_object_or_404(Want, id=want_id).delete()
         return rc.DELETED
 
