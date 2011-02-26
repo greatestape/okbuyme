@@ -53,7 +53,9 @@ window.WantView = Backbone.View.extend({
   },
 
   remove: function(){
-    $(this.el).remove();
+    $(this.el).slideUp('normal', function(){
+      $(this).remove();
+    });
   }
 });
 
@@ -84,17 +86,11 @@ window.AddView = Backbone.View.extend({
       $(this.el)
         .find('form')
         .slideToggle(function(){
-          $target
-            .removeClass('open')
-            .addClass('closed');
+          $target.removeClass('open').addClass('closed');
         });
     } else { // open it
-      $target
-        .removeClass('closed')
-        .addClass('open');
-      $(this.el)
-        .find('form')
-        .slideToggle();
+      $target.removeClass('closed').addClass('open');
+      $(this.el).find('form').slideToggle();
     }
   }
 });
