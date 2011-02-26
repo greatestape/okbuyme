@@ -28,7 +28,11 @@ window.WantView = Backbone.View.extend({
   },
 
   toggleDetails: function(e){
-    $(this.el).find('.want-details').toggle();
+
+    $(this.el)
+      .toggleClass('open')
+      .find('.want-details')
+      .toggle();
     e.preventDefault();
   },
 
@@ -74,10 +78,24 @@ window.AddView = Backbone.View.extend({
 
   addWant: function(e) {
     e.preventDefault();
-    $(e.target)
-      .toggleClass("closed")
-      .toggleClass("open");
-    $(this.el).find('form').slideToggle();
+    var $target = $(e.target),
+        isOpen = $target.hasClass("open");
+    if (isOpen) { // close it
+      $(this.el)
+        .find('form')
+        .slideToggle(function(){
+          $target
+            .removeClass('open')
+            .addClass('closed');
+        });
+    } else { // open it
+      $target
+        .removeClass('closed')
+        .addClass('open');
+      $(this.el)
+        .find('form')
+        .slideToggle();
+    }
   }
 });
 

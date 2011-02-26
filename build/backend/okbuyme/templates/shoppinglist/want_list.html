@@ -9,7 +9,9 @@
 <script type="text/template" id="WantTemplate">
     <div class="want">
         <span class="want-name"><%= name %></span>
+        {% comment %}
         <span class="want-owner">Dieter L</span>
+        {% endcomment %}
         <span class="want-actions">
             <a href="#" class="ir edit">edit</a>
             <% if (notes) { %>
@@ -36,6 +38,7 @@
 {% endblock templates %}
 
 {% block main_content %}
+{% comment %}
 <div id="FilterPanel" class="clearfix">
   <h2>{% trans "Locations" %}</h2>
 
@@ -51,13 +54,14 @@
     <li class="tag off">RONA</li>
   </ul>
 </div>
+{% endcomment %}
 
 <div id="ListArea">
     <header>
       <h2>{% trans "Stuff to get!" %}</h2>
     </header>
-    <div id="AddWantFormContainer">
-    </div>
+
+    <div id="AddWantFormContainer"></div>
 
     <p id="WantListIntro">{% trans "Here is where your items to buy will appear. To make a list, select some locations based on where you are or will be shopping." %}</p>
 
