@@ -15,7 +15,7 @@ Backbone.sync = function(method, model, options){
     case 'delete':
       $.ajax({
         type: "DELETE",
-        url: '/api/wants/want/' + model.id + '/',
+        url: model.get('resource_uri'),
         success: function(data, textStatus, jqXHR){
           options.success(data, model);
         },
