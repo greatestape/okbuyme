@@ -20,6 +20,10 @@ class WantHandler(BaseHandler):
     def last_updated_time(self, instance):
         return instance.last_updated_time.isoformat('T')
 
+    @require_mime('json')
+    def create(self, request):
+        return _fill_and_validate(Want(), request.data, rc.CREATED)
+
     def read(self, request, want_id=None):
         """
         Returns a single post if `want_id` is given,
@@ -37,10 +41,6 @@ class WantHandler(BaseHandler):
     def update(self, request, want_id):
         want = get_object_or_404(Want, id=want_id)
         return _fill_and_validate(want, request.data, rc.ALL_OK)
-
-    @require_mime('json')
-    def create(self, request):
-        return _fill_and_validate(Want(), request.data, rc.CREATED)
 
     def delete(self, request, want_id):
         get_object_or_404(Want, id=want_id).delete()
