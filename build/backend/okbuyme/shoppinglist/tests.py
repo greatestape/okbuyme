@@ -11,13 +11,20 @@ import pytz
 from shoppinglist.models import Want
 
 
-class WebTests(TestCase):
+class WantHelper(object):
+    def create_want(self, **kwargs):
+        params = dict(name='Test Want')
+        params.update(kwargs)
+        return Want.objects.create(**params)
+
+
+class WebTests(WantHelper, TestCase):
     def test_homepage_loads(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
     def test_wants_appear_on_home_page(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         want_list = response.context['want_list']
@@ -31,26 +38,24 @@ class WebTests(TestCase):
         self.assertFalse(response.context['form'].is_bound)
 
 
-class ModelTests(TestCase):
+class ModelTests(WantHelper, TestCase):
     def test_creation_time_is_set(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         self.assertEqual(type(want.creation_time), datetime.datetime)
 
     def test_creation_time_is_set_once(self):
         original_creation_time = datetime.datetime(2010,1,1,15,30,10, tzinfo=pytz.utc)
-        want = Want.objects.create(name='Test Want',
-                creation_time=original_creation_time)
+        want = self.create_want(creation_time=original_creation_time)
         want.save()
         want = Want.objects.get(pk=want.pk)
         self.assertEqual(want.creation_time, original_creation_time)
 
     def test_last_updated_is_set(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         self.assertEqual(type(want.last_updated_time), datetime.datetime)
 
     def test_last_updated_is_always_updated(self):
-        want = Want.objects.create(name='Test Want')
-        want.save()
+        want = self.create_want()
         original_last_updated_time = want.last_updated_time
         want.name = 'New Name'
         want.save()
@@ -58,10 +63,11 @@ class ModelTests(TestCase):
         self.assertNotEqual(want.last_updated_time, original_last_updated_time)
 
 
-class APITests(TestCase):
+class APITests(WantHelper, TestCase):
     def setUp(self):
+        super(APITests, self).setUp()
         self.creation_time = datetime.datetime(2010, 2, 3, 4, 5, 6, tzinfo=pytz.utc)
-        self.want = Want.objects.create(
+        self.want = self.create_want(
                 name='Test Want',
                 notes="Don't forget to foobar",
                 creation_time=self.creation_time)
