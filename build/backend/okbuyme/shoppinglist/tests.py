@@ -1,3 +1,5 @@
+# Encoding: UTF-8
+import base64
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -145,3 +147,13 @@ class APITests(TestCase):
         self.assertEqual(response.status_code, 204,
                 "Response wasn't 204. It was %s: %s" % (response.status_code, response.content))
         self.assertEqual(Want.objects.filter(pk=self.want.pk).count(), 0)
+
+    def test_content_type_encoding_handling(self):
+        response = self.client.post(reverse('api-shoppinglist-want-list'),
+                data='{"name": "Acme SuperAnvil™"}',
+                content_type='application/json; charset=UTF-8')
+        self.assertEqual(response.status_code, 201,
+                "Response wasn't 201. It was %s: %s" % (response.status_code, response.content))
+        new_want = Want.objects.latest('id')
+        self.assertNotEqual(new_want, self.want)
+        self.assertEqual(new_want.name, u'Acme SuperAnvil™')
