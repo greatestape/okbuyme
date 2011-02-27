@@ -30,24 +30,6 @@ class WebTests(TestCase):
         self.assertContains(response, 'form')
         self.assertFalse(response.context['form'].is_bound)
 
-    def test_adding_want_via_post(self):
-        old_count = Want.objects.count()
-        response = self.client.post('/',
-                data={'name': 'Posted Name', 'notes': 'Posted notes'})
-        self.assertEqual(Want.objects.count(), old_count + 1)
-        want = Want.objects.latest('pk')
-        self.assertEqual(want.name, 'Posted Name')
-        self.assertEqual(want.notes, 'Posted notes')
-
-    def test_adding_want_via_post_invalid_data(self):
-        old_count = Want.objects.count()
-        response = self.client.post('/',
-                data={'name': '', 'notes': 'Posted notes'})
-        self.assertContains(response, 'form')
-        self.assertTrue(response.context['form'].is_bound)
-        self.assertFalse(response.context['form'].is_valid())
-        self.assertEqual(Want.objects.count(), old_count)
-
 
 class ModelTests(TestCase):
     def test_creation_time_is_set(self):
