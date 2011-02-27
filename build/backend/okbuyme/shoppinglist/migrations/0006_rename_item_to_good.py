@@ -15,8 +15,8 @@ class Migration(SchemaMigration):
 
 
     models = {
-        'shoppinglist.good': {
-            'Meta': {'object_name': 'Good'},
+        'shoppinglist.want': {
+            'Meta': {'object_name': 'Want'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
             'notes': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
