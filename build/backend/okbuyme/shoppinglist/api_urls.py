@@ -1,11 +1,13 @@
 from django.conf.urls.defaults import *
 
+from piston.authentication import HttpBasicAuthentication
 from piston.resource import Resource
 
 from shoppinglist.handlers import WantHandler
 
 
-want_handler = Resource(WantHandler)
+auth = HttpBasicAuthentication(realm='Ok Buy Me')
+want_handler = Resource(WantHandler, authentication=auth)
 
 
 def pull_encoding(func):

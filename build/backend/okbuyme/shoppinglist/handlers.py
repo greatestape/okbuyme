@@ -22,7 +22,8 @@ class WantHandler(BaseHandler):
 
     @require_mime('json')
     def create(self, request):
-        return _fill_and_validate(Want(), request.data, rc.CREATED)
+        return _fill_and_validate(
+                Want(owner=request.user), request.data, rc.CREATED)
 
     def read(self, request, want_id=None):
         """
@@ -35,15 +36,15 @@ class WantHandler(BaseHandler):
         if want_id:
             return base.get(pk=want_id)
         else:
-            return base.all() # Or base.filter(...)
+            return base.filter(owner=request.user)
 
     @require_mime('json')
     def update(self, request, want_id):
-        want = get_object_or_404(Want, id=want_id)
+        want = get_object_or_404(Want, owner=request.user, id=want_id)
         return _fill_and_validate(want, request.data, rc.ALL_OK)
 
     def delete(self, request, want_id):
-        get_object_or_404(Want, id=want_id).delete()
+        get_object_or_404(Want, owner=request.user, id=want_id).delete()
         return rc.DELETED
 
 

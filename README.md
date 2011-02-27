@@ -8,6 +8,7 @@ API
 
 - URL: `/api/wants/`
 - Method: `GET`
+- Basic Auth required
 - Optional Params:
 
     - `whose` : `mine`|`ours`|`<user-id>` (TODO)
@@ -36,6 +37,7 @@ API
 
 - URL: `/api/wants/want/<id>/`
 - Method: `GET`
+- Basic Auth required
 
 - Response:
 
@@ -53,6 +55,7 @@ API
 
 - URL: `/api/wants/`
 - Method: `POST`
+- Basic Auth required
 - POST Data
 
         {
@@ -64,6 +67,7 @@ API
 
 - URL: `/api/wants/want/<item-id>/`
 - Method: `PUT`
+- Basic Auth required
 - POST Data
 
         {
@@ -74,6 +78,7 @@ API
 ### Remove List Item
 
 - URL: `/api/wants/want/<item-id>/`
+- Basic Auth required
 - Method: `DELETE`
 
 ### Get Locations (TODO)
