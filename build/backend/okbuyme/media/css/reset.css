@@ -177,9 +177,6 @@ button {  width: auto; overflow: visible; }
  */
 
 body {
-    background: #e1f9ab url(../images/bg-tile.png) repeat left top;
-    border-top: 7px solid #323016;
-    padding-bottom: 50px;
 }
 
 

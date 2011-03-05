@@ -1,228 +1,105 @@
-/*	Less Framework 3
+/*	Less Framework 4
+	http://lessframework.com
 	by Joni Korpi
-	http://lessframework.com	*/
+	License: http://creativecommons.org/licenses/MIT/	*/
 
 
-/*	Default 8-column layout
- *	Tablets, netbooks, IE6-8
-	60 px columns, 24 px gutters, 60 px margins, 768 px total
-	---------------------------------------------------------
-	1     2      3      4      5      6      7      8     
-	60px  144px  228px  312px  396px  480px  564px  648px	*/
 
-#Container {
-    background-image: url(../images/logo.png);
-    background-repeat: no-repeat;
-    background-position: center -12px; /* 96 top padding for default - 84 here */
-    margin: 0 auto;
-    padding: 84px 60px 0;
-    width: 648px;
-    position: relative;
-	  -webkit-tap-highlight-color: rgb(255,255,0);
-}
+/* Selection colours (easy to forget) */
 
-#MainContent {
-    background: none;
-}
-
-header h1 {
-    background: url(../images/okbuyme.png) no-repeat center top;
-    height: 65px;
-    text-align: center;
-    margin: 20px 0;
-}
-
-#ListArea {
-    background: #fff;
-    -moz-border-radius: 7px;
-    -webkit-border-radius: 7px;
-    border-radius: 7px;
-}
-
-#ListArea .wrapper {
-  padding: 20px;
-}
-
-#ListArea header {
-    background: url(../images/banner-green-left.png) no-repeat left 15px;
-    height: 54px;
-    padding-top: 15px;
-    margin: 0 0 0 -8px;
-    float: left;
-}
-
-/*
- *#FilterPanel {
- *    width: 568px;
- *    margin: 0 auto;
- *    padding: 20px;
- *    background: #5291a1;
- *    -webkit-border-top-right-radius: 7px;
- *    -webkit-border-top-left-radius: 7px;
- *    -moz-border-radius-topright: 7px;
- *    -moz-border-radius-topleft: 7px;
- *    border-top-right-radius: 7px;
- *    border-top-left-radius: 7px;
- *    border-bottom: 1px solid #666;
- *}
- */
-
-/*::selection 	 	{background: rgb(255,255,0);}*/
-/*::-moz-selection 	{background: rgb(255,255,0);}*/
+::selection 	 	{background: rgb(255,255,158);}
+::-moz-selection 	{background: rgb(255,255,158);}
 img::selection 		{background: transparent;}
-img::-moz-selection {background: transparent;}
-
-  .wide-text { display: none; visibility: hidden; }
-  .narrow-text {
-    display: inline;
-    visibility: visible;
-  }
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: rgb(255,255,158);}
 
 
-/*	13-column layout
- *	Laptops, desktops
-	60 px columns, 24 px gutters, 72 px margins, 1212 px total (extra space for scrollbars)
-	---------------------------------------------------------------------------------------
-	1     2      3      4      5      6      7      8      9      10     11     12     13
-	60px  144px  228px  312px  396px  480px  564px  648px  732px  816px  900px  984px  1068px	*/
 
-@media only screen and (min-width: 1212px) {
+/*		Default Layout: 992px. 
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+-------------------------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8      9      10
+px      68    160    252    344    436    528    620    712    804    896    */
+
+body {
+	width: 896px;
+	padding: 72px 48px 84px;
+	background: rgb(232,232,232);
+	color: rgb(60,60,60);
+	-webkit-text-size-adjust: 100%; /* Stops Mobile Safari from auto-adjusting font-sizes */
+}
+
+
+
+/*		Tablet Layout: 768px.
+		Gutters: 24px.
+		Outer margins: 28px.
+		Inherits styles from: Default Layout.
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
 	
-	#Container {
-        background-position: center top;
-		padding: 96px 72px 0;
-		width: 816px; /* only need 10 columns */
+	body {
+		width: 712px;
+		padding: 48px 28px 60px;
 	}
-
-
-#ListAreaIntro {
-    padding-bottom: 110px;
-    background: url(../images/arrow-right.png) no-repeat right bottom;
-}
-  #ListArea {
-      width: 480px;
-      margin: 0 auto;
-      padding-bottom: 5px;
-  }
-
-  #ListArea .wrapper {
-    padding: 20px;
-  }
-
-  #FilterPanel {
-      width: 295px; /* 4 cols + 1 gutter - 1px border - 40px padding*/
-      padding: 20px;
-      float: right;
-      margin-top: 65px;
-      -webkit-border-top-right-radius: 7px;
-      -webkit-border-top-left-radius: 0;
-      -webkit-border-bottom-right-radius: 7px;
-      -moz-border-radius-topright: 7px;
-      -moz-border-radius-topleft: 0px;
-      -moz-border-radius-bottomright: 7px;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 0px;
-      border-bottom-right-radius: 7px;
-      border-left: 1px solid #666;
-      border-bottom: 0;
-  }
-
-  .narrow-text { display: none; visibility: hidden; }
-  .wide-text {
-    display: inline;
-    visibility: visible;
-  }
 }
 
 
-/*	5-column layout
- *	480px phones, landscape iPhones, extremely narrow browsers
-	60 px columns, 24 px gutters, 42 px margins, 480 px total
-	---------------------------------------------------------
-	1     2      3      4      5
-	60px  144px  228px  312px  396px	*/
 
-@media only screen and (max-width: 767px) and (min-width: 480px) {
+/*		Mobile Layout: 320px.
+		Gutters: 24px.
+		Outer margins: 34px.
+		Inherits styles from: Default Layout.
+---------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+@media only screen and (max-width: 767px) {
 	
-	#Container {
-		padding: 15px 42px 0;
-        background-image: none;
-		width: 396px;
-		/* Prevents Mobile Safari from bumping up font sizes in landscape */
-		-webkit-text-size-adjust: 100%; 
+	body {
+		width: 252px;
+		padding: 48px 34px 60px;
 	}
-
-  #ListArea {
-      width: 396px;
-  }
-  #FilterPanel {
-      width: 336px;
-      padding: 20px;
-      -webkit-border-top-right-radius: 7px;
-      -webkit-border-top-left-radius: 7px;
-      -moz-border-radius-topright: 7px;
-      -moz-border-radius-topleft: 7px;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 7px;
-  }
-
-  .wide-text { display: none; visibility: hidden; }
-  .narrow-text {
-    display: inline;
-    visibility: visible;
-  }
-}
-
-
-/*	3-column layout
- *	iPhones, iPod Touch, other 320px phones
-	60 px columns, 24 px gutters, 46 px margins, 320 px total
-	---------------------------------------------------------
-	1     2      3
-	60px  144px  228px	*/
-
-@media only screen and (max-width: 479px) {
 	
-	#Container {
-		padding: 20px 10px 0;
-        background-image: none;
-		width: 300px;
-		/* Prevents Mobile Safari from bumping up font sizes in landscape */
-		-webkit-text-size-adjust: 100%;
-	}
-
-  #ListArea {
-      width: 300px;
-  }
-
-  #FilterPanel {
-      width: 250px;
-      padding: 20px;
-      -webkit-border-top-right-radius: 7px;
-      -webkit-border-top-left-radius: 7px;
-      -moz-border-radius-topright: 7px;
-      -moz-border-radius-topleft: 7px;
-      border-top-right-radius: 7px;
-      border-top-left-radius: 7px;
-  }
-
-  header h1 {
-      background: url(../images/okbuyme-small.png) no-repeat center top;
-      margin: 10px 0;
-  }
-  .wide-text { display: none; visibility: hidden; }
-  .narrow-text {
-    display: inline;
-    visibility: visible;
-  }
 }
 
 
-/*	Overrides for iPhone 4 
-	and other high device-pixel-ratio devices
-	-----------------------------------------	*/
+
+/*		Wide Mobile Layout: 480px.
+		Gutters: 24px.
+		Outer margins: 22px.
+		Inherits styles from: Default Layout, Mobile Layout.
+------------------------------------------------------------
+cols    1     2      3      4      5
+px      68    160    252    344    436    */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+	body {
+		width: 436px;
+		padding: 36px 22px 48px;
+	}
+	
+}
+
+
+/*	Retina media query.
+	Overrides styles for devices with a 
+	device-pixel-ratio of 2+, such as iPhone 4.
+-----------------------------------------------    */
+
 @media 
 	only screen and (-webkit-min-device-pixel-ratio: 2),
 	only screen and (min-device-pixel-ratio: 2) {
 	
+	body {
+	
+	}
+	
 }
+
