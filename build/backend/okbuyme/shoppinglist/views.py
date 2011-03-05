@@ -6,12 +6,7 @@ from shoppinglist.forms import WantForm
 
 
 def list(request):
-    if request.method == 'POST':
-        form = WantForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = WantForm()
+    form = WantForm()
     wants = Want.objects.all()
     return simple.direct_to_template(
             request,

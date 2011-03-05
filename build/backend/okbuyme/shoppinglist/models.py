@@ -12,6 +12,7 @@ import pytz
 
 class Want(models.Model):
     """Something somebody wants"""
+    owner = models.ForeignKey('auth.User')
     name = models.CharField(_('name'), max_length=255)
     notes = models.TextField(_('notes'), blank=True)
     utc_creation_time = models.DateTimeField(blank=True, null=True)

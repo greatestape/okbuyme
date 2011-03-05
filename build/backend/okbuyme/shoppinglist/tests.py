@@ -1,5 +1,8 @@
+# Encoding: UTF-8
+import base64
 import datetime
 
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import simplejson
@@ -9,13 +12,31 @@ import pytz
 from shoppinglist.models import Want
 
 
-class WebTests(TestCase):
+class WantHelper(object):
+    def setUp(self):
+        super(WantHelper, self).setUp()
+        self.user = User.objects.create_user(
+                'testuser', 'test@example.com', 'testpassword')
+        auth = '%s:%s' % ('testuser', 'testpassword')
+        auth = 'Basic %s' % base64.encodestring(auth)
+        auth = auth.strip()
+        self.extra = {
+            'HTTP_AUTHORIZATION': auth,
+        }
+
+    def create_want(self, **kwargs):
+        params = dict(name='Test Want', owner=self.user)
+        params.update(kwargs)
+        return Want.objects.create(**params)
+
+
+class WebTests(WantHelper, TestCase):
     def test_homepage_loads(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
     def test_wants_appear_on_home_page(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         want_list = response.context['want_list']
@@ -28,45 +49,25 @@ class WebTests(TestCase):
         self.assertContains(response, 'form')
         self.assertFalse(response.context['form'].is_bound)
 
-    def test_adding_want_via_post(self):
-        old_count = Want.objects.count()
-        response = self.client.post('/',
-                data={'name': 'Posted Name', 'notes': 'Posted notes'})
-        self.assertEqual(Want.objects.count(), old_count + 1)
-        want = Want.objects.latest('pk')
-        self.assertEqual(want.name, 'Posted Name')
-        self.assertEqual(want.notes, 'Posted notes')
 
-    def test_adding_want_via_post_invalid_data(self):
-        old_count = Want.objects.count()
-        response = self.client.post('/',
-                data={'name': '', 'notes': 'Posted notes'})
-        self.assertContains(response, 'form')
-        self.assertTrue(response.context['form'].is_bound)
-        self.assertFalse(response.context['form'].is_valid())
-        self.assertEqual(Want.objects.count(), old_count)
-
-
-class ModelTests(TestCase):
+class ModelTests(WantHelper, TestCase):
     def test_creation_time_is_set(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         self.assertEqual(type(want.creation_time), datetime.datetime)
 
     def test_creation_time_is_set_once(self):
         original_creation_time = datetime.datetime(2010,1,1,15,30,10, tzinfo=pytz.utc)
-        want = Want.objects.create(name='Test Want',
-                creation_time=original_creation_time)
+        want = self.create_want(creation_time=original_creation_time)
         want.save()
         want = Want.objects.get(pk=want.pk)
         self.assertEqual(want.creation_time, original_creation_time)
 
     def test_last_updated_is_set(self):
-        want = Want.objects.create(name='Test Want')
+        want = self.create_want()
         self.assertEqual(type(want.last_updated_time), datetime.datetime)
 
     def test_last_updated_is_always_updated(self):
-        want = Want.objects.create(name='Test Want')
-        want.save()
+        want = self.create_want()
         original_last_updated_time = want.last_updated_time
         want.name = 'New Name'
         want.save()
@@ -74,16 +75,17 @@ class ModelTests(TestCase):
         self.assertNotEqual(want.last_updated_time, original_last_updated_time)
 
 
-class APITests(TestCase):
+class APITests(WantHelper, TestCase):
     def setUp(self):
+        super(APITests, self).setUp()
         self.creation_time = datetime.datetime(2010, 2, 3, 4, 5, 6, tzinfo=pytz.utc)
-        self.want = Want.objects.create(
+        self.want = self.create_want(
                 name='Test Want',
                 notes="Don't forget to foobar",
                 creation_time=self.creation_time)
 
     def test_want_list(self):
-        response = self.client.get(reverse('api-shoppinglist-want-list'))
+        response = self.client.get(reverse('api-shoppinglist-want-list'), **self.extra)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json; charset=utf-8')
         want_list = simplejson.loads(response.content)
@@ -98,7 +100,7 @@ class APITests(TestCase):
 
     def test_want_detail(self):
         response = self.client.get(reverse('api-shoppinglist-want-detail',
-                kwargs={'want_id': self.want.id}))
+                kwargs={'want_id': self.want.id}), **self.extra)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json; charset=utf-8')
         want = simplejson.loads(response.content)
@@ -113,14 +115,14 @@ class APITests(TestCase):
 
     def test_model_can_generate_json(self):
         response = self.client.get(reverse('api-shoppinglist-want-detail',
-                kwargs={'want_id': self.want.id}))
+                kwargs={'want_id': self.want.id}), **self.extra)
         self.assertEqual(self.want.get_json(), response.content)
 
     def test_want_update(self):
         response = self.client.put(reverse('api-shoppinglist-want-detail',
                 kwargs={'want_id': self.want.id}),
                 data=simplejson.dumps({'notes': 'A new note'}),
-                content_type='application/json')
+                content_type='application/json', **self.extra)
         self.assertEqual(response.status_code, 200,
                 "Response wasn't 200. It was %s: %s" % (response.status_code, response.content))
         want = Want.objects.get(pk=self.want.pk)
@@ -131,17 +133,28 @@ class APITests(TestCase):
 
     def test_want_create(self):
         response = self.client.post(reverse('api-shoppinglist-want-list'),
-                data=simplejson.dumps({'name': 'A new want'}),
-                content_type='application/json')
+                data=simplejson.dumps({'name': 'A new want', 'notes': 'A note'}),
+                content_type='application/json', **self.extra)
         self.assertEqual(response.status_code, 201,
                 "Response wasn't 201. It was %s: %s" % (response.status_code, response.content))
         new_want = Want.objects.latest('id')
         self.assertNotEqual(new_want, self.want)
         self.assertEqual(new_want.name, 'A new want')
+        self.assertEqual(new_want.notes, 'A note')
 
     def test_want_delete(self):
         response = self.client.delete(reverse('api-shoppinglist-want-detail',
-                kwargs={'want_id': self.want.id}))
+                kwargs={'want_id': self.want.id}), **self.extra)
         self.assertEqual(response.status_code, 204,
                 "Response wasn't 204. It was %s: %s" % (response.status_code, response.content))
         self.assertEqual(Want.objects.filter(pk=self.want.pk).count(), 0)
+
+    def test_content_type_encoding_handling(self):
+        response = self.client.post(reverse('api-shoppinglist-want-list'),
+                data='{"name": "Acme SuperAnvil™"}',
+                content_type='application/json; charset=UTF-8', **self.extra)
+        self.assertEqual(response.status_code, 201,
+                "Response wasn't 201. It was %s: %s" % (response.status_code, response.content))
+        new_want = Want.objects.latest('id')
+        self.assertNotEqual(new_want, self.want)
+        self.assertEqual(new_want.name, u'Acme SuperAnvil™')
