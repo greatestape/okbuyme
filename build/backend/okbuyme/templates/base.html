@@ -1,3 +1,4 @@
+{% load i18n %}
 <!doctype html>
 
 <!--[if lt IE 7 ]> <html class="no-js ie6"> <![endif]-->
@@ -27,10 +28,10 @@
 </head>
 
 <body lang="en">
-
     <header>
-        <div class="container">
-            <h1>Ok, buy me...</h1>
+        <div class="container clearfix">
+            <a href="#TODO" id="Sticker" class="ir">home</a>
+            <h1 id="Logo" class="ir">Ok, buy me...</h1>
         </div>
     </header>
 
@@ -39,6 +40,9 @@
     </div>
 
     <footer>
+        <div class="container">
+            ©2011
+        </div>
     </footer>
 
     {% block templates %}{% endblock templates %}

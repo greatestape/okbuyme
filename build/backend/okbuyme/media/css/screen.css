@@ -1,0 +1,67 @@
+/*
+ * dark teal 075663
+ */
+body {
+    border-top: 5px solid #075663;
+    background: #b3c7cd url(../images/bg-grid.png) repeat-x 0 0;
+    color: #333;
+}
+
+
+/*----- HEADER -----*/
+header {
+    margin: 20px 0;
+}
+
+#Sticker {
+    background: url(../images/logo-sticker.png) no-repeat 0 0;
+    width: 134px;
+    height: 86px;
+    display: block;
+    float: left;
+    margin-right: 16px;
+}
+#Sticker:hover {
+     -webkit-transform: rotate(-4deg); 
+        -moz-transform: rotate(-4deg);
+}
+
+#Logo {
+    background: url(../images/logo.png) no-repeat 0 0;
+    width: 267px;
+    height: 66px;
+    display: block;
+    float: left;
+    margin-top: 7px;
+}
+
+
+/*----- CONTENT -----*/
+.form-row {
+    margin-bottom: 10px;
+}
+label {
+    font-weight: bold;
+    color: #222;
+    display: block;
+}
+.req-asterisk {
+    color: #900;
+}
+#AddWantForm input[name=name] {
+    font-size: 26px;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    padding: 5px;
+    color: #222;
+    width: 445px;
+}
+#AddWantForm textarea {
+    width: 445px;
+    padding: 5px;
+    height: 100px;
+}
+
+/*----- FOOTER -----*/
+footer {
+    clear: both;
+}

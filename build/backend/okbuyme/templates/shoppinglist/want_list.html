@@ -26,51 +26,30 @@
 </script>
 
 <script type="text/template" id="AddWantFormTemplate">
-    <a href="#" id="AddWant" class="ir closed">{% trans "Add" %}</a>
-    <form action="." method="POST" style="display:none">
-      {% csrf_token %}
-      {% include "includes/form-snippet.html" %}
-      <div class="form-row submit">
-        <input type="submit" value="{% trans "Save this item" %}" />
-      </div>
-    </form>
 </script>
 {% endblock templates %}
 
 {% block main_content %}
-{% comment %}
-<div id="FilterPanel" class="clearfix">
-  <h2>{% trans "Locations" %}</h2>
-
-  <p>{% trans "Click a location to show or hide items for it." %}</p>
-
-  <ul id="ByLocation">
-    <li class="tag on">Home Depot</li>
-    <li class="tag off">Hardware store</li>
-    <li class="tag on">Shoppers Drug Mart</li>
-    <li class="tag on">Loblaws</li>
-    <li class="tag off">Zellers</li>
-    <li class="tag on">Grocery store</li>
-    <li class="tag off">RONA</li>
-  </ul>
+<div id="AddButton">
+    <a id="AddWant" class="ir" href="#">{% trans "Add" %}</a>
 </div>
-{% endcomment %}
 
 <div id="ListArea">
-    <header>
-      <h2>{% trans "Stuff to get!" %}</h2>
-    </header>
-
-    <div id="AddWantFormContainer"></div>
-
-    <p id="WantListIntro">{% trans "Here is where your items to buy will appear. To make a list, select some locations based on where you are or will be shopping." %}</p>
-
+    <form action="." method="POST" id="AddWantForm">
+        {% csrf_token %}
+        {% include "includes/form-snippet.html" %}
+        <div class="form-row submit">
+            <input type="submit" value="{% trans "Save this item" %}" />
+        </div>
+    </form>
+    <p>{% trans "Lorem ipsum dolor sit yadda yadda." %}</p>
     <ul id="WantList" class="clearfix"></ul>
 </div>
 {% endblock main_content %}
 
 
 {% block javascript %}
+{% comment %}
 <script language="JavaScript">
 var wantList = [
     {% for want in want_list %}
@@ -83,4 +62,5 @@ _.each(wantList, function(want){
 });
 var app = new AppView();
 </script>
+{% endcomment %}
 {% endblock %}
