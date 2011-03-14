@@ -17,7 +17,8 @@ class WantHelper(object):
         super(WantHelper, self).setUp()
         self.user = User.objects.create_user(
                 'testuser', 'test@example.com', 'testpassword')
-        auth = '%s:%s' % ('testuser', 'testpassword')
+        self.user.cleartext_pass = 'testpassword'
+        auth = '%s:%s' % (self.user.username, self.user.cleartext_pass)
         auth = 'Basic %s' % base64.encodestring(auth)
         auth = auth.strip()
         self.extra = {
@@ -36,6 +37,9 @@ class WebTests(WantHelper, TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_wants_appear_on_home_page(self):
+        self.client.login(
+                username=self.user.username,
+                password=self.user.cleartext_pass)
         want = self.create_want()
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
@@ -48,6 +52,17 @@ class WebTests(WantHelper, TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'form')
         self.assertFalse(response.context['form'].is_bound)
+
+    def test_wants_restricted_by_user(self):
+        my_want = self.create_want()
+        other_user = User.objects.create_user(
+                'otheruser', 'other@example.com', 'otherpassword')
+        other_want = self.create_want(name='Other Want', owner=other_user)
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        want_list = response.context['want_list']
+        self.assertNotIn(other_want, want_list)
+        self.assertNotContains(response, 'Other Want')
 
 
 class ModelTests(WantHelper, TestCase):

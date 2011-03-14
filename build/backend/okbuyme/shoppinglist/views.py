@@ -7,7 +7,10 @@ from shoppinglist.forms import WantForm
 
 def list(request):
     form = WantForm()
-    wants = Want.objects.all()
+    if request.user.is_authenticated():
+        wants = Want.objects.filter(owner=request.user)
+    else:
+        wants = Want.objects.none()
     return simple.direct_to_template(
             request,
             'shoppinglist/want_list.html',
