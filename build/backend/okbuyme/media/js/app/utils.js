@@ -1,3 +1,9 @@
+//
+// utils.js
+// Various helper methods, added into the Underscore namespace.
+//
+
+
 _.mixin({
   log : function(){
     this.log.history = this.log.history || []; // store logs to an array for reference

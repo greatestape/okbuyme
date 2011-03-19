@@ -1,15 +1,19 @@
-// app-models.js
+//
+// models.js
+// Define the Backbone Models and Collections used in the app.
+//
 
 
-//-------------- MODEL --------------
+//
 // A Want is one thing a user wishes to have.
-window.Want = Backbone.Model.extend({
+//
+Want = Backbone.Model.extend({
 
   initialize: function() {
   },
 
   validate: function(attrs){
-    console.log('Validate called');
+    _.log('Validate called');
   },
 
   clear: function(){
@@ -25,11 +29,14 @@ window.Want = Backbone.Model.extend({
 });
 
 
-//-------------- COLLECTION --------------
+//
 // An WantList is a group of Wants, which serves as a shopping list.
-window.WantList = Backbone.Collection.extend({
+//
+WantList = Backbone.Collection.extend({
 
   model: Want
 
 });
-window.wants = new WantList();
+
+// expose the collection of wants by adding it to the app's namespace
+okbuyme.app.wants = new WantList();

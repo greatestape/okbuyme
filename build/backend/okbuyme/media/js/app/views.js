@@ -1,10 +1,13 @@
-// app-views.js
+//
+// views.js
+// Define the app's views, which are pieces of the UI.
+//
 
 
-//-------------- VIEWS --------------
-
-// View for one Want (ie one entry in the wants list).
-window.WantView = Backbone.View.extend({
+//
+// A view for one Want (ie one entry in the wants list).
+//
+WantView = Backbone.View.extend({
 
   tagName: "li",
 
@@ -21,83 +24,86 @@ window.WantView = Backbone.View.extend({
     return this;
   },
 
-  events: {
-    "click .details"  : "toggleDetails",
-    "click .edit"     : "editWant",
-    "click .delete"   : "deleteWant"
-  },
+  //events: {//{{{
+    //"click .details"  : "toggleDetails",
+    //"click .edit"     : "editWant",
+    //"click .delete"   : "deleteWant"
+  //},
 
-  toggleDetails: function(e){
+  //toggleDetails: function(e){
 
-    $(this.el)
-      .toggleClass('open')
-      .find('.want-details')
-      .toggle();
-    e.preventDefault();
-  },
+    //$(this.el)
+      //.toggleClass('open')
+      //.find('.want-details')
+      //.toggle();
+    //e.preventDefault();
+  //},
 
-  editWant: function(e){
-    e.preventDefault();
-  },
+  //editWant: function(e){
+    //e.preventDefault();
+  //},
 
-  deleteWant: function(e){
-    e.preventDefault();
-    var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
-    if (proceed) {
-      this.clear();
-    }
-  },
+  //deleteWant: function(e){
+    //e.preventDefault();
+    //var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
+    //if (proceed) {
+      //this.clear();
+    //}
+  //},
 
-  clear: function() {
-    this.model.clear();
-  },
+  //clear: function() {
+    //this.model.clear();
+  //},
 
-  remove: function(){
-    $(this.el).slideUp('normal', function(){
-      $(this).remove();
-    });
-  }
+  //remove: function(){
+    //$(this.el).slideUp('normal', function(){
+      //$(this).remove();
+    //});
+  //}//}}}
 });
 
+//
+// A view to present the add form
+//
+//AddView = Backbone.View.extend({//{{{
+  //el: $("#AddWantFormContainer"),
 
-// View to present the add form
-window.AddView = Backbone.View.extend({
-  el: $("#AddWantFormContainer"),
+  //template: _.template($('#AddWantFormTemplate').html()),
 
-  template: _.template($('#AddWantFormTemplate').html()),
+  //events: {
+    //"click #AddWant" : "addWant"
+  //},
 
-  events: {
-    "click #AddWant" : "addWant"
-  },
+  //initialize: function(){
+    //this.render();
+  //},
 
-  initialize: function(){
-    this.render();
-  },
+  //render: function(){
+    //var html = $(this.el).html(this.template());
+  //},
 
-  render: function(){
-    var html = $(this.el).html(this.template());
-  },
-
-  addWant: function(e) {
-    e.preventDefault();
-    var $target = $(e.target),
-        isOpen = $target.hasClass("open");
-    if (isOpen) { // close it
-      $(this.el)
-        .find('form')
-        .slideToggle(function(){
-          $target.removeClass('open').addClass('closed');
-        });
-    } else { // open it
-      $target.removeClass('closed').addClass('open');
-      $(this.el).find('form').slideToggle();
-    }
-  }
-});
+  //addWant: function(e) {
+    //e.preventDefault();
+    //var $target = $(e.target),
+        //isOpen = $target.hasClass("open");
+    //if (isOpen) { // close it
+      //$(this.el)
+        //.find('form')
+        //.slideToggle(function(){
+          //$target.removeClass('open').addClass('closed');
+        //});
+    //} else { // open it
+      //$target.removeClass('closed').addClass('open');
+      //$(this.el).find('form').slideToggle();
+    //}
+  //}
+//});//}}}
 
 
-// Top-level view for the entire app
-window.AppView = Backbone.View.extend({
+//
+// A top-level view for the entire app
+//
+AppView = Backbone.View.extend({
 
   el: $("#MainContent"),
 
@@ -106,8 +112,8 @@ window.AppView = Backbone.View.extend({
   },
 
   render: function() {
-    window.wants.each(this.renderOne);
-    this.renderAddForm();
+    okbuyme.app.wants.each(this.renderOne);
+    //this.renderAddForm();
   },
 
   renderOne: function(want) {
@@ -115,8 +121,8 @@ window.AppView = Backbone.View.extend({
     this.$("#WantList").append(view.render().el);
   },
 
-  renderAddForm: function(){
-    var view = new AddView();
-    this.$("#AddWantFormContainer").append(view);
-  }
+  //renderAddForm: function(){
+    //var view = new AddView();
+    //this.$("#AddWantFormContainer").append(view);
+  //}
 });

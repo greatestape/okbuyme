@@ -23,11 +23,14 @@
 {% endblock templates %}
 
 {% block main_content %}
+{% comment %}
 <div id="AddButton" class="clearfix">
     <a id="AddWant" class="ir" href="#">{% trans "Add" %}</a>
 </div>
+{% endcomment %}
 
 <div id="ListArea">
+    {% comment %}
     <form action="." method="POST" id="AddWantForm">
         {% csrf_token %}
         {% include "includes/form-snippet.html" %}
@@ -35,6 +38,7 @@
             <input type="submit" value="{% trans "Save this item" %}" />
         </div>
     </form>
+    {% endcomment %}
     <p>{% trans "Lorem ipsum dolor sit yadda yadda." %}</p>
     <ul id="WantList" class="clearfix"></ul>
 </div>
@@ -43,17 +47,22 @@
 
 {% block javascript %}
 <script language="JavaScript">
-    {% comment %}
-var wantList = [
-    {% for want in want_list %}
-        {{ want.get_json|safe }}{% if not forloop.last %},{% endif %}
-    {% endfor %}
-]
-
-_.each(wantList, function(want){
-    wants.add(want);
+$(function(){
+  // The document is ready, so kickoff the app. There is already an initialized
+  // (and empty) okbuyme.app.wants Collection, so call its fetch() method to AJAX
+  // get the initial list of Wants. Fetch will take the returned JSON from the
+  // server, parse it, and add each Want to the collection. Note that fetch() also
+  // calls  If that's successful, we can render the list.
+  okbuyme.app.wants.fetch({
+    add: true,
+    success: function(collection, resp){
+      _.log('SUCCESS: Got list of wants; ok to render list');
+      new AppView();
+    },
+    error: function(){
+      alert("An error occurred getting your list of items.");
+    }
+  });
 });
-    {% endcomment %}
-//var app = new AppView();
 </script>
 {% endblock %}
