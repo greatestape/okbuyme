@@ -18,12 +18,6 @@ class WantHelper(object):
         self.user = User.objects.create_user(
                 'testuser', 'test@example.com', 'testpassword')
         self.user.cleartext_pass = 'testpassword'
-        auth = '%s:%s' % (self.user.username, self.user.cleartext_pass)
-        auth = 'Basic %s' % base64.encodestring(auth)
-        auth = auth.strip()
-        self.extra = {
-            'HTTP_AUTHORIZATION': auth,
-        }
 
     def create_want(self, **kwargs):
         params = dict(name='Test Want', owner=self.user)
@@ -93,6 +87,12 @@ class ModelTests(WantHelper, TestCase):
 class APITests(WantHelper, TestCase):
     def setUp(self):
         super(APITests, self).setUp()
+        auth = '%s:%s' % (self.user.username, self.user.cleartext_pass)
+        auth = 'Basic %s' % base64.encodestring(auth)
+        auth = auth.strip()
+        self.extra = {
+            'HTTP_AUTHORIZATION': auth,
+        }
         self.creation_time = datetime.datetime(2010, 2, 3, 4, 5, 6, tzinfo=pytz.utc)
         self.want = self.create_want(
                 name='Test Want',
