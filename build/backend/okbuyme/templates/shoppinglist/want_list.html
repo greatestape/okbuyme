@@ -8,10 +8,10 @@
 {% block templates %}
 <script type="text/template" id="WantTemplate">
     <div class="want">
-        <strong class="want-name"><%= name %></strong>
+        <strong class="name"><%= name %></strong>
         <a href="#" class="delete">X</a>
         <% if (notes) { %>
-            <div class="want-details">
+            <div class="details">
                 <%= notes %>
             </div>
         <% } %>

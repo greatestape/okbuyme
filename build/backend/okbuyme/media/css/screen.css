@@ -69,7 +69,10 @@ label {
     position: relative;
     padding: 5px;
 }
-#WantList .want-name {
+#WantList .want:hover {
+    background: #eee;
+}
+#WantList .name {
     font-size: 26px;
     font-family: Georgia, Cambria, "Times New Roman", Times, serif;
     font-weight: normal;
@@ -78,6 +81,13 @@ label {
     position: absolute;
     top: 0;
     right: 0;
+    display: none;
+}
+#WantList .want:hover .delete {
+    display: inline;
+}
+#WantList .details {
+    display: none;
 }
 
 /*----- FOOTER -----*/

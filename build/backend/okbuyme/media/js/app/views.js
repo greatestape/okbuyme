@@ -25,18 +25,20 @@ WantView = Backbone.View.extend({
   },
 
   events: {
-    //"click .details"  : "toggleDetails",
+    "click .want" : "toggleDetails",
     //"click .edit"     : "editWant",
-    "click .delete"   : "deleteWant"
+    "click .delete" : "deleteWant"
   },
 
-  //toggleDetails: function(e){
-    //$(this.el)
-      //.toggleClass('open')
-      //.find('.want-details')
-      //.toggle();
-    //e.preventDefault();
-  //},
+  toggleDetails: function(e){
+    if (!$(e.target).hasClass("delete")) {
+      $(this.el)
+        .toggleClass('open')
+        .find('.details')
+        .toggle();
+    }
+    e.preventDefault();
+  },
 
   //editWant: function(e){
     //e.preventDefault();
