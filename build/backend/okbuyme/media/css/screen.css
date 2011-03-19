@@ -61,7 +61,31 @@ label {
     height: 100px;
 }
 
+#WantList {
+    margin: 15px;
+    list-style-type: none;
+}
+#WantList .want {
+    position: relative;
+    padding: 5px;
+}
+#WantList .want-name {
+    font-size: 26px;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-weight: normal;
+}
+#WantList .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 /*----- FOOTER -----*/
 footer {
     clear: both;
+    padding: 5px 0 100px;
+}
+
+footer p {
+    padding-left: 150px;
 }

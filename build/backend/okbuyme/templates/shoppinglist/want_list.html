@@ -8,20 +8,13 @@
 {% block templates %}
 <script type="text/template" id="WantTemplate">
     <div class="want">
-        <span class="want-name"><%= name %></span>
-        {% comment %}
-        <span class="want-owner">Dieter L</span>
-        {% endcomment %}
-        <span class="want-actions">
-            <a href="#" class="ir edit">edit</a>
-            <% if (notes) { %>
-              <a href="#" class="ir details">details</a>
-            <% } %>
-            <a href="#" class="ir delete">delete</a>
-        </span>
-        <div class="want-details">
-            <%= notes %>
-        </div>
+        <strong class="want-name"><%= name %></strong>
+        <a href="#" class="delete">X</a>
+        <% if (notes) { %>
+            <div class="want-details">
+                <%= notes %>
+            </div>
+        <% } %>
     </div>
 </script>
 
@@ -30,7 +23,7 @@
 {% endblock templates %}
 
 {% block main_content %}
-<div id="AddButton">
+<div id="AddButton" class="clearfix">
     <a id="AddWant" class="ir" href="#">{% trans "Add" %}</a>
 </div>
 
@@ -49,8 +42,8 @@
 
 
 {% block javascript %}
-{% comment %}
 <script language="JavaScript">
+    {% comment %}
 var wantList = [
     {% for want in want_list %}
         {{ want.get_json|safe }}{% if not forloop.last %},{% endif %}
@@ -60,7 +53,7 @@ var wantList = [
 _.each(wantList, function(want){
     wants.add(want);
 });
-var app = new AppView();
+    {% endcomment %}
+//var app = new AppView();
 </script>
-{% endcomment %}
 {% endblock %}

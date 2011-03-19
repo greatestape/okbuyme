@@ -22,25 +22,25 @@ body {-webkit-tap-highlight-color: rgb(255,255,158);}
 }
 
 #AddButton {
-    float: left;
-    width: 150px;
-    background: url(../images/bg-add-one.png) no-repeat center left;
+    width: 650px;
+    background: url(../images/bg-add-one.png) no-repeat 490px 17px;
     text-align: right;
     margin-top: 10px;
 }
 #AddWant {
-    background: url(../images/bg-add.png) no-repeat 0 0;
+    background: url(../images/bg-add.png) no-repeat 0 3px;
     height: 47px;
     width: 47px;
     display: block;
     float: right;
+    margin-right: 10px;
 }
 #AddWant:hover {
     background-position: 0 100%;
 }
 #ListArea {
     width: 500px;
-    float: left;
+    margin-left: 150px;
     background: #fff;
             border-radius: 5px;
     -webkit-border-radius: 5px;
