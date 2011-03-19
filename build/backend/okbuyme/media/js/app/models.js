@@ -12,18 +12,18 @@ Want = Backbone.Model.extend({
   initialize: function() {
   },
 
-  validate: function(attrs){
-    _.log('Validate called');
-  },
+  //validate: function(attrs){
+    //_.log('Validate called');
+  //},
 
   clear: function(){
     this.destroy({
+      success: function(model, data){
+        model.view.remove();
+      },
       error: function(model, data){
         alert('An error occurred deleting your item.');
       },
-      success: function(model, data){
-        model.view.remove();
-      }
     });
   }
 });

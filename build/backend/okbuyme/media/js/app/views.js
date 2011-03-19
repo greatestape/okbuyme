@@ -24,14 +24,13 @@ WantView = Backbone.View.extend({
     return this;
   },
 
-  //events: {//{{{
+  events: {
     //"click .details"  : "toggleDetails",
     //"click .edit"     : "editWant",
-    //"click .delete"   : "deleteWant"
-  //},
+    "click .delete"   : "deleteWant"
+  },
 
   //toggleDetails: function(e){
-
     //$(this.el)
       //.toggleClass('open')
       //.find('.want-details')
@@ -43,23 +42,23 @@ WantView = Backbone.View.extend({
     //e.preventDefault();
   //},
 
-  //deleteWant: function(e){
-    //e.preventDefault();
-    //var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
-    //if (proceed) {
-      //this.clear();
-    //}
-  //},
+  deleteWant: function(e){
+    e.preventDefault();
+    var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
+    if (proceed) {
+      this.clear();
+    }
+  },
 
-  //clear: function() {
-    //this.model.clear();
-  //},
+  clear: function() {
+    this.model.clear();
+  },
 
-  //remove: function(){
-    //$(this.el).slideUp('normal', function(){
-      //$(this).remove();
-    //});
-  //}//}}}
+  remove: function(){
+    $(this.el).slideUp('normal', function(){
+      $(this).remove();
+    });
+  }
 });
 
 //
