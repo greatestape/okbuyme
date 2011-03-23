@@ -51,8 +51,8 @@ $(function(){
   // The document is ready, so kickoff the app. There is already an initialized
   // (and empty) okbuyme.app.wants Collection, so call its fetch() method to AJAX
   // get the initial list of Wants. Fetch will take the returned JSON from the
-  // server, parse it, and add each Want to the collection. Note that fetch() also
-  // calls  If that's successful, we can render the list.
+  // server, parse it, and add each Want to the collection. If that's
+  // successful, we can render the list.
   okbuyme.app.wants.fetch({
     add: true,
     success: function(collection, resp){
