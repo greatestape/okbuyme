@@ -85,9 +85,8 @@ pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
 body, select, input, textarea {
   /* #444 looks better than black: twitter.com/H_FJ/statuses/11800719859 */
-  color: #444;
   /* set your base font here, to apply evenly */
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Tahoma, sans-serif;
 }
 
 /* headers (h1,h2,etc) have no default font-size or margin,

@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'south',
 
     'shoppinglist',
+    'utils',
 )
 
 try:

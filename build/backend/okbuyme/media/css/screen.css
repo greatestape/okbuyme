@@ -1,0 +1,101 @@
+/*
+ * dark teal 075663
+ */
+body {
+    border-top: 5px solid #075663;
+    background: #b3c7cd url(../images/bg-grid.png) repeat-x 0 0;
+    color: #333;
+}
+
+
+/*----- HEADER -----*/
+header {
+    margin: 20px 0;
+}
+
+#Sticker {
+    background: url(../images/logo-sticker.png) no-repeat 0 0;
+    width: 134px;
+    height: 86px;
+    display: block;
+    float: left;
+    margin-right: 16px;
+}
+#Sticker:hover {
+     -webkit-transform: rotate(-4deg); 
+        -moz-transform: rotate(-4deg);
+}
+
+#Logo {
+    background: url(../images/logo.png) no-repeat 0 0;
+    width: 267px;
+    height: 66px;
+    display: block;
+    float: left;
+    margin-top: 7px;
+}
+
+
+/*----- CONTENT -----*/
+.form-row {
+    margin-bottom: 10px;
+}
+label {
+    font-weight: bold;
+    color: #222;
+    display: block;
+}
+.req-asterisk {
+    color: #900;
+}
+#AddWantForm input[name=name] {
+    font-size: 26px;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    padding: 5px;
+    color: #222;
+    width: 445px;
+}
+#AddWantForm textarea {
+    width: 445px;
+    padding: 5px;
+    height: 100px;
+}
+
+#WantList {
+    margin: 15px;
+    list-style-type: none;
+}
+#WantList .want {
+    position: relative;
+    padding: 5px;
+}
+#WantList .want:hover {
+    background: #eee;
+}
+#WantList .name {
+    font-size: 26px;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-weight: normal;
+}
+#WantList .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+#WantList .want:hover .delete {
+    display: inline;
+}
+#WantList .details {
+    display: none;
+}
+
+/*----- FOOTER -----*/
+footer {
+    clear: both;
+    padding: 5px 0 100px;
+}
+
+footer p {
+    padding-left: 150px;
+}
