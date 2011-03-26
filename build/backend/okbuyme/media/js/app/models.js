@@ -12,10 +12,6 @@ Want = Backbone.Model.extend({
   initialize: function() {
   },
 
-  //validate: function(attrs){
-    //_.log('Validate called');
-  //},
-
   clear: function(){
     this.destroy({
       success: function(model, data){

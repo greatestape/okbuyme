@@ -31,6 +31,6 @@ describe("The App view", function(){
     expect($("#WantList")).not.toBeEmpty();
     expect($("#WantList li").length).toEqual(3);
   });
-  
+
 });
 
