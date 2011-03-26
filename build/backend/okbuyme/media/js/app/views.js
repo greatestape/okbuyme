@@ -120,16 +120,17 @@ AppView = Backbone.View.extend({
 
   render: function() {
     okbuyme.app.wants.each(this.renderOne);
-    this.renderAddForm();
+    //this.renderAddForm();
   },
 
   renderOne: function(want) {
     var view = new WantView({model: want});
     this.$("#WantList").append(view.render().el);
-  },
-
-  renderAddForm: function(){
-    var view = new AddView();
-    this.$("#AddWantFormContainer").append(view);
+  //},
   }
+
+  //renderAddForm: function(){
+    //var view = new AddView();
+    //this.$("#AddWantFormContainer").append(view);
+  //}
 });
