@@ -1,4 +1,4 @@
-describe("Want model", function() {
+describe("A Want model", function() {
 
   beforeEach(function(){
     this.server = sinon.fakeServer.create();
@@ -32,7 +32,7 @@ describe("Want model", function() {
 });
 
 
-describe("WantList collection", function() {
+describe("A WantList collection", function() {
 
   beforeEach(function(){
     this.server = sinon.fakeServer.create();

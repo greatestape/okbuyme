@@ -11,7 +11,11 @@ WantView = Backbone.View.extend({
 
   tagName: "li",
 
-  template: _.template($('#WantTemplate').html()),
+  template: function(){
+    html = _.unescape($("#WantTemplate").html());
+    var template = _.template(html);
+    return template;
+  },
 
   initialize: function() {
     _.bindAll(this, "render");
@@ -20,47 +24,49 @@ WantView = Backbone.View.extend({
 
   render: function() {
     model_data = this.model.toJSON();
-    var html = $(this.el).html(this.template(model_data));
+    var template = this.template();
+    var html = $(this.el).html(template(model_data));
     return this;
-  },
+  //},
+  }
 
-  events: {
-    "click .want" : "toggleDetails",
-    //"click .edit"     : "editWant",
-    "click .delete" : "deleteWant"
-  },
+  //events: {//{{{
+    //"click .want" : "toggleDetails",
+    ////"click .edit"     : "editWant",
+    //"click .delete" : "deleteWant"
+  //},
 
-  toggleDetails: function(e){
-    if (!$(e.target).hasClass("delete")) {
-      $(this.el)
-        .toggleClass('open')
-        .find('.details')
-        .toggle();
-    }
-    e.preventDefault();
-  },
-
-  //editWant: function(e){
+  //toggleDetails: function(e){
+    //if (!$(e.target).hasClass("delete")) {
+      //$(this.el)
+        //.toggleClass('open')
+        //.find('.details')
+        //.toggle();
+    //}
     //e.preventDefault();
   //},
 
-  deleteWant: function(e){
-    e.preventDefault();
-    var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
-    if (proceed) {
-      this.clear();
-    }
-  },
+  ////editWant: function(e){
+    ////e.preventDefault();
+  ////},
 
-  clear: function() {
-    this.model.clear();
-  },
+  //deleteWant: function(e){
+    //e.preventDefault();
+    //var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
+    //if (proceed) {
+      //this.clear();
+    //}
+  //},
 
-  remove: function(){
-    $(this.el).slideUp('normal', function(){
-      $(this).remove();
-    });
-  }
+  //clear: function() {
+    //this.model.clear();
+  //},
+
+  //remove: function(){
+    //$(this.el).slideUp('normal', function(){
+      //$(this).remove();
+    //});
+  //}//}}}
 });
 
 //
@@ -114,7 +120,7 @@ AppView = Backbone.View.extend({
 
   render: function() {
     okbuyme.app.wants.each(this.renderOne);
-    //this.renderAddForm();
+    this.renderAddForm();
   },
 
   renderOne: function(want) {
@@ -122,8 +128,8 @@ AppView = Backbone.View.extend({
     this.$("#WantList").append(view.render().el);
   },
 
-  //renderAddForm: function(){
-    //var view = new AddView();
-    //this.$("#AddWantFormContainer").append(view);
-  //}
+  renderAddForm: function(){
+    var view = new AddView();
+    this.$("#AddWantFormContainer").append(view);
+  }
 });
