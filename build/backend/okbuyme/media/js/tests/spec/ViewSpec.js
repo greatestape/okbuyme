@@ -1,16 +1,31 @@
 describe("A Want view", function(){
 
   beforeEach(function(){
-    this.want = new Want({ name: "want1", notes: "want1" });
+    this.want = new Want({ name: "want1", notes: "want1 notes" });
+    loadFixtures('want-list.html');
+    this.wantView = new WantView({model: this.want});
+    this.$el = $(this.wantView.render().el);
   });
 
   it("should be rendered into a list item", function(){
-    loadFixtures('want-list.html');
-    var wantView = new WantView({model: this.want});
-    var el = wantView.render().el;
-    expect($(el)).toBe('li');
-    expect($(el)).toContain('div.want');
-    expect($(el).find('strong.name').text()).toEqual('want1');
+    expect(this.$el).toBe('li');
+    expect(this.$el).toContain('.want');
+    expect(this.$el.find('.name').text()).toEqual('want1');
+    expect(this.$el.find('.details').text()).toEqual('want1 notes');
+  });
+
+  it("should have its notes field initially hidden", function(){
+    expect(this.$el.find(".details").is(":visible")).toBeFalsy();
+  });
+
+  it("should make its notes field visible when clicked on", function(){
+    this.$el.find(".want").trigger("click");
+    expect(this.$el.hasClass("open")).toBeTruthy();
+  });
+
+  it("should not make its notes field visible when its delete link is clicked on", function(){
+    this.$el.find(".delete").trigger("click");
+    expect(this.$el.hasClass("open")).toBeFalsy();
   });
 });
 

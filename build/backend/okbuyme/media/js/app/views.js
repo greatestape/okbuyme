@@ -27,6 +27,20 @@ WantView = Backbone.View.extend({
     var template = this.template();
     var html = $(this.el).html(template(model_data));
     return this;
+  },
+
+  events: {
+    "click .want" : "toggleDetails",
+  },
+
+  toggleDetails: function(e){
+    if (!$(e.target).hasClass("delete")) {
+      $(this.el)
+        .toggleClass('open')
+        .find('.details')
+        .toggle();
+    }
+    e.preventDefault();
   }
 });
 
