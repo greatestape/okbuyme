@@ -2,7 +2,7 @@ describe("A Want view", function(){
 
   beforeEach(function(){
     window.origConfirm = window.confirm;
-    loadFixtures('want-list.html');
+    loadFixtures('want-template.html');
     want = new Want({ name: "want1", notes: "want1 notes" });
     wantView = new WantView({model: want});
     this.$el = $(wantView.render().el);
@@ -46,7 +46,7 @@ describe("The App view", function(){
 
   beforeEach(function(){
     window.origConfirm = window.confirm;
-    loadFixtures('want-list.html');
+    loadFixtures('want-list.html', 'want-template.html');
     want1 = new Want({ name: "want1", notes: "", resource_uri: "/wants/1" });
     want2 = new Want({ name: "want2", notes: "", resource_uri: "/wants/2" });
     want3 = new Want({ name: "want3", notes: "", resource_uri: "/wants/3" });
