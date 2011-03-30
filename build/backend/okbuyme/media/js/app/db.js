@@ -11,7 +11,6 @@ Backbone.sync = function(method, model, options){
       break;
 
     case 'read':
-      _.log('Backbone.sync (read)');
       $.ajax({
         type: "GET",
         beforeSend: function(req){
@@ -35,7 +34,6 @@ Backbone.sync = function(method, model, options){
       break;
 
     case 'delete':
-      _.log('Backbone.sync (delete)');
       $.ajax({
         type: "DELETE",
         url: model.get('resource_uri'),
