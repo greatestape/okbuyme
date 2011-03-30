@@ -31,16 +31,31 @@ WantView = Backbone.View.extend({
 
   events: {
     "click .want" : "toggleDetails",
+    "click .delete" : "deleteWant"
   },
 
   toggleDetails: function(e){
+    e.preventDefault();
     if (!$(e.target).hasClass("delete")) {
       $(this.el)
         .toggleClass('open')
         .find('.details')
         .toggle();
     }
+  },
+
+  deleteWant: function(e){
     e.preventDefault();
+    var proceed = confirm("Are you sure you want to delete " + this.model.get('name') + "?");
+    if (proceed) {
+      this.model.clear();
+    }
+  },
+
+  remove: function(){
+    $(this.el).slideUp('normal', function(){
+      $(this).remove();
+    });
   }
 });
 

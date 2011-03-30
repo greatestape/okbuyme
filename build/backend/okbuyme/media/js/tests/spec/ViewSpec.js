@@ -1,10 +1,15 @@
 describe("A Want view", function(){
 
   beforeEach(function(){
-    this.want = new Want({ name: "want1", notes: "want1 notes" });
+    window.origConfirm = window.confirm;
     loadFixtures('want-list.html');
-    this.wantView = new WantView({model: this.want});
-    this.$el = $(this.wantView.render().el);
+    want = new Want({ name: "want1", notes: "want1 notes" });
+    wantView = new WantView({model: want});
+    this.$el = $(wantView.render().el);
+  });
+
+  afterEach(function(){
+    window.confirm = window.origConfirm;
   });
 
   it("should be rendered into a list item", function(){
@@ -24,8 +29,15 @@ describe("A Want view", function(){
   });
 
   it("should not make its notes field visible when its delete link is clicked on", function(){
+    window.confirm = function(){}; // so it does not appear during test run
     this.$el.find(".delete").trigger("click");
     expect(this.$el.hasClass("open")).toBeFalsy();
+  });
+
+  it("should present a confirm dialog when the delete link is clicked", function(){
+    window.confirm = jasmine.createSpy();
+    this.$el.find(".delete").trigger("click");
+    expect(window.confirm).toHaveBeenCalled();
   });
 });
 
@@ -33,19 +45,38 @@ describe("A Want view", function(){
 describe("The App view", function(){
 
   beforeEach(function(){
-    this.want1 = new Want({ name: "want1", notes: "want1" });
-    this.want2 = new Want({ name: "want2", notes: "want2" });
-    this.want3 = new Want({ name: "want3", notes: "want3" });
-    this.wants = new WantList([this.want1, this.want2, this.want3]);
+    window.origConfirm = window.confirm;
+    loadFixtures('want-list.html');
+    want1 = new Want({ name: "want1", notes: "", resource_uri: "/wants/1" });
+    want2 = new Want({ name: "want2", notes: "", resource_uri: "/wants/2" });
+    want3 = new Want({ name: "want3", notes: "", resource_uri: "/wants/3" });
+    okbuyme.app.wants = new WantList([want1, want2, want3]);
+    new AppView();
+    this.server = sinon.fakeServer.create();
+  });
+
+  afterEach(function(){
+    window.confirm = window.origConfirm;
   });
 
   it("should render a list of Wants", function(){
-    loadFixtures('want-list.html');
-    okbuyme.app.wants = this.wants; // add to namespace
-    new AppView();
     expect($("#WantList")).not.toBeEmpty();
     expect($("#WantList li").length).toEqual(3);
   });
 
-});
+  it("should remove a Want from the list when it's deleted", function(){
+    window.confirm = function(){ return true; } // simulate accepting dialog
+    this.server.respondWith("DELETE", "/wants/2", [204, {}, '']);
 
+    runs(function(){
+      $("#WantList li:eq(1) .delete").trigger("click");
+      this.server.respond();
+    });
+
+    waits(500); // wait for slideUp(), which takes "normal" == 400ms
+
+    runs(function(){
+      expect($("#WantList li").length).toEqual(2);
+    });
+  });
+});
