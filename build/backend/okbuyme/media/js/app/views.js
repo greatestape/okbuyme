@@ -13,8 +13,7 @@ WantView = Backbone.View.extend({
 
   template: function(){
     html = _.unescape($("#WantTemplate").html());
-    var template = _.template(html);
-    return template;
+    return _.template(html);
   },
 
   initialize: function() {
@@ -25,7 +24,7 @@ WantView = Backbone.View.extend({
   render: function() {
     model_data = this.model.toJSON();
     var template = this.template();
-    var html = $(this.el).html(template(model_data));
+    $(this.el).html(template(model_data));
     return this;
   },
 
@@ -85,18 +84,22 @@ AddWantView = Backbone.View.extend({
 //
 AppView = Backbone.View.extend({
 
-  el: $("#MainContent"),
-
   initialize: function() {
     this.render();
   },
 
   render: function() {
-    okbuyme.app.wants.each(this.renderOne);
+    okbuyme.app.wants.each(this.renderWant);
+    this.renderAddForm();
   },
 
-  renderOne: function(want) {
+  renderWant: function(want) {
     var view = new WantView({model: want});
-    this.$("#WantList").append(view.render().el);
+    $("#WantList").append(view.render().el);
+  },
+
+  renderAddForm: function(){
+    var view = new AddWantView();
+    $("#ListContainer").prepend(view.render().el);
   }
 });

@@ -17,6 +17,19 @@
 </script>
 
 <script type="text/template" id="AddWantFormTemplate">
+  <form action="" method="post" id="AddWantForm">
+    <div class="form-row required">
+      <label for="id_name">Name</label>
+      <input type="text" name="name" id="id_name" />
+    </div>
+    <div class="form-row required">
+      <label for="id_notes">Notes</label>
+      <textarea name="notes" id="id_notes"></textarea>
+    </div>
+    <div class="submit-row">
+      <input type="submit" name="submit" value="Submit">
+    </div>
+  </form>
 </script>
 {% endblock templates %}
 
@@ -27,16 +40,7 @@
 </div>
 {% endcomment %}
 
-<div id="ListArea">
-    {% comment %}
-    <form action="." method="POST" id="AddWantForm">
-        {% csrf_token %}
-        {% include "includes/form-snippet.html" %}
-        <div class="form-row submit">
-            <input type="submit" value="{% trans "Save this item" %}" />
-        </div>
-    </form>
-    {% endcomment %}
+<div id="ListContainer">
     <p>{% trans "Lorem ipsum dolor sit yadda yadda." %}</p>
     <ul id="WantList" class="clearfix"></ul>
 </div>
