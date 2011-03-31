@@ -60,6 +60,26 @@ WantView = Backbone.View.extend({
 });
 
 
+AddWantView = Backbone.View.extend({
+  tagName: "div",
+  id: "AddWantFormContainer",
+
+  template: function(){
+    html = _.unescape($("#AddWantFormTemplate").html());
+    return _.template(html);
+  },
+
+  initialize: function() {
+    _.bindAll(this, "render");
+  },
+
+  render: function() {
+    $(this.el).html(this.template());
+    return this;
+  }
+});
+
+
 //
 // A top-level view for the entire app
 //

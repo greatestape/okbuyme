@@ -42,6 +42,21 @@ describe("A Want view", function(){
 });
 
 
+describe("The Add Want form view", function(){
+
+  beforeEach(function(){
+    loadFixtures("want-list.html", "add-want-form-template.html");
+    addWantView = new AddWantView();
+    this.$el = $(addWantView.render().el);
+  });
+
+  it("should render into the appropriate div", function(){
+    expect(this.$el).toBe('div');
+    expect(this.$el).toContain("form");
+  });
+});
+
+
 describe("The App view", function(){
 
   beforeEach(function(){
