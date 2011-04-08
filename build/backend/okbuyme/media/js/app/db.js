@@ -11,7 +11,6 @@ Backbone.sync = function(method, model, options){
       break;
 
     case 'read':
-      _.log('Backbone.sync (read)');
       $.ajax({
         type: "GET",
         beforeSend: function(req){
@@ -19,9 +18,9 @@ Backbone.sync = function(method, model, options){
         },
         url: okbuyme.urls.wants,
         success: function(data, textStatus, jqXHR){
-          // Call the callback from fetch(), which both adds the models in
-          // `data` to the collection and calls the original callback that was
-          // passed in
+          // Call Backbone's callback from fetch(), which both parses and adds
+          // the models in `data` to the collection, and calls our original
+          // callback that was passed in
           options.success(data);
         },
         error: function(data, textStatus, jqXHR){
@@ -35,7 +34,6 @@ Backbone.sync = function(method, model, options){
       break;
 
     case 'delete':
-      _.log('Backbone.sync (delete)');
       $.ajax({
         type: "DELETE",
         url: model.get('resource_uri'),

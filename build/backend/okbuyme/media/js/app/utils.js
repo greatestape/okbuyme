@@ -32,8 +32,8 @@ _.mixin({
   // to do, since it's involved adding stuff to app code just for the sake of
   // making tests happy.
   unescape: function(str){
-    return typeof str == "string"
-      ? str.replace("&lt;", "<").replace("&gt;", ">")
-      : str;
+    var lre = /&lt;/g,
+        gre = /&gt;/g;
+    return typeof str == "string" ? str.replace(lre, "<").replace(gre, ">") : str;
   }
 });
