@@ -67,7 +67,6 @@ $(function(){
   okbuyme.app.wants.fetch({
     add: true,
     success: function(collection, resp){
-      _.log('SUCCESS: Got list of wants; ok to render list');
       new AppView();
     },
     error: function(){
