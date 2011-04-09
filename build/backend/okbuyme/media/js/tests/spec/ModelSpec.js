@@ -1,4 +1,4 @@
-describe("A Want model", function() {
+describe("A Want", function() {
 
   beforeEach(function(){
     this.server = sinon.fakeServer.create();
@@ -28,6 +28,13 @@ describe("A Want model", function() {
     this.server.respond();
 
     expect(destroyCallback.called).toBeTruthy();
+  });
+
+  it("should be able to be created", function(){
+    this.server.respondWith("POST", "/wants/", [204, {}, '']);
+    var want2 = new Want({ name: "want2", notes: "want2 notes"});
+    want2.save();
+    this.server.respond();
   });
 });
 

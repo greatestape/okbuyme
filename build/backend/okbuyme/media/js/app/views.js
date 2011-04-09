@@ -69,12 +69,54 @@ AddWantView = Backbone.View.extend({
   },
 
   initialize: function() {
-    _.bindAll(this, "render");
+    _.bindAll(this, "render", "handleSave");
   },
 
   render: function() {
     $(this.el).html(this.template());
     return this;
+  },
+
+  events: {
+    "submit #AddWantForm" : "addWant"
+  },
+
+  // Display form errors when submission is invalid
+  handleError: function(model, errors){
+    var html = _.unescape($("#FormErrorTemplate").html()),
+        template = _.template(html);
+
+    if (errors.name) {
+      var msg = template({"error": errors.name});
+      $("#id_name").after(msg);
+    }
+  },
+
+  // Display messages and reset form when Want is successfully saved
+  handleSave: function(){
+    this.render();
+
+    var html = _.unescape($("#SuccessMessageTemplate").html()),
+        template = _.template(html)
+        msg = template({"message": "Your item was successfully saved."});
+    $(this.el).parent().before(msg);
+
+    // TODO not sure if collection refreshes, or how to update page
+  },
+
+  addWant: function(e) {
+    e.preventDefault();
+    $("form .error-message").remove();
+
+    var name = $("#id_name").val(),
+        notes = $("#id_notes").val();
+
+    var want = new Want({
+      "name": name,
+      "notes": notes
+    });
+
+    want.doSave();
   }
 });
 

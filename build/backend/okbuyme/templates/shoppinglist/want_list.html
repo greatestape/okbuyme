@@ -19,7 +19,7 @@
 <script type="text/template" id="AddWantFormTemplate">
   <form action="" method="post" id="AddWantForm">
     <div class="form-row required">
-      <label for="id_name">Name</label>
+      <label for="id_name">Name <span class="req-asterisk">*</span></label>
       <input type="text" name="name" id="id_name" />
     </div>
     <div class="form-row required">
@@ -31,6 +31,15 @@
     </div>
   </form>
 </script>
+
+<script type="text/template" id="FormErrorTemplate">
+  <div class="error-message"><%= error %></div>
+</script>
+
+<script type="text/template" id="SuccessMessageTemplate">
+  <div class="alert-box success"><p><%= message %></p></div>
+</script>
+
 {% endblock templates %}
 
 {% block main_content %}
