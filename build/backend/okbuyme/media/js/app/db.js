@@ -40,6 +40,11 @@ Backbone.sync = function(method, model, options){
           // callback that was passed in
           options.success(data);
         },
+        statusCode: {
+            401: function() {
+                window.location = '/my-account/'
+            }
+        },
         error: function(data, textStatus, jqXHR){
           options.error();
         }
