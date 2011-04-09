@@ -6,7 +6,25 @@ from piston.resource import Resource
 from shoppinglist.handlers import WantHandler
 
 
-auth = HttpBasicAuthentication(realm='Ok Buy Me')
+class DjangoAndBasicAuthentication(HttpBasicAuthentication):
+    """
+    Django authentication falling back to HTTP Basic Auth
+    """
+
+    def is_authenticated(self, request):
+        """
+        This method call the `is_authenticated` method of django
+        User in django.contrib.auth.models.
+
+        `is_authenticated`: Will be called when checking for
+        authentication. It returns True if the user is authenticated. If they
+        aren't, try to authenticate using HTTP Basic Auth.
+        """
+        return (request.user.is_authenticated() or
+                super(DjangoAndBasicAuthentication, self).is_authenticated(request))
+
+
+auth = DjangoAndBasicAuthentication(realm='Ok Buy Me')
 want_handler = Resource(WantHandler, authentication=auth)
 
 
