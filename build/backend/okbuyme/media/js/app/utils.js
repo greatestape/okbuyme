@@ -12,13 +12,14 @@ _.mixin({
     if(window.console) console.log( Array.prototype.slice.call(arguments) );
   },
 
+  // TODO: Remove this
   // Generate an HTTP auth header based on the provided credentials, used for
   // AJAX calls.
-  make_base_auth : function(user, password) {
-    var token = user + ':' + password;
-    var hash = Base64.encode(token);
-    return "Basic " + hash;
-  },
+  // make_base_auth : function(user, password) {
+  //   var token = user + ':' + password;
+  //   var hash = Base64.encode(token);
+  //   return "Basic " + hash;
+  // },
 
   // Unescape some HTML entities provided string `str`. Used when compiling
   // Underscore templates. When running regularly in the browser, the templates

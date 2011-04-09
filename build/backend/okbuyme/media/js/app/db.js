@@ -29,9 +29,10 @@ Backbone.sync = function(method, model, options){
     case 'read':
       $.ajax({
         type: "GET",
-        beforeSend: function(req){
-          req.setRequestHeader('Authorization', okbuyme.auth.token);
-        },
+        // TODO: Remove this
+        // beforeSend: function(req){
+        //   req.setRequestHeader('Authorization', okbuyme.auth.token);
+        // },
         url: okbuyme.urls.wants,
         success: function(data, textStatus, jqXHR){
           // Call Backbone's callback from fetch(), which both parses and adds
