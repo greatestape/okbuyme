@@ -85,9 +85,7 @@ AddWantView = Backbone.View.extend({
   // and form validation errors.
   handleError: function(model, errorObj){
     if (errorObj.readyState) { // error from $.ajax()
-      var html = $("#GenericErrorTemplate").html();
-      $("#ListContainer").before(html);
-
+      _.displayGenericError();
     } else { // form validation error
       var html = _.unescape($("#FormErrorTemplate").html()),
           template = _.template(html);

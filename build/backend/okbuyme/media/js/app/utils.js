@@ -27,5 +27,11 @@ _.mixin({
     var lre = /&lt;/g,
         gre = /&gt;/g;
     return typeof str == "string" ? str.replace(lre, "<").replace(gre, ">") : str;
+  },
+
+  displayGenericError: function(){
+    var html = $("#GenericErrorTemplate").html();
+    $("#ListContainer").before(html);
   }
+
 });

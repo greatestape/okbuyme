@@ -28,7 +28,7 @@ Want = Backbone.Model.extend({
         model.view.remove();
       },
       error: function(model, data){
-        alert('An error occurred deleting your item.');
+        _.displayGenericError();
       }
     });
   },
