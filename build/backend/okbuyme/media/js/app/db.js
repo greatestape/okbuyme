@@ -8,6 +8,22 @@ Backbone.sync = function(method, model, options){
   switch(method) {
     case 'create':
       _.log('Backbone.sync (create)');
+      $.ajax({
+        type: "POST",
+        url: okbuyme.urls.wants,
+        data: model.attributes,
+        success: function(data, textStatus, jqXHR){
+          options.success(data);
+        },
+        statusCode: {
+          401: function() {
+            window.location = '/my-account/' // TODO add url to constants.js (when it exists)
+          }
+        },
+        error: function(data, textStatus, jqXHR){
+          options.error(data);
+        }
+      });
       break;
 
     case 'read':
@@ -15,9 +31,6 @@ Backbone.sync = function(method, model, options){
         type: "GET",
         url: okbuyme.urls.wants,
         success: function(data, textStatus, jqXHR){
-          // Call Backbone's callback from fetch(), which both parses and adds
-          // the models in `data` to the collection, and calls our original
-          // callback that was passed in
           options.success(data);
         },
         statusCode: {

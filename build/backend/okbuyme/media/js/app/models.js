@@ -13,7 +13,6 @@ Want = Backbone.Model.extend({
   },
 
   validate: function(attrs) {
-    _.log("Validating...");
     var errors = {};
     if (attrs.name === "") {
       errors.name = "You must provide a name for this item.";
@@ -34,16 +33,15 @@ Want = Backbone.Model.extend({
     });
   },
 
-  doSave: function(){
+  doSave: function(view){
     _.log('doSave');
     this.save(this.attributes, {
-      success: function(model, data){ // TODO will not work until model is returned from server in AJAX call in db.js
+      success: function(model, data){
         _.log("Save callback!");
         //model.view.handleSave();
       },
-      error: function(model, data){ // TODO this callback is called when handling form validation errors
-        _.log("Error callback.");
-        //model.view.handleError();
+      error: function(model, errorObj){
+        view.handleError(model, errorObj);
       }
     });
   }

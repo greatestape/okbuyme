@@ -81,14 +81,21 @@ AddWantView = Backbone.View.extend({
     "submit #AddWantForm" : "addWant"
   },
 
-  // Display form errors when submission is invalid
-  handleError: function(model, errors){
-    var html = _.unescape($("#FormErrorTemplate").html()),
-        template = _.template(html);
+  // Display form errors. Note this handles both errors from jQuery's $.ajax()
+  // and form validation errors.
+  handleError: function(model, errorObj){
+    if (errorObj.readyState) { // error from $.ajax()
+      var html = $("#GenericErrorTemplate").html();
+      $("#ListContainer").before(html);
 
-    if (errors.name) {
-      var msg = template({"error": errors.name});
-      $("#id_name").after(msg);
+    } else { // form validation error
+      var html = _.unescape($("#FormErrorTemplate").html()),
+          template = _.template(html);
+
+      if (errorObj.name) {
+        var msg = template({"error": errorObj.name});
+        $("#id_name").after(msg);
+      }
     }
   },
 
@@ -106,7 +113,7 @@ AddWantView = Backbone.View.extend({
 
   addWant: function(e) {
     e.preventDefault();
-    $("form .error-message").remove();
+    $(".error-message").remove();
 
     var name = $("#id_name").val(),
         notes = $("#id_notes").val();
@@ -116,7 +123,7 @@ AddWantView = Backbone.View.extend({
       "notes": notes
     });
 
-    want.doSave();
+    want.doSave(this);
   }
 });
 
