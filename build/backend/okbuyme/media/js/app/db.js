@@ -7,13 +7,12 @@
 Backbone.sync = function(method, model, options){
   switch(method) {
     case 'create':
-      _.log('Backbone.sync (create)');
       $.ajax({
         type: "POST",
         url: okbuyme.urls.wants,
         data: model.attributes,
         success: function(data, textStatus, jqXHR){
-          options.success(data);
+          options.success(data, model);
         },
         statusCode: {
           401: function() {
@@ -21,7 +20,7 @@ Backbone.sync = function(method, model, options){
           }
         },
         error: function(data, textStatus, jqXHR){
-          options.error(data);
+          options.error(data, model);
         }
       });
       break;
@@ -31,7 +30,7 @@ Backbone.sync = function(method, model, options){
         type: "GET",
         url: okbuyme.urls.wants,
         success: function(data, textStatus, jqXHR){
-          options.success(data);
+          options.success(data, model);
         },
         statusCode: {
           401: function() {
@@ -39,7 +38,7 @@ Backbone.sync = function(method, model, options){
           }
         },
         error: function(data, textStatus, jqXHR){
-          options.error();
+          options.error(data, model);
         }
       });
       break;
