@@ -12,7 +12,7 @@ WantView = Backbone.View.extend({
   tagName: "li",
 
   template: function(){
-    html = _.unescape($("#WantTemplate").html());
+    html = $("#WantTemplate").html();
     return _.template(html);
   },
 
@@ -64,7 +64,7 @@ AddWantView = Backbone.View.extend({
   id: "AddWantFormContainer",
 
   template: function(){
-    html = _.unescape($("#AddWantFormTemplate").html());
+    html = $("#AddWantFormTemplate").html();
     return _.template(html);
   },
 
@@ -87,7 +87,7 @@ AddWantView = Backbone.View.extend({
     if (errorObj.readyState) { // error from $.ajax()
       _.displayGenericError();
     } else { // form validation error
-      var html = _.unescape($("#FormErrorTemplate").html()),
+      var html = $("#FormErrorTemplate").html(),
           template = _.template(html);
 
       if (errorObj.name) {
@@ -101,8 +101,8 @@ AddWantView = Backbone.View.extend({
   handleSave: function(){
     this.render();
 
-    var html = _.unescape($("#SuccessMessageTemplate").html()),
-        template = _.template(html)
+    var html = $("#SuccessMessageTemplate").html(),
+        template = _.template(html),
         msg = template({"message": "Your item was successfully saved."});
     $(this.el).parent().before(msg);
 

@@ -1,4 +1,12 @@
-<div id="AddWantFormTemplate">
+<script type="text/template" id="FormErrorTemplate">
+  <div class="error-message"><%= error %></div>
+</script>
+
+<script type="text/template" id="SuccessMessageTemplate">
+  <div class="alert-box success"><p><%= message %></p></div>
+</script>
+
+<script type="text/template" id="AddWantFormTemplate">
   <form action="" method="post" id="AddWantForm">
     <div class="form-row required">
       <label for="id_name">Name</label>
@@ -12,4 +20,4 @@
       <input type="submit" name="submit" value="Submit">
     </div>
   </form>
-</div>
+</script>
