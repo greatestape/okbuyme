@@ -15,5 +15,10 @@ _.mixin({
   displayGenericError: function(){
     var html = $("#GenericErrorTemplate").html();
     $("#ListContainer").before(html);
+  },
+
+  removeErrorMessages: function(){
+    $(".error-message").remove();
   }
+
 });

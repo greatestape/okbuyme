@@ -48,11 +48,27 @@ describe("The Add Want form view", function(){
     loadFixtures("want-list.html", "add-want-form-template.html");
     addWantView = new AddWantView();
     this.$el = $(addWantView.render().el);
+    $("body").append(this.$el); // needs to be in DOM or else $.submit() won't fire
+  });
+
+  afterEach(function(){
+    this.$el.remove();
   });
 
   it("should render into the appropriate div", function(){
     expect(this.$el).toBe('div');
     expect(this.$el).toContain("form");
+  });
+
+  it("should show an error message on a field for an invalid submission", function(){
+    $("#AddWantForm").submit(); // missing "name" field
+    var $messages = this.$el.find(".error-message");
+    expect($messages.length).toBe(1);
+    expect($messages.first().text()).toEqual("You must provide a name for this item.");
+  });
+
+  it("should show a generic error if there is a problem saving to the server", function(){
+    // TODO
   });
 });
 

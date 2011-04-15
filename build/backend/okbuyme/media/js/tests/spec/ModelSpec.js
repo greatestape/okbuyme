@@ -13,6 +13,8 @@ describe("A Want", function() {
     expect(this.want.get("name")).toEqual("want1");
   });
 
+  // TODO probably want a nested describes to test successful, error, and 401 versions (see db.js)
+
   it("should be able to be deleted", function(){
     // set how the fake server should respond to a DELETE request
     this.server.respondWith("DELETE", "/wants/1", [204, {}, '']);
@@ -35,6 +37,8 @@ describe("A Want", function() {
     var want2 = new Want({ name: "want2", notes: "want2 notes"});
     want2.save();
     this.server.respond();
+
+    // TODO test validation
   });
 });
 

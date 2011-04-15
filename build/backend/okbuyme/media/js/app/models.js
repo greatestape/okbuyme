@@ -34,11 +34,9 @@ Want = Backbone.Model.extend({
   },
 
   doSave: function(view){
-    _.log('doSave');
     this.save(this.attributes, {
       success: function(model, data){
-        _.log("Save callback!");
-        //model.view.handleSave();
+        view.handleSave(model);
       },
       error: function(model, errorObj){
         view.handleError(model, errorObj);

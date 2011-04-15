@@ -78,11 +78,12 @@ AddWantView = Backbone.View.extend({
   },
 
   events: {
-    "submit #AddWantForm" : "addWant"
+    "submit #AddWantForm" : "submit"
   },
 
   // Display form errors. Note this handles both errors from jQuery's $.ajax()
-  // and form validation errors.
+  // and form validation errors. Note also that the validation error handling
+  // is currently heavily tied to the model and could be more robust.
   handleError: function(model, errorObj){
     if (errorObj.readyState) { // error from $.ajax()
       _.displayGenericError();
@@ -98,7 +99,7 @@ AddWantView = Backbone.View.extend({
   },
 
   // Display messages and reset form when Want is successfully saved
-  handleSave: function(){
+  handleSave: function(model){
     this.render();
 
     var html = $("#SuccessMessageTemplate").html(),
@@ -109,9 +110,9 @@ AddWantView = Backbone.View.extend({
     // TODO not sure if collection refreshes, or how to update page
   },
 
-  addWant: function(e) {
+  submit: function(e) {
     e.preventDefault();
-    $(".error-message").remove();
+    _.removeErrorMessages();
 
     var name = $("#id_name").val(),
         notes = $("#id_notes").val();
