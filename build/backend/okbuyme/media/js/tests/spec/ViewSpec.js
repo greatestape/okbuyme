@@ -45,10 +45,11 @@ describe("A Want view", function(){
 describe("The Add Want form view", function(){
 
   beforeEach(function(){
-    loadFixtures("want-list.html", "add-want-form-template.html");
+    loadFixtures("base.html", "want-list.html", "add-want-form-template.html");
     addWantView = new AddWantView();
     this.$el = $(addWantView.render().el);
     $("body").append(this.$el); // needs to be in DOM or else $.submit() won't fire
+    this.server = sinon.fakeServer.create();
   });
 
   afterEach(function(){
@@ -68,7 +69,12 @@ describe("The Add Want form view", function(){
   });
 
   it("should show a generic error if there is a problem saving to the server", function(){
-    // TODO
+    this.server.respondWith("POST", okbuyme.urls.wants, [400, {}, '']);
+    $("#id_name").val("test");
+    $("#AddWantForm").submit();
+    this.server.respond();
+    var $messages = $("body").find(".error-message");
+    expect($messages.first().text()).toEqual("An unexpected error occurred. Your request could not be processed.");
   });
 });
 
