@@ -5,12 +5,12 @@
   <title>Jasmine Test Runner</title>
 
   <!-- testing infrastructure files -->
-  <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/tests/lib/jasmine-1.0.2/jasmine.css">
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/lib/jasmine-1.0.2/jasmine.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/lib/jasmine-1.0.2/jasmine-html.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/lib/jasmine-jquery.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/lib/sinon-1.0.0.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/lib/sinon-server-1.0.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/test/lib/jasmine-1.0.2/jasmine.css">
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/lib/jasmine-1.0.2/jasmine.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/lib/jasmine-1.0.2/jasmine-html.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/lib/jasmine-jquery.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/lib/sinon-1.0.0.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/lib/sinon-server-1.0.0.js"></script>
 
   <!-- app files -->
   <script src="{{ MEDIA_URL }}js/lib/jquery-1.5.2.min.js"></script>
@@ -24,13 +24,13 @@
   <script src="{{ MEDIA_URL }}js/app/views.js"></script>
 
   <!-- spec test files -->
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/spec/ModelSpec.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/tests/spec/ViewSpec.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/spec/ModelSpec.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/test/spec/ViewSpec.js"></script>
 </head>
 <body>
 
 <script type="text/javascript">
-  jasmine.getFixtures().fixturesPath = '/js-tests/fixtures/';
+  jasmine.getFixtures().fixturesPath = '/jstest/fixtures/';
   jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
   jasmine.getEnv().execute();
 </script>

@@ -1,0 +1,23 @@
+<script type="text/template" id="FormErrorTemplate">
+  <div class="error-message"><%= error %></div>
+</script>
+
+<script type="text/template" id="SuccessMessageTemplate">
+  <div class="alert-box success"><p><%= message %></p></div>
+</script>
+
+<script type="text/template" id="AddWantFormTemplate">
+  <form action="" method="post" id="AddWantForm">
+    <div class="form-row required">
+      <label for="id_name">Name <span class="req-asterisk">*</span></label>
+      <input type="text" name="name" id="id_name" />
+    </div>
+    <div class="form-row required">
+      <label for="id_notes">Notes</label>
+      <textarea name="notes" id="id_notes"></textarea>
+    </div>
+    <div class="submit-row">
+      <input type="submit" name="submit" value="Submit">
+    </div>
+  </form>
+</script>
