@@ -78,6 +78,7 @@ AddWantView = Backbone.View.extend({
   },
 
   events: {
+    "click #AddWantFormToggle": "toggleAddWantForm",
     "submit #AddWantForm" : "submit"
   },
 
@@ -108,6 +109,11 @@ AddWantView = Backbone.View.extend({
     $(this.el).parent().before(msg);
 
     // TODO not sure if collection refreshes, or how to update page
+  },
+
+  toggleAddWantForm: function(e) {
+      e.preventDefault();
+      $("#AddWantForm").slideToggle();
   },
 
   submit: function(e) {
