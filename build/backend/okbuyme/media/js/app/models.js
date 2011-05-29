@@ -9,40 +9,39 @@
 //
 Want = Backbone.Model.extend({
 
-  initialize: function() {
-  },
+    initialize: function() {},
 
-  validate: function(attrs) {
-    var errors = {};
-    if (attrs.name === "") {
-      errors.name = "You must provide a name for this item.";
+    validate: function(attrs) {
+        var errors = {};
+        if (attrs.name === "") {
+            errors.name = "You must provide a name for this item.";
+        }
+        if (!_.isEmpty(errors)) {
+            return errors;
+        }
+    },
+
+    clear: function(){
+        this.destroy({
+            success: function(model, data){
+                model.view.remove();
+            },
+            error: function(model, data){
+                _.displayGenericError();
+            }
+        });
+    },
+
+    doSave: function(view){
+        this.save(this.attributes, {
+            success: function(model, data){
+                view.handleSave(model);
+            },
+            error: function(model, errorObj){
+                view.handleError(model, errorObj);
+            }
+        });
     }
-    if (!_.isEmpty(errors)) {
-      return errors;
-    }
-  },
-
-  clear: function(){
-    this.destroy({
-      success: function(model, data){
-        model.view.remove();
-      },
-      error: function(model, data){
-        _.displayGenericError();
-      }
-    });
-  },
-
-  doSave: function(view){
-    this.save(this.attributes, {
-      success: function(model, data){
-        view.handleSave(model);
-      },
-      error: function(model, errorObj){
-        view.handleError(model, errorObj);
-      }
-    });
-  }
 });
 
 
@@ -51,7 +50,7 @@ Want = Backbone.Model.extend({
 //
 WantList = Backbone.Collection.extend({
 
-  model: Want
+    model: Want
 
 });
 
