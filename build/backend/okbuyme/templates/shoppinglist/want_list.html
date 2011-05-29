@@ -18,27 +18,27 @@
 
 <script type="text/template" id="AddWantFormTemplate">
     <a href="#TODO" id="AddWantFormToggle">add</a>
-  <form action="" method="post" id="AddWantForm" class="hidden">
-    <div class="form-row required">
-      <label for="id_name">Name <span class="req-asterisk">*</span></label>
-      <input type="text" name="name" id="id_name" />
-    </div>
-    <div class="form-row">
-      <label for="id_notes">Notes</label>
-      <textarea name="notes" id="id_notes"></textarea>
-    </div>
-    <div class="submit-row">
-      <input type="submit" name="submit" value="Submit">
-    </div>
-  </form>
+    <form action="" method="post" id="AddWantForm" class="hidden">
+        <div class="form-row required">
+            <label for="id_name">Name <span class="req-asterisk">*</span></label>
+            <input type="text" name="name" id="id_name" />
+        </div>
+        <div class="form-row">
+            <label for="id_notes">Notes</label>
+            <textarea name="notes" id="id_notes"></textarea>
+        </div>
+        <div class="submit-row">
+            <input type="submit" name="submit" value="Submit">
+        </div>
+    </form>
 </script>
 
 <script type="text/template" id="FormErrorTemplate">
-  <div class="error-message"><%= error %></div>
+    <div class="error-message"><%= error %></div>
 </script>
 
 <script type="text/template" id="SuccessMessageTemplate">
-  <div class="alert-box success"><p><%= message %></p></div>
+    <div class="alert-box success"><p><%= message %></p></div>
 </script>
 
 {% endblock templates %}
@@ -60,20 +60,20 @@
 {% block javascript %}
 <script language="JavaScript">
 $(function(){
-  // The document is ready, so kickoff the app. There is already an initialized
-  // (and empty) okbuyme.app.wants Collection, so call its fetch() method to AJAX
-  // get the initial list of Wants. Fetch will take the returned JSON from the
-  // server, parse it, and add each Want to the collection. If that's
-  // successful, we can render the list.
-  okbuyme.app.wants.fetch({
-    add: true,
-    success: function(collection, resp){
-      new AppView();
-    },
-    error: function(){
-      alert("An error occurred getting your list of items.");
-    }
-  });
+    // The document is ready, so kickoff the app. There is already an initialized
+    // (and empty) okbuyme.app.wants Collection, so call its fetch() method to AJAX
+    // get the initial list of Wants. Fetch will take the returned JSON from the
+    // server, parse it, and add each Want to the collection. If that's
+    // successful, we can render the list.
+    okbuyme.app.wants.fetch({
+        add: true,
+        success: function(collection, resp){
+            new AppView();
+        },
+        error: function(){
+            alert("An error occurred getting your list of items.");
+        }
+    });
 });
 </script>
 {% endblock %}

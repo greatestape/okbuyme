@@ -7,19 +7,19 @@
 
 
 var okbuyme = {
-  // HTTP auth header string to be used in AJAX calls to the API. 
-  // TODO This is hardcoded now, but it needs to be computed in the backend and
-  // made available in the Django context here somehow.
-  auth: {
-    token: 'Basic ZGxpbWViOmQ=' // "dlimeb/d"
-    //token: 'Basic am9lOmo='     // "joe/j"
-  },
+    // HTTP auth header string to be used in AJAX calls to the API. 
+    // TODO This is hardcoded now, but it needs to be computed in the backend and
+    // made available in the Django context here somehow.
+    auth: {
+        token: 'Basic ZGxpbWViOmQ=' // "dlimeb/d"
+        //token: 'Basic am9lOmo='     // "joe/j"
+    },
 
-  // URLs for the API
-  urls: {
-    wants: '{% url api-shoppinglist-want-list %}'
-  },
+    // URLs for the API
+    urls: {
+        wants: '{% url api-shoppinglist-want-list %}'
+    },
 
-  // Placeholder object where the app components will go
-  app: {}
+    // Placeholder object where the app components will go
+    app: {}
 };
